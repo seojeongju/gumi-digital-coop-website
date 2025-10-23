@@ -1823,6 +1823,415 @@ app.get('/news/:id', async (c) => {
   }
 })
 
+// 조합원 소개 페이지
+app.get('/members', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-teal to-cyan-600 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold tracking-wider">MEMBERS</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">조합원 소개</h1>
+            <p class="text-xl opacity-90 mb-8">
+              구미디지털적층산업사업협동조합과 함께하는<br />
+              우수 회원사를 소개합니다
+            </p>
+            <div class="flex flex-wrap gap-3 justify-center">
+              <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">3D 프린팅</span>
+              <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">디지털 제조</span>
+              <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">연구개발</span>
+              <span class="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm">기술혁신</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 조합원 개요 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">함께 성장하는 파트너</h2>
+              <p class="text-gray-600 text-lg max-w-3xl mx-auto">
+                각 분야의 전문성을 보유한 우수 기업들이 모여<br />
+                협력과 상생을 통해 디지털 제조 혁신을 선도합니다
+              </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+              <div class="text-center">
+                <div class="w-20 h-20 bg-teal/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-building text-4xl text-teal"></i>
+                </div>
+                <div class="text-3xl font-bold text-teal mb-2">5+</div>
+                <div class="text-gray-600">조합원 기업</div>
+              </div>
+              <div class="text-center">
+                <div class="w-20 h-20 bg-navy/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-handshake text-4xl text-navy"></i>
+                </div>
+                <div class="text-3xl font-bold text-navy mb-2">100%</div>
+                <div class="text-gray-600">협력 만족도</div>
+              </div>
+              <div class="text-center">
+                <div class="w-20 h-20 bg-purple/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-project-diagram text-4xl text-purple"></i>
+                </div>
+                <div class="text-3xl font-bold text-purple mb-2">50+</div>
+                <div class="text-gray-600">공동 프로젝트</div>
+              </div>
+              <div class="text-center">
+                <div class="w-20 h-20 bg-coral/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-trophy text-4xl text-coral"></i>
+                </div>
+                <div class="text-3xl font-bold text-coral mb-2">20+</div>
+                <div class="text-gray-600">수상 실적</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 조합원 목록 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">주요 조합원</h2>
+              <p class="text-gray-600 text-lg">3D 프린팅 및 디지털 제조 분야의 선도 기업들</p>
+            </div>
+
+            <div class="space-y-8">
+              {/* 조합원 1: (주)휴먼아이티 */}
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 flex items-center justify-center">
+                    <img 
+                      src="https://page.gensparksite.com/v1/base64_upload/76a009931fb17d7e4d3f92f44ca06f1c" 
+                      alt="휴먼아이티" 
+                      class="w-full max-w-sm object-contain"
+                    />
+                  </div>
+                  <div class="lg:col-span-3 p-8 lg:p-12">
+                    <div class="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)휴먼아이티</h3>
+                        <p class="text-teal font-semibold">HUMAN IT</p>
+                      </div>
+                      <span class="px-4 py-2 bg-teal/10 text-teal rounded-full text-sm font-bold">핵심 회원사</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                      3D 프린팅 기술을 활용한 연구개발 및 최신 기술 트렌드를 선도하는 기업입니다.
+                    </p>
+                    <div class="space-y-3 mb-6">
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
+                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
+                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
+                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술 지원</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 조합원 2: 두맥스전자 */}
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-indigo-50 to-blue-50 p-8 flex items-center justify-center order-2 lg:order-1">
+                    <img 
+                      src="https://page.gensparksite.com/v1/base64_upload/ff5545e4bc4077cb31de8171c6682841" 
+                      alt="두맥스전자" 
+                      class="w-full max-w-sm object-contain"
+                    />
+                  </div>
+                  <div class="lg:col-span-3 p-8 lg:p-12 order-1 lg:order-2">
+                    <div class="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
+                        <p class="text-navy font-semibold">DOOMEX ELECTRONICS</p>
+                      </div>
+                      <span class="px-4 py-2 bg-navy/10 text-navy rounded-full text-sm font-bold">정회원</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                      전자 및 디지털 제조 기술을 기반으로 혁신적인 솔루션을 제공하는 전문 기업입니다.
+                    </p>
+                    <div class="space-y-3 mb-6">
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
+                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
+                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
+                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">전자제조</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">디지털 제조</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술혁신</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 조합원 3: (주)하이웰스 */}
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-cyan-50 to-teal-50 p-8 flex items-center justify-center">
+                    <img 
+                      src="https://page.gensparksite.com/v1/base64_upload/b9ff8920a27cb55fce522ccf139fc1d5" 
+                      alt="하이웰스" 
+                      class="w-full max-w-sm object-contain"
+                    />
+                  </div>
+                  <div class="lg:col-span-3 p-8 lg:p-12">
+                    <div class="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이웰스</h3>
+                        <p class="text-cyan-600 font-semibold">HIWELLS</p>
+                      </div>
+                      <span class="px-4 py-2 bg-cyan-600/10 text-cyan-600 rounded-full text-sm font-bold">정회원</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                      첨단 제조 기술과 품질 관리 시스템을 통해 최상의 제품을 제공하는 혁신 기업입니다.
+                    </p>
+                    <div class="space-y-3 mb-6">
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">품질관리</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">첨단제조</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술개발</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 조합원 4: (주)와우쓰리디 */}
+              <div class="bg-gradient-to-br from-purple-900 to-pink-900 rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div class="lg:col-span-2 bg-black/20 p-8 flex items-center justify-center order-2 lg:order-1">
+                    <img 
+                      src="https://page.gensparksite.com/v1/base64_upload/1f0b843c259e4ab7f9a466d6e332460a" 
+                      alt="와우쓰리디" 
+                      class="w-full max-w-sm object-contain"
+                    />
+                  </div>
+                  <div class="lg:col-span-3 p-8 lg:p-12 text-white order-1 lg:order-2">
+                    <div class="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 class="text-3xl font-bold mb-2">(주)와우쓰리디</h3>
+                        <p class="text-pink-300 font-semibold">WOW3D MAKER SPACE</p>
+                      </div>
+                      <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-bold">특별회원</span>
+                    </div>
+                    <p class="text-white/90 mb-6 leading-relaxed">
+                      3D 프린터, 3D 홀로그래피 디스플레이 개발 및 교육 서비스를 제공하는 메이커 스페이스 운영 기업입니다.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <h4 class="font-bold mb-2 flex items-center">
+                          <i class="fas fa-wrench mr-2"></i>개발
+                        </h4>
+                        <ul class="text-sm space-y-1 text-white/80">
+                          <li>- 3D Hologram Display</li>
+                          <li>- 적층 가공제조 장비(MSLA)</li>
+                          <li>- AI 데이터 가공 Software</li>
+                          <li>- 산학연 공동 R&D</li>
+                        </ul>
+                      </div>
+                      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                        <h4 class="font-bold mb-2 flex items-center">
+                          <i class="fas fa-graduation-cap mr-2"></i>교육
+                        </h4>
+                        <ul class="text-sm space-y-1 text-white/80">
+                          <li>- 4차산업 전문 교육기관</li>
+                          <li>- 국가/국제 자격증 인증교육</li>
+                          <li>- 노동부(HRD) 교육장</li>
+                          <li>- 산업 및 재취업 교육</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6">
+                      <h4 class="font-bold mb-2 flex items-center">
+                        <i class="fas fa-cube mr-2"></i>FAB/LAB
+                      </h4>
+                      <div class="text-sm text-white/80">
+                        <p>• Maker Space 제품 제작실 운영</p>
+                        <p>• 기업 사례품(PR/Mock-Up) 제작지원</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center text-sm text-white/80">
+                      <i class="fas fa-map-marker-alt mr-2"></i>
+                      경북 구미시 산호대로 253 구미첨단의료기기타워 606호
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 조합원 5: 스파코(주) */}
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-orange-50 to-yellow-50 p-8 flex items-center justify-center">
+                    <img 
+                      src="https://page.gensparksite.com/v1/base64_upload/937e0c6edf4a0013b2dd1939a2b430b5" 
+                      alt="스파코" 
+                      class="w-full max-w-sm object-contain"
+                    />
+                  </div>
+                  <div class="lg:col-span-3 p-8 lg:p-12">
+                    <div class="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">스파코(주)</h3>
+                        <p class="text-orange-600 font-semibold">SPACO</p>
+                      </div>
+                      <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">정회원</span>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                      정밀 가공 및 제조 기술을 기반으로 고품질 제품과 서비스를 제공하는 전문 기업입니다.
+                    </p>
+                    <div class="space-y-3 mb-6">
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-orange-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-orange-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                      </div>
+                      <div class="flex items-start">
+                        <i class="fas fa-check-circle text-orange-600 mr-3 mt-1"></i>
+                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                      </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">정밀가공</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">제조기술</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">품질혁신</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 조합원 혜택 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">조합원 혜택</h2>
+              <p class="text-gray-600 text-lg">조합원으로서 누릴 수 있는 다양한 혜택과 지원</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="bg-gradient-to-br from-teal/5 to-cyan/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center mb-6">
+                  <i class="fas fa-handshake text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">협력 네트워크</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  조합원 간 활발한 교류와 협력을 통한 시너지 창출 및 공동 사업 기회 확대
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-navy/5 to-blue/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mb-6">
+                  <i class="fas fa-cogs text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">기술 지원</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  전문가 컨설팅, 기술 교육, 장비 활용 지원 등 종합적인 기술 서비스 제공
+                </p>
+              </div>
+
+              <div class="bg-gradient-to-br from-purple/5 to-pink/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-purple rounded-2xl flex items-center justify-center mb-6">
+                  <i class="fas fa-bullhorn text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">마케팅 지원</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  공동 마케팅, 전시회 참가 지원, 홍보 활동 등 사업 확장을 위한 다각적 지원
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-20 bg-gradient-to-br from-navy via-teal to-cyan-600 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">조합원이 되어 함께 성장하세요</h2>
+            <p class="text-xl mb-8 opacity-90">
+              우리 조합과 함께 디지털 제조 혁신의 주역이 되실 수 있습니다
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/members/join" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
+                <i class="fas fa-user-plus mr-2"></i>
+                조합원 가입하기
+              </a>
+              <a href="/support/contact" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+                <i class="fas fa-phone mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '조합원 소개 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
 // 주요 사업분야 페이지
 app.get('/services', (c) => {
   return c.render(
