@@ -55,9 +55,10 @@ const Header = () => (
               조합 소개
               <i class="fas fa-chevron-down ml-1 text-xs"></i>
             </a>
-            <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+            <div class="absolute left-0 mt-2 w-52 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <a href="/about" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합 개요</a>
               <a href="/about/greeting" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합장 인사말</a>
+              <a href="/about/organization" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조직 및 운영구조</a>
               <a href="/about#vision" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">비전 & 미션</a>
               <a href="/about#values" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">핵심 가치</a>
               <a href="/about#location" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">오시는 길</a>
@@ -95,6 +96,7 @@ const Header = () => (
           <div class="pl-4 space-y-1">
             <a href="/about" class="block py-1 text-sm text-gray-600 hover:text-teal">조합 개요</a>
             <a href="/about/greeting" class="block py-1 text-sm text-gray-600 hover:text-teal">조합장 인사말</a>
+            <a href="/about/organization" class="block py-1 text-sm text-gray-600 hover:text-teal">조직 및 운영구조</a>
             <a href="/about#vision" class="block py-1 text-sm text-gray-600 hover:text-teal">비전 & 미션</a>
             <a href="/about#values" class="block py-1 text-sm text-gray-600 hover:text-teal">핵심 가치</a>
             <a href="/about#location" class="block py-1 text-sm text-gray-600 hover:text-teal">오시는 길</a>
@@ -1106,6 +1108,243 @@ app.get('/about/greeting', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '조합장 인사말 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 조직 및 운영구조 페이지
+app.get('/about/organization', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-navy text-white py-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">조직 및 운영구조</h1>
+            <p class="text-xl opacity-90">Organization Structure</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* 조직도 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">주요조직 구성 및 역할</h2>
+              <p class="text-gray-600 text-lg">협동조합의 체계적인 운영 구조를 소개합니다</p>
+            </div>
+            
+            {/* 조직도 이미지 */}
+            <div class="mb-16 bg-gray-50 rounded-2xl p-8 border border-gray-200">
+              <img 
+                src="https://page.gensparksite.com/v1/base64_upload/bb2d8fcd9dc3538cbd5afced361c8047" 
+                alt="조직 및 운영구조" 
+                class="w-full max-w-4xl mx-auto"
+              />
+            </div>
+            
+            {/* 주요 조직 상세 설명 */}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              {/* 이사회 */}
+              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-l-4 border-blue-500 hover:shadow-lg transition">
+                <div class="flex items-start mb-4">
+                  <div class="w-14 h-14 bg-blue-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">이사회</h3>
+                    <p class="text-sm text-gray-600">조합의 주요 정책심의 결정, 사업 계획 수립</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 총회 */}
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8 border-l-4 border-purple-500 hover:shadow-lg transition">
+                <div class="flex items-start mb-4">
+                  <div class="w-14 h-14 bg-purple-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-user-friends text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">총회</h3>
+                    <p class="text-sm text-gray-600">조합의 최고 의사결정기구로 조합원 전체로 구성</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 감사 */}
+              <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 border-l-4 border-green-500 hover:shadow-lg transition">
+                <div class="flex items-start mb-4">
+                  <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-search text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">감사</h3>
+                    <p class="text-sm text-gray-600">조합의 업무 집행상황, 재산상태, 장부 등 검사</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* 이사장 */}
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-8 border-l-4 border-orange-500 hover:shadow-lg transition">
+                <div class="flex items-start mb-4">
+                  <div class="w-14 h-14 bg-orange-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-user-tie text-2xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">이사장</h3>
+                    <p class="text-sm text-gray-600">조합을 대표하고 업무를 총괄, 이사의 의장</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* 실행조직 및 기능 */}
+            <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+              <div class="bg-gradient-to-r from-teal to-navy text-white px-8 py-6">
+                <h3 class="text-2xl font-bold">실행조직 및 기능</h3>
+              </div>
+              
+              <div class="divide-y divide-gray-200">
+                {/* 운영위원회 */}
+                <div class="p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-navy/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                      <i class="fas fa-cog text-2xl text-navy"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="text-xl font-bold text-gray-900 mb-2">운영위원회</h4>
+                      <p class="text-gray-600">사업 운영 및 실무 전반을 위한 의사결정기구</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 기술전문분과 */}
+                <div class="p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                      <i class="fas fa-laptop-code text-2xl text-teal"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="text-xl font-bold text-gray-900 mb-2">기술전문분과</h4>
+                      <p class="text-gray-600">3D프린팅 및 적층제조 관련 기술개발 및 자문</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 교육연구분과 */}
+                <div class="p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-purple/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                      <i class="fas fa-graduation-cap text-2xl text-purple"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="text-xl font-bold text-gray-900 mb-2">교육연구분과</h4>
+                      <p class="text-gray-600">교육 프로그램 개발 및 인력양성 업무</p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* 사무국 */}
+                <div class="p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-coral/10 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                      <i class="fas fa-building text-2xl text-coral"></i>
+                    </div>
+                    <div class="flex-1">
+                      <h4 class="text-xl font-bold text-gray-900 mb-2">사무국</h4>
+                      <p class="text-gray-600">행정, 회계, 대외협력, 회원관리 등 실무 지원</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 운영 방침 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">운영 방침</h2>
+              <p class="text-gray-600 text-lg">투명하고 효율적인 조합 운영을 위한 핵심 원칙</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* 투명성 */}
+              <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition text-center">
+                <div class="w-16 h-16 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-eye text-3xl text-teal"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">투명성</h3>
+                <p class="text-gray-600">
+                  모든 의사결정과 운영 과정을<br />
+                  투명하게 공개합니다
+                </p>
+              </div>
+              
+              {/* 민주성 */}
+              <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition text-center">
+                <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-vote-yea text-3xl text-navy"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">민주성</h3>
+                <p class="text-gray-600">
+                  조합원의 의견을 존중하고<br />
+                  민주적으로 운영합니다
+                </p>
+              </div>
+              
+              {/* 효율성 */}
+              <div class="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition text-center">
+                <div class="w-16 h-16 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-chart-line text-3xl text-purple"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">효율성</h3>
+                <p class="text-gray-600">
+                  체계적인 시스템으로<br />
+                  효율적으로 운영합니다
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 조합 소개로 돌아가기 */}
+      <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto text-center">
+            <a 
+              href="/about" 
+              class="inline-flex items-center px-8 py-4 bg-teal text-white rounded-md hover:bg-opacity-90 transition font-medium text-lg"
+            >
+              <i class="fas fa-arrow-left mr-3"></i>
+              조합 소개로 돌아가기
+            </a>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      
+      {/* Scroll to Top 버튼 */}
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      {/* JavaScript */}
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '조직 및 운영구조 - 구미디지털적층산업사업협동조합' }
   )
 })
 
