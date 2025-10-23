@@ -1959,9 +1959,9 @@ app.get('/members', (c) => {
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://page.gensparksite.com/v1/base64_upload/ff5545e4bc4077cb31de8171c6682841" 
+                          src="https://page.gensparksite.com/v1/base64_upload/ce6feb0db139bd9972c7118ce5cc5c37" 
                           alt="두맥스전자 로고" 
-                          class="w-40 object-contain"
+                          class="w-48 object-contain"
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
