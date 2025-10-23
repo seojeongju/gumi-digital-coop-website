@@ -79,8 +79,20 @@ const Header = () => (
             </div>
           </div>
           
-          <a href="/news" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">소식</a>
-          <a href="/support" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">문의</a>
+          {/* 고객지원 드롭다운 */}
+          <div class="relative group">
+            <a href="/support" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm flex items-center">
+              고객지원
+              <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-52 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <a href="/news" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합소식</a>
+              <a href="/support/faq" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">자주 묻는 질문</a>
+              <a href="/support" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">문의하기</a>
+              <a href="/support/quote" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">견적 요청</a>
+              <a href="/resources" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">자료실</a>
+            </div>
+          </div>
         </nav>
         
         {/* CTA 버튼 */}
@@ -126,8 +138,17 @@ const Header = () => (
           </div>
         </div>
         
-        <a href="/news" class="block py-2 text-gray-700 hover:text-teal">소식</a>
-        <a href="/support" class="block py-2 text-gray-700 hover:text-teal">문의</a>
+        {/* 고객지원 */}
+        <div>
+          <a href="/support" class="block py-2 text-gray-700 hover:text-teal font-medium">고객지원</a>
+          <div class="pl-4 space-y-1">
+            <a href="/news" class="block py-1 text-sm text-gray-600 hover:text-teal">조합소식</a>
+            <a href="/support/faq" class="block py-1 text-sm text-gray-600 hover:text-teal">자주 묻는 질문</a>
+            <a href="/support" class="block py-1 text-sm text-gray-600 hover:text-teal">문의하기</a>
+            <a href="/support/quote" class="block py-1 text-sm text-gray-600 hover:text-teal">견적 요청</a>
+            <a href="/resources" class="block py-1 text-sm text-gray-600 hover:text-teal">자료실</a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -3820,6 +3841,281 @@ app.get('/support/faq', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '자주 묻는 질문 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 견적 요청 페이지
+app.get('/support/quote', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-purple-600 via-pink-600 to-orange-600 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Quote Request</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">견적 요청</h1>
+            <p class="text-xl opacity-90 mb-8">3D 프린팅 및 제조 서비스 견적을 요청하세요</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 견적 요청 폼 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-block bg-purple/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-purple font-bold">Request a Quote</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">견적 요청서 작성</h2>
+              <p class="text-gray-600 text-lg">자세한 정보를 입력하시면 정확한 견적을 제공해 드립니다</p>
+            </div>
+
+            <form class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+              {/* 기본 정보 */}
+              <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <i class="fas fa-user text-purple mr-3"></i>
+                  기본 정보
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">이름 *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                      placeholder="홍길동"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">회사명 *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                      placeholder="(주)회사명"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">이메일 *</label>
+                    <input 
+                      type="email" 
+                      required 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                      placeholder="email@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">연락처 *</label>
+                    <input 
+                      type="tel" 
+                      required 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                      placeholder="010-0000-0000"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* 프로젝트 정보 */}
+              <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                  <i class="fas fa-cube text-teal mr-3"></i>
+                  프로젝트 정보
+                </h3>
+                <div class="space-y-6">
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">서비스 유형 *</label>
+                    <select 
+                      required 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                    >
+                      <option value="">선택해주세요</option>
+                      <option value="3d-printing">3D 프린팅</option>
+                      <option value="design">3D 디자인</option>
+                      <option value="scanning">3D 스캐닝</option>
+                      <option value="reverse">역설계</option>
+                      <option value="consulting">기술 컨설팅</option>
+                      <option value="education">교육 프로그램</option>
+                      <option value="other">기타</option>
+                    </select>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-gray-700 font-bold mb-2">예상 수량</label>
+                      <input 
+                        type="number" 
+                        min="1"
+                        class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                        placeholder="예: 10"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700 font-bold mb-2">희망 납기일</label>
+                      <input 
+                        type="date" 
+                        class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">예산 범위</label>
+                    <select 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
+                    >
+                      <option value="">선택해주세요</option>
+                      <option value="under-100">100만원 미만</option>
+                      <option value="100-300">100만원 ~ 300만원</option>
+                      <option value="300-500">300만원 ~ 500만원</option>
+                      <option value="500-1000">500만원 ~ 1,000만원</option>
+                      <option value="over-1000">1,000만원 이상</option>
+                      <option value="consulting">협의 필요</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">프로젝트 상세 설명 *</label>
+                    <textarea 
+                      required 
+                      rows="6" 
+                      class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition resize-none"
+                      placeholder="프로젝트에 대한 자세한 설명을 입력해주세요&#10;&#10;- 제품 용도&#10;- 재질 요구사항&#10;- 특별한 요청사항 등"
+                    ></textarea>
+                  </div>
+
+                  <div>
+                    <label class="block text-gray-700 font-bold mb-2">파일 첨부</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple transition">
+                      <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                      <p class="text-gray-600 mb-2">클릭하거나 파일을 드래그하여 업로드</p>
+                      <p class="text-sm text-gray-500">3D 모델 파일, 도면, 참고 이미지 등 (최대 50MB)</p>
+                      <input type="file" multiple class="hidden" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 개인정보 동의 */}
+              <div class="mb-8">
+                <label class="flex items-start">
+                  <input type="checkbox" required class="mt-1 mr-3 w-5 h-5 text-purple rounded focus:ring-purple" />
+                  <span class="text-sm text-gray-600">
+                    개인정보 수집 및 이용에 동의합니다. 
+                    <a href="#" class="text-purple hover:underline ml-1">자세히 보기</a>
+                  </span>
+                </label>
+              </div>
+
+              {/* 제출 버튼 */}
+              <div class="flex flex-col sm:flex-row gap-4">
+                <button 
+                  type="submit" 
+                  class="flex-1 px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:opacity-90 transition font-bold text-lg shadow-xl"
+                >
+                  <i class="fas fa-paper-plane mr-2"></i>
+                  견적 요청하기
+                </button>
+                <button 
+                  type="reset" 
+                  class="px-8 py-4 bg-gray-200 text-gray-700 rounded-xl hover:bg-gray-300 transition font-bold"
+                >
+                  <i class="fas fa-redo mr-2"></i>
+                  다시 작성
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* 견적 안내 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">견적 프로세스</h2>
+              <p class="text-gray-600 text-lg">빠르고 정확한 견적 제공을 위해 다음 프로세스로 진행됩니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {/* Step 1 */}
+              <div class="text-center">
+                <div class="w-16 h-16 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-purple">1</span>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2">견적 요청</h3>
+                <p class="text-sm text-gray-600">온라인 폼 작성 및 제출</p>
+              </div>
+
+              {/* Step 2 */}
+              <div class="text-center">
+                <div class="w-16 h-16 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-teal">2</span>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2">검토 및 분석</h3>
+                <p class="text-sm text-gray-600">전문가가 요청사항 검토</p>
+              </div>
+
+              {/* Step 3 */}
+              <div class="text-center">
+                <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-navy">3</span>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2">견적 제공</h3>
+                <p class="text-sm text-gray-600">1~2 영업일 내 견적 발송</p>
+              </div>
+
+              {/* Step 4 */}
+              <div class="text-center">
+                <div class="w-16 h-16 bg-orange/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-2xl font-bold text-orange">4</span>
+                </div>
+                <h3 class="font-bold text-gray-900 mb-2">상담 및 계약</h3>
+                <p class="text-sm text-gray-600">세부 조정 후 진행</p>
+              </div>
+            </div>
+
+            {/* 연락처 정보 */}
+            <div class="mt-16 bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 text-center">
+              <h3 class="text-2xl font-bold text-gray-900 mb-4">급하신가요?</h3>
+              <p class="text-gray-600 mb-6">전화 또는 이메일로 직접 문의하시면 더 빠른 상담이 가능합니다</p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="tel:054-478-8011" class="px-8 py-4 bg-purple text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                  <i class="fas fa-phone mr-2"></i>
+                  054-478-8011
+                </a>
+                <a href="mailto:info@gumidigital.or.kr" class="px-8 py-4 bg-white text-purple border-2 border-purple rounded-lg hover:bg-purple hover:text-white transition font-bold">
+                  <i class="fas fa-envelope mr-2"></i>
+                  이메일 문의
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '견적 요청 - 구미디지털적층산업사업협동조합' }
   )
 })
 
