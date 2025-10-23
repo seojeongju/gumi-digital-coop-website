@@ -1989,7 +1989,7 @@ app.get('/services', (c) => {
                 <div class="relative">
                   <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/0485406e5c70e76c8a42db80ab88aff8" 
+                      src="https://page.gensparksite.com/v1/base64_upload/c743825f2a9907e7bfa280f3d48e7998" 
                       alt="기술 지원" 
                       class="w-full h-full object-cover"
                     />
@@ -2134,7 +2134,7 @@ app.get('/services', (c) => {
                 <div class="relative">
                   <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/37e15b66dc43ebe8df47f1a5c50e3144" 
+                      src="https://page.gensparksite.com/v1/base64_upload/06e06713b22386f77560909b8570cd6b" 
                       alt="교육 연구" 
                       class="w-full h-full object-cover"
                     />
@@ -2158,7 +2158,7 @@ app.get('/services', (c) => {
                 <div class="relative">
                   <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/63cf3b8c7d53d9fd0faa17da07bc9b29" 
+                      src="https://page.gensparksite.com/v1/base64_upload/9991bb70ecfdca973bf8f3c5b4ecd403" 
                       alt="사업화 지원" 
                       class="w-full h-full object-cover"
                     />
