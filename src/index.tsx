@@ -2154,7 +2154,7 @@ app.get('/members', (c) => {
                           <p class="text-orange-600 font-semibold">SPACO</p>
                         </div>
                       </div>
-                      <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">준회원</span>
+                      <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                       3D 프린팅 기술 연구개발과 산학연 공동 R&D 프로젝트를 지원하며, 최신 장비 및 기술 트렌드를 공유하는 혁신 기업입니다.
