@@ -242,7 +242,7 @@ app.get('/', async (c) => {
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/df20553901c9762b475105ac430f6249');"
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -255,7 +255,7 @@ app.get('/', async (c) => {
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg');"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/06e06713b22386f77560909b8570cd6b');"
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-purple/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -268,7 +268,7 @@ app.get('/', async (c) => {
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/fe2aac66-c63c-423f-8f72-31746563a63a.jpeg');"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/c743825f2a9907e7bfa280f3d48e7998');"
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -281,7 +281,7 @@ app.get('/', async (c) => {
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/9991bb70ecfdca973bf8f3c5b4ecd403');"
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-coral/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -294,7 +294,7 @@ app.get('/', async (c) => {
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg');"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/7f8dbee2ffeb7b88195c73f17b8a9991');"
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
