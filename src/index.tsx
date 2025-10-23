@@ -220,9 +220,11 @@ app.get('/', async (c) => {
             {/* 카드 1 */}
             <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100">
               <div class="relative h-64 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-purple to-teal flex items-center justify-center">
-                  <i class="fas fa-print text-white text-6xl"></i>
-                </div>
+                <div 
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
+                ></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-purple/60 to-teal/60"></div>
                 <div class="absolute top-4 left-4 w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center font-bold text-xl">
                   01
                 </div>
@@ -241,9 +243,11 @@ app.get('/', async (c) => {
             {/* 카드 2 */}
             <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100">
               <div class="relative h-64 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-teal to-navy flex items-center justify-center">
-                  <i class="fas fa-drafting-compass text-white text-6xl"></i>
-                </div>
+                <div 
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg');"
+                ></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-teal/60 to-navy/60"></div>
                 <div class="absolute top-4 left-4 w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center font-bold text-xl">
                   02
                 </div>
@@ -262,9 +266,11 @@ app.get('/', async (c) => {
             {/* 카드 3 */}
             <div class="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-gray-100">
               <div class="relative h-64 overflow-hidden">
-                <div class="absolute inset-0 bg-gradient-to-br from-coral to-purple flex items-center justify-center">
-                  <i class="fas fa-tools text-white text-6xl"></i>
-                </div>
+                <div 
+                  class="absolute inset-0 bg-cover bg-center"
+                  style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/fe2aac66-c63c-423f-8f72-31746563a63a.jpeg');"
+                ></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-coral/60 to-purple/60"></div>
                 <div class="absolute top-4 left-4 w-12 h-12 bg-teal text-white rounded-full flex items-center justify-center font-bold text-xl">
                   03
                 </div>
