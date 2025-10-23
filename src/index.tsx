@@ -238,7 +238,7 @@ app.get('/', async (c) => {
           </div>
           
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {/* 산업 카드 1 - 자동차 */}
+            {/* 산업 카드 1 - IoT */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -246,12 +246,12 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">자동차</h3>
-                <p class="text-sm opacity-90">Automotive</p>
+                <h3 class="text-xl font-bold mb-2">IoT</h3>
+                <p class="text-sm opacity-90">Internet of Things</p>
               </div>
             </div>
             
-            {/* 산업 카드 2 - 항공우주 */}
+            {/* 산업 카드 2 - 3D 프린팅 */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -259,12 +259,12 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-purple/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">항공우주</h3>
-                <p class="text-sm opacity-90">Aerospace</p>
+                <h3 class="text-xl font-bold mb-2">3D 프린팅</h3>
+                <p class="text-sm opacity-90">3D Printing</p>
               </div>
             </div>
             
-            {/* 산업 카드 3 - 의료기기 */}
+            {/* 산업 카드 3 - AI */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -272,12 +272,12 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">의료기기</h3>
-                <p class="text-sm opacity-90">Medical</p>
+                <h3 class="text-xl font-bold mb-2">AI</h3>
+                <p class="text-sm opacity-90">Artificial Intelligence</p>
               </div>
             </div>
             
-            {/* 산업 카드 4 - 전자제품 */}
+            {/* 산업 카드 4 - 빅데이터 */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -285,12 +285,12 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-coral/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">전자제품</h3>
-                <p class="text-sm opacity-90">Electronics</p>
+                <h3 class="text-xl font-bold mb-2">빅데이터</h3>
+                <p class="text-sm opacity-90">Big Data</p>
               </div>
             </div>
             
-            {/* 산업 카드 5 - 산업기계 */}
+            {/* 산업 카드 5 - 로봇 */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -298,8 +298,8 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">산업기계</h3>
-                <p class="text-sm opacity-90">Industrial</p>
+                <h3 class="text-xl font-bold mb-2">로봇</h3>
+                <p class="text-sm opacity-90">Robotics</p>
               </div>
             </div>
           </div>
