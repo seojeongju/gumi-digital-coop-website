@@ -254,7 +254,8 @@ npm run db:migrate:prod
 - **주소**: 경상북도 구미시 산호대로 253
 - **전화**: 054-123-4567
 - **이메일**: info@gumidigital.co.kr
-- **웹사이트**: (배포 후 업데이트 예정)
+- **개발 서버**: https://3000-ixvmd31azat2j06x6v0fl-a402f90a.sandbox.novita.ai
+- **GitHub**: https://github.com/seojeongju/gumi-digital-coop-website
 
 ## 📄 라이선스
 
