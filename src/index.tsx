@@ -2043,20 +2043,20 @@ app.get('/members', (c) => {
               {/* 조합원 4: (주)와우쓰리디 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group border-4 border-purple-500">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-purple-50 to-pink-50 p-8 flex items-start justify-start order-2 lg:order-1">
-                    <img 
-                      src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_03b71d81-9f86-4fd7-bbfc-498062edb881" 
-                      alt="와우쓰리디 로고" 
-                      class="w-52 object-contain"
-                    />
-                  </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12 order-1 lg:order-2">
+                  <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
-                      <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)와우쓰리디</h3>
-                        <p class="text-purple-600 font-semibold">WOW3D MAKER SPACE</p>
+                      <div class="flex items-center gap-6">
+                        <img 
+                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_03b71d81-9f86-4fd7-bbfc-498062edb881" 
+                          alt="와우쓰리디 로고" 
+                          class="w-40 object-contain"
+                        />
+                        <div>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)와우쓰리디</h3>
+                          <p class="text-purple-600 font-semibold">WOW3D MAKER SPACE</p>
+                        </div>
                       </div>
-                      <span class="px-4 py-2 bg-purple-600 text-white rounded-full text-sm font-bold">특별회원</span>
+                      <span class="px-4 py-2 bg-purple-600 text-white rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                       3D 프린터, 3D 홀로그래피 디스플레이 개발 및 교육 서비스를 제공하는 메이커 스페이스 운영 기업입니다.
