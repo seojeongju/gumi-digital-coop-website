@@ -2,11 +2,7 @@ import { Hono } from 'hono'
 import { renderer } from './renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 
-type Bindings = {
-  DB: D1Database
-}
-
-const app = new Hono<{ Bindings: Bindings }>()
+const app = new Hono()
 
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }))
