@@ -279,7 +279,7 @@ app.get('/', async (c) => {
           
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
             {/* 산업 카드 1 - IoT */}
-            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+            <a href="/industry/iot" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer block" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/df20553901c9762b475105ac430f6249');"
@@ -289,10 +289,10 @@ app.get('/', async (c) => {
                 <h3 class="text-xl font-bold mb-2">IoT</h3>
                 <p class="text-sm opacity-90">Internet of Things</p>
               </div>
-            </div>
+            </a>
             
             {/* 산업 카드 2 - 3D 프린팅 */}
-            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+            <a href="/industry/3d-printing" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer block" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/06e06713b22386f77560909b8570cd6b');"
@@ -302,10 +302,10 @@ app.get('/', async (c) => {
                 <h3 class="text-xl font-bold mb-2">3D 프린팅</h3>
                 <p class="text-sm opacity-90">3D Printing</p>
               </div>
-            </div>
+            </a>
             
             {/* 산업 카드 3 - AI */}
-            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+            <a href="/industry/ai" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer block" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/c743825f2a9907e7bfa280f3d48e7998');"
@@ -315,10 +315,10 @@ app.get('/', async (c) => {
                 <h3 class="text-xl font-bold mb-2">AI</h3>
                 <p class="text-sm opacity-90">Artificial Intelligence</p>
               </div>
-            </div>
+            </a>
             
             {/* 산업 카드 4 - 로봇 */}
-            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+            <a href="/industry/robotics" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer block" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/9991bb70ecfdca973bf8f3c5b4ecd403');"
@@ -328,10 +328,10 @@ app.get('/', async (c) => {
                 <h3 class="text-xl font-bold mb-2">로봇</h3>
                 <p class="text-sm opacity-90">Robotics</p>
               </div>
-            </div>
+            </a>
             
             {/* 산업 카드 5 - 빅데이터 */}
-            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+            <a href="/industry/big-data" class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer block" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/7f8dbee2ffeb7b88195c73f17b8a9991');"
@@ -341,7 +341,7 @@ app.get('/', async (c) => {
                 <h3 class="text-xl font-bold mb-2">빅데이터</h3>
                 <p class="text-sm opacity-90">Big Data</p>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -4116,6 +4116,733 @@ app.get('/support/quote', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '견적 요청 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// ========== INDUSTRY 상세 페이지 ==========
+
+// 1. IoT 상세 페이지
+app.get('/industry/iot', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-teal via-cyan-600 to-blue-600 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/df20553901c9762b475105ac430f6249'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Internet of Things</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">IoT</h1>
+            <p class="text-xl opacity-90 mb-8">사물인터넷 기술로 스마트 제조 혁신을 선도합니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 개요 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Technology Overview</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">IoT 기술 개요</h2>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                사물인터넷(IoT)은 센서, 소프트웨어, 네트워크 연결을 통해 물리적 객체를 인터넷에 연결하여<br />
+                데이터를 수집하고 교환할 수 있게 하는 기술입니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 핵심 기술 1 */}
+              <div class="bg-gradient-to-br from-teal/5 to-cyan/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-microchip text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">센서 기술</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  온도, 압력, 습도 등 다양한 물리량을 감지하고 측정하는 스마트 센서 네트워크
+                </p>
+              </div>
+
+              {/* 핵심 기술 2 */}
+              <div class="bg-gradient-to-br from-cyan/5 to-blue/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-cyan rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-network-wired text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">통신 프로토콜</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  Wi-Fi, Bluetooth, Zigbee, LoRa 등 다양한 무선 통신 기술을 활용한 연결성 구현
+                </p>
+              </div>
+
+              {/* 핵심 기술 3 */}
+              <div class="bg-gradient-to-br from-blue/5 to-indigo/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-cloud text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">클라우드 플랫폼</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  대량의 데이터를 수집, 저장, 분석하고 실시간으로 모니터링할 수 있는 클라우드 인프라
+                </p>
+              </div>
+            </div>
+
+            {/* 적용 분야 */}
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">적용 분야</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-industry text-3xl text-teal mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">스마트 팩토리</h4>
+                    <p class="text-sm text-gray-600">생산 설비 모니터링, 예측 정비, 공정 자동화</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-home text-3xl text-cyan mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">스마트 홈</h4>
+                    <p class="text-sm text-gray-600">조명, 보안, 에너지 관리 시스템 연동</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-car text-3xl text-blue-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">커넥티드 카</h4>
+                    <p class="text-sm text-gray-600">차량 상태 모니터링, 원격 진단, 자율주행 지원</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-heartbeat text-3xl text-red-500 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">헬스케어</h4>
+                    <p class="text-sm text-gray-600">웨어러블 디바이스, 원격 환자 모니터링</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-16 bg-gradient-to-br from-teal via-cyan-600 to-blue-600 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">IoT 솔루션이 필요하신가요?</h2>
+            <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/quote" class="px-8 py-4 bg-white text-teal rounded-lg hover:bg-opacity-90 transition font-bold">
+                <i class="fas fa-file-invoice mr-2"></i>
+                견적 요청하기
+              </a>
+              <a href="/support" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-teal transition font-bold">
+                <i class="fas fa-comment-dots mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: 'IoT - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 2. 3D 프린팅 상세 페이지
+app.get('/industry/3d-printing', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-purple via-pink-600 to-purple-700 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/06e06713b22386f77560909b8570cd6b'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">3D Printing / Additive Manufacturing</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">3D 프린팅</h1>
+            <p class="text-xl opacity-90 mb-8">적층제조 기술로 제조업의 패러다임을 혁신합니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 개요 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-purple/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-purple font-bold">Technology Overview</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">3D 프린팅 기술 개요</h2>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                3D 프린팅(적층제조)은 디지털 3D 모델 데이터를 기반으로 재료를 층층이 쌓아<br />
+                3차원 물체를 제작하는 혁신적인 제조 기술입니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 핵심 기술 1 */}
+              <div class="bg-gradient-to-br from-purple/5 to-pink/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-purple rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-cube text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">FDM/FFF</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  열가소성 필라멘트를 녹여 적층하는 가장 보편적인 3D 프린팅 방식
+                </p>
+              </div>
+
+              {/* 핵심 기술 2 */}
+              <div class="bg-gradient-to-br from-pink/5 to-red/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-pink-600 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-microscope text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">SLA/DLP</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  광경화성 수지를 UV 레이저나 프로젝터로 경화시키는 고정밀 방식
+                </p>
+              </div>
+
+              {/* 핵심 기술 3 */}
+              <div class="bg-gradient-to-br from-indigo/5 to-purple/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-atom text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">SLS/Metal</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  분말 재료를 레이저로 소결하여 금속 부품을 제작하는 산업용 방식
+                </p>
+              </div>
+            </div>
+
+            {/* 적용 분야 */}
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">적용 분야</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-cogs text-3xl text-purple mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">시제품 제작</h4>
+                    <p class="text-sm text-gray-600">빠른 프로토타이핑으로 제품 개발 주기 단축</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-wrench text-3xl text-pink-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">맞춤형 제조</h4>
+                    <p class="text-sm text-gray-600">개인 맞춤형 부품 및 제품 생산</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-tooth text-3xl text-indigo-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">의료 바이오</h4>
+                    <p class="text-sm text-gray-600">치과 임플란트, 보철물, 의료기기 제작</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-building text-3xl text-purple-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">건축 및 디자인</h4>
+                    <p class="text-sm text-gray-600">건축 모형, 예술 작품, 디자인 제품 제작</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-16 bg-gradient-to-br from-purple via-pink-600 to-purple-700 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">3D 프린팅 서비스가 필요하신가요?</h2>
+            <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/quote" class="px-8 py-4 bg-white text-purple rounded-lg hover:bg-opacity-90 transition font-bold">
+                <i class="fas fa-file-invoice mr-2"></i>
+                견적 요청하기
+              </a>
+              <a href="/support" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-purple transition font-bold">
+                <i class="fas fa-comment-dots mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '3D 프린팅 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 3. AI 상세 페이지
+app.get('/industry/ai', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-blue-700 to-indigo-800 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/c743825f2a9907e7bfa280f3d48e7998'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Artificial Intelligence</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">AI</h1>
+            <p class="text-xl opacity-90 mb-8">인공지능으로 스마트한 의사결정과 자동화를 실현합니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 개요 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-navy/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-navy font-bold">Technology Overview</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">AI 기술 개요</h2>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                인공지능(AI)은 기계가 인간의 학습 능력, 추론 능력, 지각 능력 등을 모방하여<br />
+                복잡한 문제를 해결하고 자동화된 의사결정을 수행하는 기술입니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 핵심 기술 1 */}
+              <div class="bg-gradient-to-br from-navy/5 to-blue/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-brain text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">머신러닝</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  데이터로부터 패턴을 학습하여 예측과 분류를 수행하는 알고리즘
+                </p>
+              </div>
+
+              {/* 핵심 기술 2 */}
+              <div class="bg-gradient-to-br from-blue/5 to-indigo/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-blue-700 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-project-diagram text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">딥러닝</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  인공신경망을 활용한 고도화된 학습 방식으로 복잡한 문제 해결
+                </p>
+              </div>
+
+              {/* 핵심 기술 3 */}
+              <div class="bg-gradient-to-br from-indigo/5 to-purple/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-indigo-700 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-eye text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">컴퓨터 비전</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  이미지와 영상 데이터를 분석하여 객체 인식 및 품질 검사 수행
+                </p>
+              </div>
+            </div>
+
+            {/* 적용 분야 */}
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">적용 분야</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-search text-3xl text-navy mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">품질 검사</h4>
+                    <p class="text-sm text-gray-600">이미지 분석을 통한 자동 불량 검출 시스템</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-chart-line text-3xl text-blue-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">예측 분석</h4>
+                    <p class="text-sm text-gray-600">수요 예측, 설비 고장 예측, 재고 최적화</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-comments text-3xl text-indigo-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">자연어 처리</h4>
+                    <p class="text-sm text-gray-600">챗봇, 문서 분석, 감성 분석 서비스</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-robot text-3xl text-purple-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">자동화 시스템</h4>
+                    <p class="text-sm text-gray-600">공정 자동화, 물류 최적화, 스마트 제어</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-16 bg-gradient-to-br from-navy via-blue-700 to-indigo-800 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">AI 솔루션이 필요하신가요?</h2>
+            <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/quote" class="px-8 py-4 bg-white text-navy rounded-lg hover:bg-opacity-90 transition font-bold">
+                <i class="fas fa-file-invoice mr-2"></i>
+                견적 요청하기
+              </a>
+              <a href="/support" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold">
+                <i class="fas fa-comment-dots mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: 'AI - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 4. 로봇 상세 페이지
+app.get('/industry/robotics', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-orange via-red-500 to-pink-600 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/9991bb70ecfdca973bf8f3c5b4ecd403'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Robotics & Automation</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">로봇</h1>
+            <p class="text-xl opacity-90 mb-8">로봇 기술로 생산성과 효율성을 극대화합니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 개요 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-orange/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-orange font-bold">Technology Overview</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">로봇 기술 개요</h2>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                로봇 공학은 기계, 전자, 소프트웨어 기술을 통합하여 자동화된 작업을 수행하는<br />
+                지능형 시스템을 개발하고 응용하는 종합 기술 분야입니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 핵심 기술 1 */}
+              <div class="bg-gradient-to-br from-orange/5 to-red/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-orange rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-robot text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">산업용 로봇</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  용접, 조립, 핸들링 등 제조 공정의 자동화를 위한 고정밀 로봇
+                </p>
+              </div>
+
+              {/* 핵심 기술 2 */}
+              <div class="bg-gradient-to-br from-red/5 to-pink/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-hand-holding text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">협동 로봇</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  인간과 안전하게 협업할 수 있는 유연한 코봇(Cobot) 시스템
+                </p>
+              </div>
+
+              {/* 핵심 기술 3 */}
+              <div class="bg-gradient-to-br from-pink/5 to-purple/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-pink-600 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-shipping-fast text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">물류 로봇</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  자율주행 AGV, AMR 등 스마트 물류 자동화 로봇
+                </p>
+              </div>
+            </div>
+
+            {/* 적용 분야 */}
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">적용 분야</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-industry text-3xl text-orange mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">제조 자동화</h4>
+                    <p class="text-sm text-gray-600">용접, 도장, 조립, 검사 등 반복 작업 자동화</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-boxes text-3xl text-red-500 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">물류 자동화</h4>
+                    <p class="text-sm text-gray-600">창고 관리, 피킹, 패킹, 운반 작업 자동화</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-utensils text-3xl text-pink-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">서비스 로봇</h4>
+                    <p class="text-sm text-gray-600">음식 서빙, 청소, 안내 등 서비스 산업 지원</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-medkit text-3xl text-purple-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">의료 로봇</h4>
+                    <p class="text-sm text-gray-600">수술 보조, 재활 치료, 환자 케어 지원</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-16 bg-gradient-to-br from-orange via-red-500 to-pink-600 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">로봇 솔루션이 필요하신가요?</h2>
+            <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/quote" class="px-8 py-4 bg-white text-orange rounded-lg hover:bg-opacity-90 transition font-bold">
+                <i class="fas fa-file-invoice mr-2"></i>
+                견적 요청하기
+              </a>
+              <a href="/support" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-orange transition font-bold">
+                <i class="fas fa-comment-dots mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '로봇 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 5. 빅데이터 상세 페이지
+app.get('/industry/big-data', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-teal via-green-600 to-emerald-700 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/7f8dbee2ffeb7b88195c73f17b8a9991'); background-size: cover; background-position: center; opacity: 0.15;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Big Data & Analytics</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">빅데이터</h1>
+            <p class="text-xl opacity-90 mb-8">데이터 분석으로 비즈니스 인사이트를 발굴합니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 개요 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Technology Overview</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6">빅데이터 기술 개요</h2>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                빅데이터는 방대한 양의 정형 및 비정형 데이터를 수집, 저장, 분석하여<br />
+                의미 있는 인사이트를 도출하고 의사결정을 지원하는 기술입니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 핵심 기술 1 */}
+              <div class="bg-gradient-to-br from-teal/5 to-green/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-database text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">데이터 수집</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  다양한 소스로부터 실시간 데이터 수집 및 통합 처리
+                </p>
+              </div>
+
+              {/* 핵심 기술 2 */}
+              <div class="bg-gradient-to-br from-green/5 to-emerald/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-green-600 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-server text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">데이터 저장</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  분산 파일 시스템과 NoSQL 데이터베이스를 활용한 대용량 저장
+                </p>
+              </div>
+
+              {/* 핵심 기술 3 */}
+              <div class="bg-gradient-to-br from-emerald/5 to-cyan/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="w-16 h-16 bg-emerald-700 rounded-2xl flex items-center justify-center mb-4">
+                  <i class="fas fa-chart-bar text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">데이터 분석</h3>
+                <p class="text-gray-600 leading-relaxed">
+                  머신러닝, 통계 분석 등을 활용한 고급 데이터 분석
+                </p>
+              </div>
+            </div>
+
+            {/* 적용 분야 */}
+            <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">적용 분야</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-shopping-cart text-3xl text-teal mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">고객 분석</h4>
+                    <p class="text-sm text-gray-600">구매 패턴 분석, 고객 세분화, 맞춤형 마케팅</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-cogs text-3xl text-green-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">운영 최적화</h4>
+                    <p class="text-sm text-gray-600">공정 개선, 에너지 절감, 품질 향상</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-shield-alt text-3xl text-emerald-700 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">보안 및 이상 탐지</h4>
+                    <p class="text-sm text-gray-600">사이버 보안, 이상 거래 탐지, 사기 방지</p>
+                  </div>
+                </div>
+                <div class="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition">
+                  <i class="fas fa-lightbulb text-3xl text-cyan-600 mr-4 flex-shrink-0"></i>
+                  <div>
+                    <h4 class="font-bold text-gray-900 mb-2">예측 분석</h4>
+                    <p class="text-sm text-gray-600">수요 예측, 트렌드 분석, 리스크 관리</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-16 bg-gradient-to-br from-teal via-green-600 to-emerald-700 text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">빅데이터 솔루션이 필요하신가요?</h2>
+            <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/quote" class="px-8 py-4 bg-white text-teal rounded-lg hover:bg-opacity-90 transition font-bold">
+                <i class="fas fa-file-invoice mr-2"></i>
+                견적 요청하기
+              </a>
+              <a href="/support" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-teal transition font-bold">
+                <i class="fas fa-comment-dots mr-2"></i>
+                문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '빅데이터 - 구미디지털적층산업사업협동조합' }
   )
 })
 
