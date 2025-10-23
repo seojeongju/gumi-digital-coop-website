@@ -5096,20 +5096,44 @@ app.get('/location', (c) => {
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="max-w-6xl mx-auto">
-            {/* 구글 지도 */}
+            {/* 카카오 지도 */}
             <div class="mb-12">
-              <div class="rounded-2xl overflow-hidden shadow-2xl" style="height: 500px;">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3227.8987654321!2d128.3445678!3d36.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDA3JzI0LjQiTiAxMjjCsDIwJzQwLjQiRQ!5e0!3m2!1sko!2skr!4v1234567890!5m2!1sko!2skr&q=%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84+%EA%B5%AC%EB%AF%B8%EC%8B%9C+%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C+253"
-                  width="100%"
-                  height="100%"
-                  style="border:0;"
-                  allowfullscreen=""
-                  loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+              <div id="kakao-map" class="rounded-2xl overflow-hidden shadow-2xl" style="height: 500px;"></div>
             </div>
+            
+            {/* 카카오맵 API 스크립트 */}
+            <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=YOUR_KAKAO_APP_KEY&autoload=false"></script>
+            <script dangerouslySetInnerHTML={{__html: `
+              kakao.maps.load(function() {
+                var container = document.getElementById('kakao-map');
+                var options = {
+                  center: new kakao.maps.LatLng(36.1191, 128.3445),
+                  level: 3
+                };
+                var map = new kakao.maps.Map(container, options);
+                
+                // 마커 생성
+                var markerPosition = new kakao.maps.LatLng(36.1191, 128.3445);
+                var marker = new kakao.maps.Marker({
+                  position: markerPosition,
+                  map: map
+                });
+                
+                // 인포윈도우 생성
+                var infowindow = new kakao.maps.InfoWindow({
+                  content: '<div style="padding:10px;font-size:14px;font-weight:bold;">구미디지털적층산업사업협동조합<br/>경상북도 구미시 산호대로 253</div>'
+                });
+                infowindow.open(map, marker);
+                
+                // 지도 타입 컨트롤 추가
+                var mapTypeControl = new kakao.maps.MapTypeControl();
+                map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+                
+                // 줌 컨트롤 추가
+                var zoomControl = new kakao.maps.ZoomControl();
+                map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+              });
+            `}}></script>
 
             {/* 주소 및 연락처 정보 */}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -5128,12 +5152,12 @@ app.get('/location', (c) => {
                   </div>
                 </div>
                 <a 
-                  href="https://www.google.com/maps/search/?api=1&query=%ED%95%9C%EA%B5%AD%20%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253"
+                  href="https://map.kakao.com/link/map/구미디지털적층산업사업협동조합,36.1191,128.3445"
                   target="_blank"
                   class="inline-flex items-center px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-medium"
                 >
                   <i class="fas fa-external-link-alt mr-2"></i>
-                  구글 지도에서 보기
+                  카카오맵에서 보기
                 </a>
               </div>
 
