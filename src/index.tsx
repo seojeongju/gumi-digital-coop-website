@@ -426,6 +426,316 @@ app.get('/', async (c) => {
   )
 })
 
+// About 페이지
+app.get('/about', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-navy text-white py-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">조합 소개</h1>
+            <p class="text-xl opacity-90">About Us</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* 협동조합 소개 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+              <div>
+                <img 
+                  src="https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg" 
+                  alt="협동조합" 
+                  class="rounded-lg shadow-xl"
+                />
+              </div>
+              <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  구미디지털적층산업<br />사업협동조합
+                </h2>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                  구미디지털적층산업사업협동조합은 3D 프린팅 등 적층제조기술을 중심으로 
+                  회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합입니다.
+                </p>
+                <p class="text-gray-600 text-lg leading-relaxed mb-6">
+                  디지털 제조 시대를 선도하는 혁신적인 기술력과 네트워크를 바탕으로 
+                  회원 기업의 성장과 지역 경제 발전에 기여하고 있습니다.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                  <div class="bg-teal/10 px-6 py-3 rounded-lg">
+                    <div class="text-2xl font-bold text-teal mb-1">2024</div>
+                    <div class="text-sm text-gray-600">설립연도</div>
+                  </div>
+                  <div class="bg-teal/10 px-6 py-3 rounded-lg">
+                    <div class="text-2xl font-bold text-teal mb-1">5+</div>
+                    <div class="text-sm text-gray-600">조합원 기업</div>
+                  </div>
+                  <div class="bg-teal/10 px-6 py-3 rounded-lg">
+                    <div class="text-2xl font-bold text-teal mb-1">100+</div>
+                    <div class="text-sm text-gray-600">완료 프로젝트</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 비전 & 미션 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">비전 & 미션</h2>
+              <p class="text-gray-600 text-lg">협동조합이 지향하는 가치와 목표</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* 비전 */}
+              <div class="bg-white rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-teal rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <i class="fas fa-eye text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-center mb-4 text-gray-900">비전</h3>
+                <p class="text-gray-600 text-center leading-relaxed">
+                  디지털 제조 혁신을 선도하는<br />
+                  글로벌 적층제조 전문 협동조합
+                </p>
+              </div>
+              
+              {/* 미션 */}
+              <div class="bg-white rounded-xl p-8 shadow-lg">
+                <div class="w-16 h-16 bg-navy rounded-full flex items-center justify-center mb-6 mx-auto">
+                  <i class="fas fa-rocket text-3xl text-white"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-center mb-4 text-gray-900">미션</h3>
+                <p class="text-gray-600 text-center leading-relaxed">
+                  회원 기업의 기술 경쟁력 강화와<br />
+                  지속 가능한 상생 발전 생태계 구축
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 핵심 가치 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">핵심 가치</h2>
+              <p class="text-gray-600 text-lg">협동조합이 추구하는 4가지 핵심 가치</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* 혁신 */}
+              <div class="text-center p-6 border-2 border-gray-200 rounded-xl hover:border-teal hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-lightbulb text-3xl text-teal"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">혁신</h3>
+                <p class="text-gray-600 text-sm">
+                  끊임없는 기술 혁신으로<br />
+                  미래를 선도합니다
+                </p>
+              </div>
+              
+              {/* 협력 */}
+              <div class="text-center p-6 border-2 border-gray-200 rounded-xl hover:border-teal hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-handshake text-3xl text-navy"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">협력</h3>
+                <p class="text-gray-600 text-sm">
+                  상호 협력과 신뢰를<br />
+                  바탕으로 성장합니다
+                </p>
+              </div>
+              
+              {/* 품질 */}
+              <div class="text-center p-6 border-2 border-gray-200 rounded-xl hover:border-teal hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-award text-3xl text-purple"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">품질</h3>
+                <p class="text-gray-600 text-sm">
+                  최고의 품질로<br />
+                  고객 만족을 실현합니다
+                </p>
+              </div>
+              
+              {/* 지속가능성 */}
+              <div class="text-center p-6 border-2 border-gray-200 rounded-xl hover:border-teal hover:shadow-lg transition">
+                <div class="w-16 h-16 bg-coral/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-leaf text-3xl text-coral"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3 text-gray-900">지속가능성</h3>
+                <p class="text-gray-600 text-sm">
+                  환경과 사회를 고려한<br />
+                  지속 가능한 발전
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 주요 사업 분야 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">주요 사업 분야</h2>
+              <p class="text-gray-600 text-lg">협동조합이 제공하는 핵심 서비스</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* 3D 프린팅 */}
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div class="h-48 bg-gradient-to-br from-teal to-navy flex items-center justify-center">
+                  <i class="fas fa-print text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 text-gray-900">3D 프린팅 서비스</h3>
+                  <p class="text-gray-600 mb-4">
+                    FDM, SLA, SLS 등 다양한 적층제조 기술을 활용한 시제품 제작부터 소량 생산까지
+                  </p>
+                  <a href="/services" class="text-teal hover:underline font-medium">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+              
+              {/* 설계/모델링 */}
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div class="h-48 bg-gradient-to-br from-purple to-teal flex items-center justify-center">
+                  <i class="fas fa-drafting-compass text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 text-gray-900">설계 및 모델링</h3>
+                  <p class="text-gray-600 mb-4">
+                    3D CAD 설계, 역설계, 최적화 설계 등 전문적인 엔지니어링 서비스 제공
+                  </p>
+                  <a href="/services" class="text-teal hover:underline font-medium">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+              
+              {/* 후가공 */}
+              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+                <div class="h-48 bg-gradient-to-br from-navy to-purple flex items-center justify-center">
+                  <i class="fas fa-tools text-6xl text-white"></i>
+                </div>
+                <div class="p-6">
+                  <h3 class="text-xl font-bold mb-3 text-gray-900">후가공 서비스</h3>
+                  <p class="text-gray-600 mb-4">
+                    표면 처리, 도장, 조립, 품질 검사 등 완벽한 마무리 작업 지원
+                  </p>
+                  <a href="/services" class="text-teal hover:underline font-medium">
+                    자세히 보기 →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 오시는 길 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">오시는 길</h2>
+              <p class="text-gray-600 text-lg">협동조합 방문을 환영합니다</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {/* 지도 */}
+              <div class="bg-gray-200 rounded-xl overflow-hidden h-96 flex items-center justify-center">
+                <div class="text-center text-gray-500">
+                  <i class="fas fa-map-marked-alt text-6xl mb-4"></i>
+                  <p>지도 영역</p>
+                  <p class="text-sm">(추후 Google Maps 연동)</p>
+                </div>
+              </div>
+              
+              {/* 주소 및 연락처 */}
+              <div>
+                <div class="space-y-6">
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-teal rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                      <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-gray-900 mb-2">주소</h3>
+                      <p class="text-gray-600">경상북도 구미시 산호대로 253</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-navy rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                      <i class="fas fa-phone text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-gray-900 mb-2">전화</h3>
+                      <p class="text-gray-600">054-123-4567</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-purple rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                      <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-gray-900 mb-2">이메일</h3>
+                      <p class="text-gray-600">info@gumidigital.co.kr</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="w-12 h-12 bg-coral rounded-full flex items-center justify-center flex-shrink-0 mr-4">
+                      <i class="fas fa-clock text-white text-xl"></i>
+                    </div>
+                    <div>
+                      <h3 class="font-bold text-gray-900 mb-2">운영시간</h3>
+                      <p class="text-gray-600">평일 09:00 - 18:00</p>
+                      <p class="text-gray-500 text-sm">주말 및 공휴일 휴무</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      
+      {/* Scroll to Top 버튼 */}
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      {/* JavaScript */}
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '조합 소개 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
 // API Routes
 app.get('/api/notices', async (c) => {
   const { DB } = c.env
