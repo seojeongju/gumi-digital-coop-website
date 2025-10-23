@@ -158,36 +158,9 @@ const Footer = () => (
 
 // 메인 페이지
 app.get('/', async (c) => {
-  const { DB } = c.env
-  
-  // 최신 공지사항 3개 가져오기
-  let notices = []
-  try {
-    const result = await DB.prepare(`
-      SELECT id, category, title, created_at, views
-      FROM notices
-      ORDER BY is_pinned DESC, created_at DESC
-      LIMIT 3
-    `).all()
-    notices = result.results || []
-  } catch (e) {
-    console.error('Database error:', e)
-  }
-  
-  // 주요 조합원 가져오기
-  let members = []
-  try {
-    const result = await DB.prepare(`
-      SELECT id, name, logo_url, category
-      FROM members
-      WHERE is_featured = TRUE
-      ORDER BY display_order ASC
-      LIMIT 5
-    `).all()
-    members = result.results || []
-  } catch (e) {
-    console.error('Database error:', e)
-  }
+  // Mock 데이터 (D1 Database 미사용)
+  const notices = []
+  const members = []
   
   return c.render(
     <div>
@@ -1019,53 +992,13 @@ app.get('/about/greeting', (c) => {
 
 // API Routes
 app.get('/api/notices', async (c) => {
-  const { DB } = c.env
-  const category = c.req.query('category')
-  const limit = parseInt(c.req.query('limit') || '10')
-  
-  let query = `
-    SELECT id, category, title, created_at, views, is_pinned
-    FROM notices
-  `
-  
-  if (category) {
-    query += ` WHERE category = ?`
-  }
-  
-  query += ` ORDER BY is_pinned DESC, created_at DESC LIMIT ?`
-  
-  try {
-    const result = category 
-      ? await DB.prepare(query).bind(category, limit).all()
-      : await DB.prepare(query).bind(limit).all()
-    
-    return c.json({ success: true, data: result.results })
-  } catch (e) {
-    return c.json({ success: false, error: 'Database error' }, 500)
-  }
+  // Mock data (D1 Database not in use)
+  return c.json({ success: true, data: [] })
 })
 
 app.get('/api/members', async (c) => {
-  const { DB } = c.env
-  const category = c.req.query('category')
-  
-  let query = `SELECT * FROM members`
-  
-  if (category) {
-    query += ` WHERE category = ?`
-  }
-  
-  query += ` ORDER BY is_featured DESC, display_order ASC`
-  
-  try {
-    const result = category
-      ? await DB.prepare(query).bind(category).all()
-      : await DB.prepare(query).all()
-    
-    return c.json({ success: true, data: result.results })
-  } catch (e) {
-    return c.json({ success: false, error: 'Database error' }, 500)
-  }
+  // Mock data (D1 Database not in use)
+  return c.json({ success: true, data: [] })
 })
 
 export default app
