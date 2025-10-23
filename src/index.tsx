@@ -583,8 +583,9 @@ app.get('/about', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-navy text-white py-20">
-        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">조합 소개</h1>
@@ -994,8 +995,9 @@ app.get('/about/greeting', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-navy text-white py-20">
-        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">조합장 인사말</h1>
@@ -1135,8 +1137,9 @@ app.get('/about/organization', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-navy text-white py-20">
-        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">조직 및 운영구조</h1>
@@ -1827,8 +1830,9 @@ app.get('/members', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-gradient-to-br from-navy via-teal to-cyan-600 text-white py-32">
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
         <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
@@ -2762,8 +2766,9 @@ app.get('/members/join', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-gradient-to-br from-navy via-teal to-purple text-white py-24">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
@@ -3128,8 +3133,9 @@ app.get('/support', (c) => {
       <Header />
       
       {/* 페이지 헤더 */}
-      <section class="relative bg-gradient-to-br from-navy via-teal to-purple text-white py-24">
-        <div class="absolute inset-0 bg-black opacity-10"></div>
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
             <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
