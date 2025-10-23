@@ -1021,6 +1021,155 @@ app.get('/about/greeting', (c) => {
   )
 })
 
+// 소식/공지사항 페이지
+app.get('/news', async (c) => {
+  const { DB } = c.env
+  
+  // 모든 공지사항 가져오기
+  let notices = []
+  try {
+    const result = await DB.prepare(`
+      SELECT id, category, title, content, author, created_at, views, is_pinned
+      FROM notices
+      ORDER BY is_pinned DESC, created_at DESC
+    `).all()
+    notices = result.results || []
+  } catch (e) {
+    console.error('Database error:', e)
+  }
+  
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* Hero Section */}
+      <section class="relative bg-navy text-white py-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">소식 & 공지사항</h1>
+            <p class="text-xl opacity-90">News & Announcements</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* 카테고리 필터 */}
+      <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-wrap justify-center gap-4">
+            <button class="px-6 py-2 rounded-full bg-teal text-white font-medium transition hover:bg-opacity-90">
+              전체
+            </button>
+            <button class="px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium transition hover:bg-gray-200">
+              공지사항
+            </button>
+            <button class="px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium transition hover:bg-gray-200">
+              보도자료
+            </button>
+            <button class="px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium transition hover:bg-gray-200">
+              행사
+            </button>
+            <button class="px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium transition hover:bg-gray-200">
+              수상
+            </button>
+          </div>
+        </div>
+      </section>
+      
+      {/* 공지사항 목록 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            {notices.length > 0 ? (
+              <div class="space-y-4">
+                {notices.map((notice) => (
+                  <a 
+                    href={`/news/${notice.id}`}
+                    class="block bg-white rounded-xl shadow-sm hover:shadow-lg transition p-6 border border-gray-100"
+                  >
+                    <div class="flex items-start justify-between">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                          {notice.is_pinned && (
+                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-coral text-white">
+                              <i class="fas fa-thumbtack mr-1"></i>
+                              공지
+                            </span>
+                          )}
+                          <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                            notice.category === '공지사항' ? 'bg-blue-100 text-blue-800' :
+                            notice.category === '보도자료' ? 'bg-green-100 text-green-800' :
+                            notice.category === '행사' ? 'bg-purple-100 text-purple-800' :
+                            'bg-orange-100 text-orange-800'
+                          }`}>
+                            {notice.category}
+                          </span>
+                        </div>
+                        
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-teal transition">
+                          {notice.title}
+                        </h3>
+                        
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-3">
+                          {notice.content}
+                        </p>
+                        
+                        <div class="flex items-center gap-4 text-sm text-gray-500">
+                          <span>
+                            <i class="far fa-calendar mr-1"></i>
+                            {new Date(notice.created_at).toLocaleDateString('ko-KR', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit'
+                            }).replace(/\./g, '.').slice(0, -1)}
+                          </span>
+                          {notice.author && (
+                            <span>
+                              <i class="far fa-user mr-1"></i>
+                              {notice.author}
+                            </span>
+                          )}
+                          <span>
+                            <i class="far fa-eye mr-1"></i>
+                            {notice.views}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div class="ml-4 text-gray-400">
+                        <i class="fas fa-chevron-right"></i>
+                      </div>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <div class="text-center py-20">
+                <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg">등록된 공지사항이 없습니다.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      
+      {/* Scroll to Top 버튼 */}
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '소식 & 공지사항 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
 // API Routes
 app.get('/api/notices', async (c) => {
   const { DB } = c.env
