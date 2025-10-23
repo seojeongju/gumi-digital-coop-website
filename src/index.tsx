@@ -2109,9 +2109,9 @@ app.get('/members', (c) => {
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://page.gensparksite.com/v1/base64_upload/937e0c6edf4a0013b2dd1939a2b430b5" 
+                          src="https://page.gensparksite.com/v1/base64_upload/2b3eaa12b325f7567f626c598010c4f0" 
                           alt="스파코 로고" 
-                          class="w-40 object-contain"
+                          class="w-48 object-contain"
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">스파코(주)</h3>
