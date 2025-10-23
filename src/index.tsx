@@ -167,10 +167,10 @@ const Footer = () => (
         <div>
           <h3 class="text-white font-bold mb-4">고객지원</h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="/support" class="hover:text-white transition">자주 묻는 질문</a></li>
+            <li><a href="/support/faq" class="hover:text-white transition">자주 묻는 질문</a></li>
             <li><a href="/support" class="hover:text-white transition">문의하기</a></li>
             <li><a href="/support" class="hover:text-white transition">견적 요청</a></li>
-            <li><a href="/support" class="hover:text-white transition">자료실</a></li>
+            <li><a href="/resources" class="hover:text-white transition">자료실</a></li>
           </ul>
         </div>
       </div>
@@ -3403,6 +3403,427 @@ app.get('/support', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '문의하기 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// FAQ 페이지
+app.get('/support/faq', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">FAQ</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">자주 묻는 질문</h1>
+            <p class="text-xl opacity-90 mb-8">궁금하신 사항을 빠르게 찾아보세요</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ 카테고리 탭 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto">
+            {/* 카테고리 필터 */}
+            <div class="flex flex-wrap gap-3 justify-center mb-12">
+              <button class="px-6 py-3 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition">
+                전체
+              </button>
+              <button class="px-6 py-3 bg-white text-gray-700 rounded-lg font-medium hover:bg-gray-100 transition">
+                조합원 가입
+              </button>
+              <button class="px-6 py-3 bg-white text-gray-700 rounded-lg font-medium hover:bg-gray-100 transition">
+                서비스 이용
+              </button>
+              <button class="px-6 py-3 bg-white text-gray-700 rounded-lg font-medium hover:bg-gray-100 transition">
+                기술 지원
+              </button>
+              <button class="px-6 py-3 bg-white text-gray-700 rounded-lg font-medium hover:bg-gray-100 transition">
+                기타
+              </button>
+            </div>
+
+            {/* FAQ 아코디언 */}
+            <div class="space-y-4">
+              {/* FAQ 1 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-teal/10 text-teal rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">조합원 가입 자격이 어떻게 되나요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          3D 프린팅 및 디지털 제조 관련 기업, 연구기관, 대학교 등 다양한 기관이 가입 가능합니다. 
+                          자세한 가입 자격은 '조합원 가입' 페이지에서 확인하실 수 있습니다.
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+
+              {/* FAQ 2 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-teal/10 text-teal rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">조합원 가입비와 회비는 얼마인가요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          가입비 및 회비는 조합원 유형에 따라 다르며, 자세한 사항은 조합 사무국으로 문의해 주시기 바랍니다. 
+                          전화: 054-478-8011
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+
+              {/* FAQ 3 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-navy/10 text-navy rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">3D 프린팅 서비스를 이용하려면 어떻게 해야 하나요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          홈페이지 문의 페이지를 통해 신청하시거나, 전화(054-478-8011) 또는 이메일(info@gumidigital.or.kr)로 
+                          문의해 주시면 상담을 통해 서비스 이용을 도와드립니다.
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+
+              {/* FAQ 4 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-navy/10 text-navy rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">기술 교육 프로그램은 어떤 것들이 있나요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          3D 프린팅 기초/심화 교육, 디지털 제조 기술 교육, 소프트웨어 활용 교육 등 다양한 프로그램을 운영하고 있습니다. 
+                          교육 일정은 '서비스' 페이지에서 확인하실 수 있습니다.
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+
+              {/* FAQ 5 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-purple/10 text-purple rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">장비 이용 시간은 어떻게 되나요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          평일 오전 9시부터 오후 6시까지 이용 가능하며, 사전 예약이 필요합니다. 
+                          주말 및 공휴일 이용은 별도 문의 바랍니다.
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+
+              {/* FAQ 6 */}
+              <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <button class="w-full text-left p-6 hover:bg-gray-50 transition">
+                  <div class="flex items-start justify-between">
+                    <div class="flex items-start gap-4">
+                      <span class="flex-shrink-0 w-8 h-8 bg-purple/10 text-purple rounded-full flex items-center justify-center font-bold text-sm">Q</span>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">사업화 지원은 어떤 내용인가요?</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                          제품 개발부터 시제품 제작, 마케팅 지원까지 전 과정을 지원합니다. 
+                          정부 지원 사업 연계, 투자 유치 지원 등도 함께 제공됩니다.
+                        </p>
+                      </div>
+                    </div>
+                    <i class="fas fa-chevron-down text-gray-400 ml-4"></i>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* 추가 문의 섹션 */}
+            <div class="mt-16 bg-gradient-to-r from-teal to-navy text-white rounded-2xl p-8 md:p-12 text-center">
+              <h3 class="text-2xl md:text-3xl font-bold mb-4">원하는 답변을 찾지 못하셨나요?</h3>
+              <p class="text-lg opacity-90 mb-6">
+                추가 문의사항은 언제든지 연락 주시기 바랍니다
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/support" class="px-8 py-4 bg-white text-navy rounded-lg hover:bg-opacity-90 transition font-bold">
+                  <i class="fas fa-envelope mr-2"></i>
+                  문의하기
+                </a>
+                <a href="tel:054-478-8011" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold">
+                  <i class="fas fa-phone mr-2"></i>
+                  054-478-8011
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '자주 묻는 질문 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 자료실 페이지
+app.get('/resources', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-purple to-teal text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Resources</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">자료실</h1>
+            <p class="text-xl opacity-90 mb-8">유용한 자료와 문서를 다운로드하실 수 있습니다</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 카테고리 필터 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="flex flex-wrap gap-3 mb-12">
+              <button class="px-6 py-3 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition">
+                전체
+              </button>
+              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                조합 소개서
+              </button>
+              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                신청서 양식
+              </button>
+              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                기술 자료
+              </button>
+              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                교육 자료
+              </button>
+              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                사업 안내
+              </button>
+            </div>
+
+            {/* 자료 목록 */}
+            <div class="grid grid-cols-1 gap-6">
+              {/* 자료 1 */}
+              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-teal hover:shadow-lg transition">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-start gap-4 flex-1">
+                    <div class="w-16 h-16 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fas fa-file-pdf text-2xl text-teal"></i>
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class="px-3 py-1 bg-teal/10 text-teal rounded-full text-xs font-bold">조합 소개서</span>
+                        <span class="text-xs text-gray-500">2025.01.15</span>
+                      </div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">구미디지털적층산업사업협동조합 소개서</h3>
+                      <p class="text-sm text-gray-600 mb-3">
+                        협동조합의 비전, 주요 사업, 조직 구성 등을 담은 공식 소개 자료입니다.
+                      </p>
+                      <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span><i class="fas fa-file mr-1"></i>PDF</span>
+                        <span><i class="fas fa-weight mr-1"></i>2.5 MB</span>
+                        <span><i class="fas fa-download mr-1"></i>124회</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="ml-4 px-6 py-3 bg-teal text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                    <i class="fas fa-download mr-2"></i>
+                    다운로드
+                  </button>
+                </div>
+              </div>
+
+              {/* 자료 2 */}
+              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-navy hover:shadow-lg transition">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-start gap-4 flex-1">
+                    <div class="w-16 h-16 bg-navy/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fas fa-file-word text-2xl text-navy"></i>
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class="px-3 py-1 bg-navy/10 text-navy rounded-full text-xs font-bold">신청서 양식</span>
+                        <span class="text-xs text-gray-500">2025.01.10</span>
+                      </div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">조합원 가입 신청서</h3>
+                      <p class="text-sm text-gray-600 mb-3">
+                        조합원 가입을 위한 신청서 양식입니다. 작성 후 이메일 또는 방문 제출해 주세요.
+                      </p>
+                      <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span><i class="fas fa-file mr-1"></i>DOCX</span>
+                        <span><i class="fas fa-weight mr-1"></i>156 KB</span>
+                        <span><i class="fas fa-download mr-1"></i>89회</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="ml-4 px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                    <i class="fas fa-download mr-2"></i>
+                    다운로드
+                  </button>
+                </div>
+              </div>
+
+              {/* 자료 3 */}
+              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-purple hover:shadow-lg transition">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-start gap-4 flex-1">
+                    <div class="w-16 h-16 bg-purple/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fas fa-file-pdf text-2xl text-purple"></i>
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class="px-3 py-1 bg-purple/10 text-purple rounded-full text-xs font-bold">기술 자료</span>
+                        <span class="text-xs text-gray-500">2025.01.08</span>
+                      </div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">3D 프린팅 기술 가이드북</h3>
+                      <p class="text-sm text-gray-600 mb-3">
+                        3D 프린팅 기술의 기초부터 활용까지, 실무자를 위한 종합 가이드북입니다.
+                      </p>
+                      <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span><i class="fas fa-file mr-1"></i>PDF</span>
+                        <span><i class="fas fa-weight mr-1"></i>8.3 MB</span>
+                        <span><i class="fas fa-download mr-1"></i>256회</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="ml-4 px-6 py-3 bg-purple text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                    <i class="fas fa-download mr-2"></i>
+                    다운로드
+                  </button>
+                </div>
+              </div>
+
+              {/* 자료 4 */}
+              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-orange-500 hover:shadow-lg transition">
+                <div class="flex items-start justify-between">
+                  <div class="flex items-start gap-4 flex-1">
+                    <div class="w-16 h-16 bg-orange-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <i class="fas fa-file-powerpoint text-2xl text-orange-500"></i>
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class="px-3 py-1 bg-orange-500/10 text-orange-500 rounded-full text-xs font-bold">교육 자료</span>
+                        <span class="text-xs text-gray-500">2024.12.20</span>
+                      </div>
+                      <h3 class="text-lg font-bold text-gray-900 mb-2">디지털 제조 혁신 사례집</h3>
+                      <p class="text-sm text-gray-600 mb-3">
+                        국내외 디지털 제조 혁신 우수 사례를 소개하는 자료입니다.
+                      </p>
+                      <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span><i class="fas fa-file mr-1"></i>PPTX</span>
+                        <span><i class="fas fa-weight mr-1"></i>12.7 MB</span>
+                        <span><i class="fas fa-download mr-1"></i>178회</span>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="ml-4 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                    <i class="fas fa-download mr-2"></i>
+                    다운로드
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 페이지네이션 */}
+            <div class="flex justify-center items-center gap-2 mt-12">
+              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition flex items-center justify-center">
+                <i class="fas fa-chevron-left text-sm"></i>
+              </button>
+              <button class="w-10 h-10 rounded-lg bg-teal text-white font-bold">1</button>
+              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition font-medium">2</button>
+              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition font-medium">3</button>
+              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition flex items-center justify-center">
+                <i class="fas fa-chevron-right text-sm"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto bg-gradient-to-br from-navy via-purple to-teal text-white rounded-3xl p-8 md:p-12 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">필요한 자료를 찾지 못하셨나요?</h2>
+            <p class="text-lg opacity-90 mb-8">
+              추가 자료가 필요하시면 언제든지 문의해 주세요
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support" class="px-8 py-4 bg-white text-navy rounded-lg hover:bg-opacity-90 transition font-bold text-lg">
+                <i class="fas fa-envelope mr-2"></i>
+                문의하기
+              </a>
+              <a href="/members/join" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold text-lg">
+                <i class="fas fa-user-plus mr-2"></i>
+                조합원 가입
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '자료실 - 구미디지털적층산업사업협동조합' }
   )
 })
 
