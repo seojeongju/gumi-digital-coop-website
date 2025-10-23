@@ -2041,7 +2041,7 @@ app.get('/members', (c) => {
               </div>
 
               {/* 조합원 4: (주)와우쓰리디 */}
-              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group border-4 border-purple-500">
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
