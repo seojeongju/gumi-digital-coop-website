@@ -1996,21 +1996,21 @@ app.get('/members', (c) => {
                 </div>
               </div>
 
-              {/* 조합원 3: (주)하이웰스 */}
+              {/* 조합원 3: (주)하이엘스 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   <div class="lg:col-span-2 bg-gradient-to-br from-cyan-50 to-teal-50 p-8 flex items-center justify-center">
                     <img 
                       src="https://page.gensparksite.com/v1/base64_upload/b9ff8920a27cb55fce522ccf139fc1d5" 
-                      alt="하이웰스" 
+                      alt="하이엘스" 
                       class="w-full max-w-sm object-contain"
                     />
                   </div>
                   <div class="lg:col-span-3 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
                       <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이웰스</h3>
-                        <p class="text-cyan-600 font-semibold">HIWELLS</p>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이엘스</h3>
+                        <p class="text-cyan-600 font-semibold">HIELSS</p>
                       </div>
                       <span class="px-4 py-2 bg-cyan-600/10 text-cyan-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
