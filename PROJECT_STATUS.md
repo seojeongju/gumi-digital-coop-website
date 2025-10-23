@@ -1,262 +1,291 @@
-# 구미 디지털 적층제조 산업사업협동조합 웹사이트 프로젝트 상태
+# 구미디지털적층산업사업협동조합 웹사이트 - 프로젝트 상태
 
-**최종 업데이트**: 2025-10-23  
-**프로젝트**: gumi-digital-coop-website  
-**GitHub**: https://github.com/seojeongju/gumi-digital-coop-website  
-**배포 URL**: https://gumi-digital-coop-website.pages.dev
-
----
-
-## 📋 프로젝트 개요
-
-구미 디지털 적층제조 산업사업협동조합의 공식 웹사이트로, 조합 소개, 조합원사 정보, 서비스 안내, 소식, 지원센터 등을 제공합니다.
-
-### 기술 스택
-- **프레임워크**: Hono (SSR with JSX)
-- **배포**: Cloudflare Pages + Workers
-- **데이터베이스**: Cloudflare D1 (SQLite)
-- **스타일링**: TailwindCSS
-- **언어**: TypeScript/JSX
+**최종 업데이트**: 2025-10-23
+**프로젝트 경로**: `/home/user/webapp`
+**Git 저장소**: https://github.com/seojeongju/gumi-digital-coop-website.git
 
 ---
 
-## 🎯 완료된 주요 기능
+## 📋 오늘 완료된 작업 (2025-10-23)
 
-### 1. 페이지 구조
-- ✅ 메인 페이지 (`/`)
-- ✅ 회사 소개 (`/about`)
-  - 인사말 (`/about/greeting`)
-  - 조직도 (`/about/organization`)
-- ✅ 조합원 (`/members`)
-  - 조합원사 소개 (`/members`)
-  - 조합원 가입 (`/members/join`)
-- ✅ 서비스 소개 (`/services`)
-- ✅ 소식 (`/news`)
-- ✅ 지원센터 (`/support`)
-  - FAQ (`/support/faq`)
+### 1. ✅ 네비게이션 메뉴 재구성
+- **커밋**: `4624a2f` - "feat: Restructure navigation menu and add quote request page"
+- 기존 "소식", "문의" 메뉴 삭제
+- 새로운 "고객지원" 드롭다운 메뉴 추가
+  - 조합소식 (`/news`)
+  - 자주 묻는 질문 (`/support/faq`)
+  - 문의하기 (`/support`)
+  - 견적 요청 (`/support/quote`) - **신규 생성**
   - 자료실 (`/resources`)
 
-### 2. 네비게이션
-- ✅ 드롭다운 메뉴 (조합원 하위 메뉴)
-- ✅ 반응형 모바일 메뉴
-- ✅ 모든 페이지 간 링크 연결
+### 2. ✅ 견적 요청 페이지 신규 구현
+- **URL**: `/support/quote`
+- **기능**:
+  - 기본 정보 입력 (이름, 회사명, 이메일, 연락처)
+  - 프로젝트 정보 (서비스 유형, 수량, 납기일, 예산)
+  - 상세 설명 및 파일 첨부
+  - 4단계 견적 프로세스 안내
+  - Purple-Pink-Orange 그라디언트 디자인
 
-### 3. 조합원사 정보
-**5개 조합원사 프로필 완료**:
-1. **(주)휴먼아이티** - 정회원
-   - SW 개발, IT 컨설팅
-   - Logo: w-64 (전체 브랜딩)
-   
-2. **두맥스전자** - 정회원
-   - 전자부품, 스마트팩토리
-   - Logo: w-48 DUMAX
+### 3. ✅ 5개 산업 분야 상세 페이지 구현
+- **커밋**: `6db8d8c` - "feat: Add detailed pages for 5 industry sectors"
 
-3. **(주)하이엘스** - 정회원
-   - 의료기기, 3D 프린팅
-   - Logo: w-40 HIELSS
-   - **변경사항**: "하이웰스" → "하이엘스"로 회사명 수정
+#### 구현된 페이지:
+1. **IoT (사물인터넷)** - `/industry/iot`
+   - 센서 기술, 통신 프로토콜, 클라우드 플랫폼
+   - 스마트 팩토리, 스마트 홈, 커넥티드 카, 헬스케어
 
-4. **(주)와우쓰리디** - 정회원
-   - 3D 프린팅 서비스
-   - Logo: w-40 WOW3D
-   - **변경사항**: 
-     - 다크 테마 → 라이트 테마로 변경 (가독성 개선)
-     - 보라색 테두리 제거
+2. **3D 프린팅** - `/industry/3d-printing`
+   - FDM/FFF, SLA/DLP, SLS/Metal
+   - 시제품 제작, 맞춤형 제조, 의료 바이오, 건축
 
-5. **스파코(주)** - 준회원
-   - 자동화 설비
-   - Logo: w-48 SPACO
+3. **AI (인공지능)** - `/industry/ai`
+   - 머신러닝, 딥러닝, 컴퓨터 비전
+   - 품질 검사, 예측 분석, NLP, 자동화
 
-**레이아웃 통일**:
-- ✅ 모든 회원사 카드 수평 레이아웃 적용
-- ✅ 로고 좌측, 회사명 중앙, 배지 우측 배치
+4. **로봇 (로보틱스)** - `/industry/robotics`
+   - 산업용 로봇, 협동 로봇, 물류 로봇
+   - 제조/물류 자동화, 서비스 로봇, 의료 로봇
 
-### 4. 디자인 개선
+5. **빅데이터** - `/industry/big-data`
+   - 데이터 수집/저장/분석
+   - 고객 분석, 운영 최적화, 보안, 예측 분석
 
-#### 히어로 섹션 - 각 페이지별 맞춤형 그라데이션
-**최신 업데이트 (2025-10-23)**:
-- ✅ **About** (회사 소개): `navy → indigo → blue` (공식적, 신뢰)
-- ✅ **Greeting** (인사말): `blue → cyan → teal` (따뜻함, 환영)
-- ✅ **Organization** (조직도): `indigo → purple → pink` (체계적)
-- ✅ **Members** (조합원): `teal → cyan → sky` (협력, 연대)
-- ✅ **Join** (조합원 가입): `purple → fuchsia → pink` (활기참)
-- ✅ **Services** (서비스): `navy → purple → teal` (기존 유지)
-- ✅ **Support** (지원센터): `navy → teal → cyan` (소통)
-- ✅ **FAQ**: `cyan → teal → emerald` (도움)
-- ✅ **Resources** (자료실): `indigo → blue → cyan` (지식)
-- ✅ **News** (소식): `orange → amber → yellow` (에너지) ⭐ **NEW!**
-
-**배경 이미지**:
-- ✅ 모든 서브페이지에 배경 이미지 추가
-- ✅ Opacity 0.1 (배경 이미지) + 0.2 (블랙 오버레이)
-- ✅ News 페이지 히어로 섹션 완전 재구성
-
-### 5. 연락/지원 통합
-- ✅ 모든 "문의하기", "상담 신청" CTA → `/support`로 연결
-- ✅ 통합 문의 폼 구현
-- ✅ FAQ 페이지 (9개 항목)
-- ✅ 자료실 페이지 (다운로드 가능한 자료)
-
-### 6. 콘텐츠
-- ✅ 메인 페이지 텍스트: "기업" → "협동조합" 변경
-- ✅ 모든 페이지 풀 콘텐츠 작성 완료
-- ✅ 반응형 디자인 적용
+### 4. ✅ 이전 작업 내역
+- **커밋**: `6db178d` - 중소기업협동조합 영문명을 "KBIZ"로 수정
+- **커밋**: `1ec08d3` - 중소기업협동조합 아이콘 변경 (handshake → users)
+- **커밋**: `a065ac0` - 5개 주요 협력기관 섹션 추가
 
 ---
 
-## 📝 최근 커밋 히스토리
+## 🗂️ 프로젝트 구조
 
 ```
-7d28e7a - feat: Apply unique gradient colors to each subpage hero section (2025-10-23)
-914e5f2 - feat: Implement FAQ and Resources pages
-c4cceb0 - feat: Add background images to all subpage hero sections
-b375d61 - fix: Update all contact-related links to /support page
-d2a65b4 - feat: Update main page hero section
-7d5e1e1 - feat: Implement contact/support page
-0523022 - feat: Update DUMAX ELECTRONICS logo with official branding
-1293e49 - fix: Unify WOW3D card design with other members
-bd3a5d5 - feat: Update SPACO logo with official branding
-8a5e53d - feat: Update HUMAN IT logo with full branding
-```
-
----
-
-## 🚀 배포 상태
-
-### Cloudflare Pages
-- **상태**: ✅ Automatic deployments enabled
-- **최근 배포**: 2025-10-23 (4분 전)
-- **커밋**: 7d28e7a
-- **브랜치**: main → production
-- **도메인**: gumi-digital-coop-website.pages.dev
-
-### 배포 설정
-- **빌드 명령어**: `npm run build`
-- **출력 디렉토리**: `dist`
-- **프레임워크**: Hono (Cloudflare Workers)
-
----
-
-## 📂 프로젝트 구조
-
-```
-webapp/
+/home/user/webapp/
 ├── src/
-│   ├── index.tsx          # 메인 애플리케이션 (3600+ lines)
-│   └── ... 
-├── dist/                  # 빌드 출력 (Cloudflare Pages 배포용)
+│   └── index.tsx              # 메인 애플리케이션 (4500+ 라인)
+├── public/
+│   └── static/
+│       ├── images/
+│       └── js/
 ├── package.json
-├── tsconfig.json
+├── wrangler.jsonc            # Cloudflare 설정
 ├── vite.config.ts
-├── wrangler.toml
-└── PROJECT_STATUS.md      # 이 파일
+├── tsconfig.json
+└── PROJECT_STATUS.md         # 이 문서
 ```
 
-### 주요 파일
-- **`src/index.tsx`**: 모든 라우트, 컴포넌트, 페이지 로직
-  - Header, Footer 컴포넌트
-  - 10개 이상의 페이지 라우트
-  - D1 데이터베이스 연동 (뉴스)
-  - 반응형 네비게이션
+---
+
+## 🔗 주요 라우트 맵
+
+### 메인 네비게이션
+- `/` - 홈
+- `/about` - 조합 소개
+  - `/about/greeting` - 조합장 인사말
+  - `/about/organization` - 조직 및 운영구조
+  - `/about#vision` - 비전 & 미션
+  - `/about#values` - 핵심 가치
+  - `/about#location` - 오시는 길
+- `/services` - 서비스
+- `/members` - 조합원
+  - `/members/join` - 조합원 가입
+
+### 고객지원 메뉴 (신규)
+- `/news` - 조합소식
+- `/support/faq` - 자주 묻는 질문
+- `/support` - 문의하기
+- `/support/quote` - 견적 요청 (신규)
+- `/resources` - 자료실
+
+### 산업 분야 상세 (신규)
+- `/industry/iot` - IoT
+- `/industry/3d-printing` - 3D 프린팅
+- `/industry/ai` - AI
+- `/industry/robotics` - 로봇
+- `/industry/big-data` - 빅데이터
+
+### 기타
+- `/location` - 오시는 길 (Google Maps)
 
 ---
 
 ## 🎨 디자인 시스템
 
-### 색상 팔레트 (Tailwind)
-- **Primary**: Navy, Indigo, Blue, Cyan, Teal
-- **Accent**: Purple, Pink, Fuchsia
-- **Warm**: Orange, Amber, Yellow
-- **Neutral**: Sky, Emerald
+### 컬러 팔레트
+- **Navy**: `#1a365d` - 메인 브랜드 컬러
+- **Teal**: `#0d9488` - 액센트 컬러
+- **Purple**: `#9333ea` - 3D 프린팅
+- **Orange**: `#f97316` - 로봇
+- **Cyan**: `#06b6d4` - IoT
+- **Green**: `#059669` - 빅데이터
 
-### 타이포그래피
-- **Heading**: text-4xl, text-6xl, font-bold
-- **Body**: text-base, text-lg
-- **Korean**: Noto Sans KR (fallback)
-
-### 컴포넌트
-- **Cards**: shadow-md, hover:shadow-xl, rounded-xl
-- **Buttons**: px-8 py-4, rounded-full, transition
-- **Hero**: py-32, gradient background, overlays
+### 주요 컴포넌트
+- **Header**: TopBar + 메인 네비게이션 + 모바일 메뉴
+- **Footer**: 4단 그리드 레이아웃
+- **Hero Section**: 그라디언트 배경 + 오버레이
+- **Card Layouts**: 그리드 시스템 (Tailwind)
+- **Icons**: FontAwesome 6.x
 
 ---
 
-## 🔧 개발 명령어
+## 📊 회원사 정보 (5개 정회원)
 
+1. **휴먼아이티** - 소프트웨어 개발
+2. **두맥스전자** - 전자기기 제조
+3. **하이엘스** - 3D 프린팅 소재
+4. **와우쓰리디** - 3D 프린팅 장비
+5. **스파코** - 자동화 시스템
+
+---
+
+## 🤝 협력기관 (5개)
+
+1. **경상북도** - Gyeongsangbuk-do Province
+2. **구미시** - Gumi City
+3. **중소기업협동조합** - KBIZ
+4. **과학기술정보통신부** - MSIT
+5. **중소벤처기업부** - MSS
+
+---
+
+## 🛠️ 기술 스택
+
+### Frontend
+- **Framework**: Hono (Edge Web Framework)
+- **Language**: TypeScript + JSX
+- **Styling**: TailwindCSS
+- **Icons**: FontAwesome 6.x
+- **Build Tool**: Vite 6.x
+
+### Backend & Deployment
+- **Platform**: Cloudflare Pages + Workers
+- **Database**: Cloudflare D1 (SQLite)
+- **Deployment**: GitHub → Cloudflare (자동 배포)
+
+### Development
+- **Node.js**: v18+
+- **Package Manager**: npm
+- **Version Control**: Git
+
+---
+
+## 🚀 배포 프로세스
+
+1. 코드 수정 및 테스트
+2. 빌드: `npm run build`
+3. 커밋: `git add . && git commit -m "message"`
+4. 푸시: `git push origin main`
+5. Cloudflare Pages 자동 배포 (2-3분 소요)
+
+---
+
+## 📦 백업 정보
+
+### 로컬 백업
+- **파일**: `/home/user/gumi-coop-backup-20251023-101332.tar.gz`
+- **크기**: 654KB
+- **내용**: 소스 코드 (node_modules, dist, .git 제외)
+
+### Git 저장소 (원격 백업)
+- **저장소**: https://github.com/seojeongju/gumi-digital-coop-website.git
+- **브랜치**: main
+- **최신 커밋**: 6db8d8c
+
+---
+
+## 📝 다음 세션을 위한 참고사항
+
+### 작업 시작 방법
 ```bash
-# 개발 서버 실행
-npm run dev
-
-# 빌드
-npm run build
-
-# Cloudflare Pages 로컬 테스트
-npx wrangler pages dev dist
-
-# 배포 (자동 배포 사용 중)
-git push origin main
+cd /home/user/webapp
+git status                    # 상태 확인
+git pull origin main         # 최신 코드 가져오기
+npm install                  # 의존성 설치 (필요시)
 ```
 
----
+### 주요 파일
+- **메인 앱**: `/home/user/webapp/src/index.tsx`
+- **설정**: `/home/user/webapp/wrangler.jsonc`
+- **패키지**: `/home/user/webapp/package.json`
 
-## 📋 다음 세션에서 참고할 사항
-
-### 현재 상태
-- ✅ 모든 코드 커밋 및 푸시 완료
-- ✅ Cloudflare Pages 자동 배포 활성화
-- ✅ 모든 페이지 정상 작동 확인
-- ✅ 각 서브페이지별 고유 색상 적용 완료
-
-### 작업 디렉토리
-- **경로**: `/home/user/webapp`
-- **Git Remote**: https://github.com/seojeongju/gumi-digital-coop-website.git
-- **브랜치**: main
+### 개발 명령어
+```bash
+npm run build               # 프로덕션 빌드
+npm run dev                 # 개발 서버 (로컬)
+git log --oneline -10      # 최근 커밋 확인
+```
 
 ### 데이터베이스 (D1)
-- News 테이블: 뉴스 항목 저장
-- 로컬 개발: `.wrangler/state/v3/d1/miniflare-D1DatabaseObject/...`
-- Production: Cloudflare D1
-
-### 이미지 자산
-- 모든 이미지: GenSpark CDN (`page.gensparksite.com`)
-- 회사 로고: 투명/비투명 배경 버전 사용
-- 배경 이미지: 모든 히어로 섹션에 적용
-
-### 알려진 이슈
-- ⚠️ Tailwind CDN 사용 (프로덕션에서는 PostCSS로 전환 권장)
-- ⚠️ 404 에러 (favicon 관련, 기능에는 영향 없음)
-
-### 개선 가능한 부분
-- [ ] Tailwind CSS를 CDN에서 PostCSS 플러그인으로 전환
-- [ ] favicon 추가
-- [ ] SEO 메타태그 최적화
-- [ ] 이미지 lazy loading
-- [ ] 성능 최적화 (Core Web Vitals)
+- **바인딩명**: `DB`
+- **테이블**: `notices`, `members`
+- **설정 위치**: `wrangler.jsonc`
 
 ---
 
-## 🎉 프로젝트 하이라이트
+## ✅ 완료된 주요 기능
 
-1. **완전한 SSR**: Hono + JSX로 서버 사이드 렌더링
-2. **자동 배포**: GitHub 푸시 → Cloudflare Pages 자동 배포
-3. **반응형 디자인**: 모바일, 태블릿, 데스크톱 최적화
-4. **통합 콘텐츠**: 모든 페이지 풀 콘텐츠 완성
-5. **시각적 차별화**: 각 페이지별 고유 색상 테마
-6. **로고 통일**: 5개 조합원사 공식 로고 적용
-7. **UX 개선**: 직관적인 네비게이션, CTA 통합
-
----
-
-## 📞 문의
-
-**구미 디지털 적층제조 산업사업협동조합**
-- 전화: 054-123-4567
-- 이메일: info@gumidigital.co.kr
-- 운영시간: 평일 09:00 - 18:00
-- 웹사이트: https://gumi-digital-coop-website.pages.dev
+- [x] 기본 웹사이트 구조
+- [x] 반응형 디자인 (모바일/태블릿/데스크톱)
+- [x] 조합 소개 페이지
+- [x] 회원사 정보 (5개 정회원)
+- [x] 협력기관 섹션 (5개)
+- [x] 서비스 소개
+- [x] 뉴스/공지사항 시스템
+- [x] FAQ 페이지
+- [x] 문의하기 폼
+- [x] 견적 요청 페이지 (신규)
+- [x] 자료실 페이지
+- [x] 오시는 길 (Google Maps)
+- [x] 5개 산업 분야 상세 페이지 (신규)
+- [x] 고객지원 통합 메뉴 (신규)
 
 ---
 
-**백업 생성일**: 2025-10-23  
-**백업 파일**: `gumi-digital-coop-backup-2025-10-23.tar.gz` (73MB)  
-**상태**: ✅ 프로덕션 배포 완료
+## 🎯 향후 개선 가능 항목
+
+1. **기능 추가**
+   - 조합원 로그인 시스템
+   - 관리자 대시보드
+   - 실제 파일 업로드 기능
+   - 이메일 발송 연동
+
+2. **콘텐츠 확장**
+   - 실제 뉴스/공지사항 데이터 연동
+   - 회원사별 상세 포트폴리오
+   - 성공 사례 (Case Study) 페이지
+   - 블로그 또는 기술 자료
+
+3. **성능 최적화**
+   - 이미지 최적화 (WebP, lazy loading)
+   - SEO 메타 태그 강화
+   - 다국어 지원 (영어)
+
+4. **분석 & 모니터링**
+   - Google Analytics 연동
+   - 방문자 통계 대시보드
+
+---
+
+## 📞 연락처
+
+**조합 정보**
+- 주소: 경상북도 구미시 산호대로 253
+- 전화: 054-478-8011
+- 이메일: info@gumidigital.or.kr
+
+---
+
+## 🎉 프로젝트 현황
+
+- **전체 라인 수**: 4500+ 라인
+- **총 페이지 수**: 20+ 페이지
+- **총 커밋 수**: 5+ 커밋 (오늘)
+- **상태**: ✅ 프로덕션 배포 완료
+- **배포 URL**: Cloudflare Pages (자동 배포)
+
+---
+
+**작성자**: AI Assistant
+**문서 버전**: 1.0
+**다음 업데이트**: 필요시 업데이트 예정
