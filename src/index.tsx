@@ -277,7 +277,7 @@ app.get('/', async (c) => {
               </div>
             </div>
             
-            {/* 산업 카드 4 - 빅데이터 */}
+            {/* 산업 카드 4 - 로봇 */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -285,12 +285,12 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-coral/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">빅데이터</h3>
-                <p class="text-sm opacity-90">Big Data</p>
+                <h3 class="text-xl font-bold mb-2">로봇</h3>
+                <p class="text-sm opacity-90">Robotics</p>
               </div>
             </div>
             
-            {/* 산업 카드 5 - 로봇 */}
+            {/* 산업 카드 5 - 빅데이터 */}
             <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
@@ -298,8 +298,8 @@ app.get('/', async (c) => {
               ></div>
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
-                <h3 class="text-xl font-bold mb-2">로봇</h3>
-                <p class="text-sm opacity-90">Robotics</p>
+                <h3 class="text-xl font-bold mb-2">빅데이터</h3>
+                <p class="text-sm opacity-90">Big Data</p>
               </div>
             </div>
           </div>
