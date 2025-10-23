@@ -429,9 +429,9 @@ app.get('/', async (c) => {
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">AKIS NEWS</h2>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">구미 디지털적층제조산업사업협동조합 소식</h2>
             <p class="text-gray-600 text-lg">
-              AI개발자모임의 최신 소식을 가장 빠르게 전해드립니다
+              사업협동조합의 최신 소식을 가장 빠르게 전해드립니다
             </p>
             <a href="/news" class="inline-block mt-4 text-teal hover:underline">
               + VIEW MORE
