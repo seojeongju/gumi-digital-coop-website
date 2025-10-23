@@ -325,8 +325,8 @@ app.get('/', async (c) => {
         </div>
       </section>
       
-      {/* SERVICE 섹션 */}
-      <section class="py-20 bg-white">
+      {/* SERVICE 섹션 - 브로셔 스타일 */}
+      <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="text-center mb-16">
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">주요 사업 분야</h2>
@@ -336,150 +336,142 @@ app.get('/', async (c) => {
           </div>
           
           {/* 서비스 카드 그리드 - 2x2 레이아웃 */}
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
             {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
-            <div class="relative rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
+            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
               {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d');"
               ></div>
-              {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-teal/50 to-navy/50"></div>
+              {/* 강한 그라데이션 오버레이 */}
+              <div class="absolute inset-0 bg-gradient-to-br from-blue-600/85 via-cyan-600/85 to-blue-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10">
-                <div class="flex items-start mb-6">
-                  <div class="bg-white/20 backdrop-blur-sm text-white rounded-lg p-3 mr-4">
-                    <i class="fas fa-cube text-3xl"></i>
+              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+                <div>
+                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
+                    <i class="fas fa-cube text-4xl text-blue-600"></i>
                   </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">첨단 적층제조 기술 보급 및 R&D</h3>
-                  </div>
+                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">첨단 적층제조 기술 보급 및 R&D</h3>
                 </div>
                 <ul class="space-y-3">
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-teal-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">3D 프린팅 기술 연구개발 지원</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">3D 프린팅 기술 연구개발 지원</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-teal-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">최신 장비 및 기술 트렌드 공유</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">최신 장비 및 기술 트렌드 공유</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-teal-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">산학연 공동 R&D 프로젝트 추진</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">산학연 공동 R&D 프로젝트 추진</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 2. 인력 양성 및 교육·세미나 */}
-            <div class="relative rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
+            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
               {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba');"
               ></div>
-              {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-purple/50 to-pink-600/50"></div>
+              {/* 강한 그라데이션 오버레이 */}
+              <div class="absolute inset-0 bg-gradient-to-br from-purple-600/85 via-fuchsia-600/85 to-purple-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10">
-                <div class="flex items-start mb-6">
-                  <div class="bg-white/20 backdrop-blur-sm text-white rounded-lg p-3 mr-4">
-                    <i class="fas fa-graduation-cap text-3xl"></i>
+              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+                <div>
+                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
+                    <i class="fas fa-graduation-cap text-4xl text-purple-600"></i>
                   </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">인력 양성 및 교육·세미나</h3>
-                  </div>
+                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">인력 양성 및 교육·세미나</h3>
                 </div>
                 <ul class="space-y-3">
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-purple-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">적층제조 전문 기술 인력 양성</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">적층제조 전문 기술 인력 양성</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-purple-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">정기 세미나 및 워크샵 개최</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">정기 세미나 및 워크샵 개최</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-purple-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">산업 전문가 교류 네트워크 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">산업 전문가 교류 네트워크 구축</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
-            <div class="relative rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
+            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
               {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731');"
               ></div>
-              {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-green-600/50 to-teal-700/50"></div>
+              {/* 강한 그라데이션 오버레이 */}
+              <div class="absolute inset-0 bg-gradient-to-br from-green-600/85 via-emerald-600/85 to-teal-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10">
-                <div class="flex items-start mb-6">
-                  <div class="bg-white/20 backdrop-blur-sm text-white rounded-lg p-3 mr-4">
-                    <i class="fas fa-industry text-3xl"></i>
+              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+                <div>
+                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
+                    <i class="fas fa-industry text-4xl text-green-600"></i>
                   </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">공동 구매, 장비 운용 및 인프라 제공</h3>
-                  </div>
+                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">공동 구매, 장비 운용 및 인프라 제공</h3>
                 </div>
                 <ul class="space-y-3">
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">원자재 및 장비 공동구매 지원</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">원자재 및 장비 공동구매 지원</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">고가 장비 공동 활용 시스템 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">고가 장비 공동 활용 시스템 구축</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-green-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">테스트베드 및 공동 작업공간 제공</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">테스트베드 및 공동 작업공간 제공</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 4. 정부 및 지자체 협력사업 */}
-            <div class="relative rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
+            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
               {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362');"
               ></div>
-              {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-coral/50 to-red-600/50"></div>
+              {/* 강한 그라데이션 오버레이 */}
+              <div class="absolute inset-0 bg-gradient-to-br from-orange-600/85 via-red-500/85 to-red-600/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10">
-                <div class="flex items-start mb-6">
-                  <div class="bg-white/20 backdrop-blur-sm text-white rounded-lg p-3 mr-4">
-                    <i class="fas fa-handshake text-3xl"></i>
+              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+                <div>
+                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
+                    <i class="fas fa-handshake text-4xl text-orange-600"></i>
                   </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-white mb-2">정부 및 지자체 협력사업</h3>
-                  </div>
+                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">정부 및 지자체 협력사업</h3>
                 </div>
                 <ul class="space-y-3">
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-orange-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">지역 산업 육성 정책 협력</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">지역 산업 육성 정책 협력</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-orange-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">정부 R&D 사업 공동 참여</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">정부 R&D 사업 공동 참여</span>
                   </li>
-                  <li class="flex items-start">
-                    <i class="fas fa-check-circle text-orange-300 mt-1 mr-3 flex-shrink-0"></i>
-                    <span class="text-white">지역 특화 산업 클러스터 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
+                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
+                    <span class="text-white font-medium">지역 특화 산업 클러스터 구축</span>
                   </li>
                 </ul>
               </div>
