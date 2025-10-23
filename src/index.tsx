@@ -57,7 +57,7 @@ const Header = () => (
             </a>
             <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <a href="/about" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합 개요</a>
-              <a href="/about#greeting" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합장 인사말</a>
+              <a href="/about/greeting" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합장 인사말</a>
               <a href="/about#vision" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">비전 & 미션</a>
               <a href="/about#values" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">핵심 가치</a>
               <a href="/about#location" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">오시는 길</a>
@@ -94,7 +94,7 @@ const Header = () => (
           <a href="/about" class="block py-2 text-gray-700 hover:text-teal font-medium">조합 소개</a>
           <div class="pl-4 space-y-1">
             <a href="/about" class="block py-1 text-sm text-gray-600 hover:text-teal">조합 개요</a>
-            <a href="/about#greeting" class="block py-1 text-sm text-gray-600 hover:text-teal">조합장 인사말</a>
+            <a href="/about/greeting" class="block py-1 text-sm text-gray-600 hover:text-teal">조합장 인사말</a>
             <a href="/about#vision" class="block py-1 text-sm text-gray-600 hover:text-teal">비전 & 미션</a>
             <a href="/about#values" class="block py-1 text-sm text-gray-600 hover:text-teal">핵심 가치</a>
             <a href="/about#location" class="block py-1 text-sm text-gray-600 hover:text-teal">오시는 길</a>
@@ -514,101 +514,8 @@ app.get('/about', (c) => {
         </div>
       </section>
       
-      {/* 조합장 인사말 */}
-      <section id="greeting" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4">
-          <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-              <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">조합장 인사말</h2>
-              <p class="text-gray-600 text-lg">협동조합을 이끌어가는 조합장의 메시지</p>
-            </div>
-            
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-              <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                {/* 왼쪽: 조합장 사진 */}
-                <div class="lg:col-span-2 bg-gradient-to-br from-navy to-teal p-8 lg:p-12 flex flex-col items-center justify-center text-white">
-                  <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden">
-                    <i class="fas fa-user text-8xl text-white/60"></i>
-                  </div>
-                  <h3 class="text-2xl font-bold mb-2">홍길동</h3>
-                  <p class="text-lg opacity-90 mb-4">조합장</p>
-                  <div class="text-sm opacity-75 text-center">
-                    <p>구미디지털적층산업</p>
-                    <p>사업협동조합</p>
-                  </div>
-                </div>
-                
-                {/* 오른쪽: 인사말 내용 */}
-                <div class="lg:col-span-3 p-8 lg:p-12">
-                  <div class="space-y-6 text-gray-700 leading-relaxed">
-                    <p class="text-lg font-medium text-gray-900">
-                      안녕하십니까, 구미디지털적층산업사업협동조합 조합장 홍길동입니다.
-                    </p>
-                    
-                    <p>
-                      우리 협동조합 홈페이지를 방문해 주신 여러분께 진심으로 감사의 말씀을 드립니다.
-                    </p>
-                    
-                    <p>
-                      구미디지털적층산업사업협동조합은 <strong class="text-teal">3D 프린팅 및 적층제조 기술</strong>을 
-                      중심으로 회원사의 상생과 지역 산업 혁신을 위해 설립되었습니다. 
-                      급변하는 제조 환경 속에서 디지털 전환은 선택이 아닌 필수가 되었으며, 
-                      우리 협동조합은 이러한 변화의 최전선에서 회원 기업들과 함께 성장하고 있습니다.
-                    </p>
-                    
-                    <p>
-                      우리는 단순히 기술을 공유하는 것을 넘어, <strong class="text-navy">협력과 상생의 가치</strong>를 
-                      바탕으로 회원 기업 간의 시너지를 창출하고 있습니다. 
-                      각 기업의 강점을 결합하여 더 큰 경쟁력을 만들어내고, 
-                      함께 성장하는 것이 우리 협동조합의 핵심 철학입니다.
-                    </p>
-                    
-                    <p>
-                      특히, 우리는 다음과 같은 가치를 최우선으로 추구합니다:
-                    </p>
-                    
-                    <ul class="list-none space-y-3 pl-4">
-                      <li class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mt-1 mr-3"></i>
-                        <span><strong>혁신적인 기술 개발</strong>과 적용을 통한 산업 경쟁력 강화</span>
-                      </li>
-                      <li class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mt-1 mr-3"></i>
-                        <span><strong>회원 기업 간 협력</strong>을 통한 공동 성장 실현</span>
-                      </li>
-                      <li class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mt-1 mr-3"></i>
-                        <span><strong>지역 사회 발전</strong>에 기여하는 사회적 책임 이행</span>
-                      </li>
-                      <li class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mt-1 mr-3"></i>
-                        <span><strong>지속 가능한 제조 환경</strong> 조성을 통한 미래 가치 창출</span>
-                      </li>
-                    </ul>
-                    
-                    <p>
-                      우리 협동조합은 앞으로도 회원 기업의 든든한 파트너로서, 
-                      그리고 지역 산업의 혁신을 이끄는 선도자로서 최선을 다하겠습니다. 
-                      여러분의 많은 관심과 참여를 부탁드립니다.
-                    </p>
-                    
-                    <div class="pt-6 border-t border-gray-200 mt-8">
-                      <p class="text-right">
-                        <span class="text-gray-600">감사합니다.</span><br />
-                        <span class="font-bold text-gray-900 text-lg">구미디지털적층산업사업협동조합 조합장</span>
-                        <span class="font-bold text-teal text-2xl ml-3">홍길동</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
       {/* 비전 & 미션 */}
-      <section id="vision" class="py-20 bg-white">
+      <section id="vision" class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
@@ -853,6 +760,147 @@ app.get('/about', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '조합 소개 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 조합장 인사말 페이지
+app.get('/about/greeting', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-navy text-white py-20">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">조합장 인사말</h1>
+            <p class="text-xl opacity-90">Chairman's Greeting</p>
+          </div>
+        </div>
+      </section>
+      
+      {/* 조합장 인사말 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+                {/* 왼쪽: 조합장 사진 */}
+                <div class="lg:col-span-2 bg-gradient-to-br from-navy to-teal p-8 lg:p-12 flex flex-col items-center justify-center text-white">
+                  <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden">
+                    <i class="fas fa-user text-8xl text-white/60"></i>
+                  </div>
+                  <h3 class="text-2xl font-bold mb-2">홍길동</h3>
+                  <p class="text-lg opacity-90 mb-4">조합장</p>
+                  <div class="text-sm opacity-75 text-center">
+                    <p>구미디지털적층산업</p>
+                    <p>사업협동조합</p>
+                  </div>
+                </div>
+                
+                {/* 오른쪽: 인사말 내용 */}
+                <div class="lg:col-span-3 p-8 lg:p-12">
+                  <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p class="text-xl font-medium text-gray-900 mb-8">
+                      안녕하십니까,<br />
+                      구미디지털적층산업사업협동조합 조합장 <span class="text-teal">홍길동</span>입니다.
+                    </p>
+                    
+                    <p>
+                      우리 협동조합 홈페이지를 방문해 주신 여러분께 진심으로 감사의 말씀을 드립니다.
+                    </p>
+                    
+                    <p>
+                      구미디지털적층산업사업협동조합은 <strong class="text-teal">3D 프린팅 및 적층제조 기술</strong>을 
+                      중심으로 회원사의 상생과 지역 산업 혁신을 위해 설립되었습니다. 
+                      급변하는 제조 환경 속에서 디지털 전환은 선택이 아닌 필수가 되었으며, 
+                      우리 협동조합은 이러한 변화의 최전선에서 회원 기업들과 함께 성장하고 있습니다.
+                    </p>
+                    
+                    <p>
+                      우리는 단순히 기술을 공유하는 것을 넘어, <strong class="text-navy">협력과 상생의 가치</strong>를 
+                      바탕으로 회원 기업 간의 시너지를 창출하고 있습니다. 
+                      각 기업의 강점을 결합하여 더 큰 경쟁력을 만들어내고, 
+                      함께 성장하는 것이 우리 협동조합의 핵심 철학입니다.
+                    </p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg my-8">
+                      <p class="font-semibold text-gray-900 mb-4">
+                        특히, 우리는 다음과 같은 가치를 최우선으로 추구합니다:
+                      </p>
+                      
+                      <ul class="list-none space-y-3">
+                        <li class="flex items-start">
+                          <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>혁신적인 기술 개발</strong>과 적용을 통한 산업 경쟁력 강화</span>
+                        </li>
+                        <li class="flex items-start">
+                          <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>회원 기업 간 협력</strong>을 통한 공동 성장 실현</span>
+                        </li>
+                        <li class="flex items-start">
+                          <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>지역 사회 발전</strong>에 기여하는 사회적 책임 이행</span>
+                        </li>
+                        <li class="flex items-start">
+                          <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                          <span><strong>지속 가능한 제조 환경</strong> 조성을 통한 미래 가치 창출</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <p>
+                      우리 협동조합은 앞으로도 회원 기업의 든든한 파트너로서, 
+                      그리고 지역 산업의 혁신을 이끄는 선도자로서 최선을 다하겠습니다. 
+                      여러분의 많은 관심과 참여를 부탁드립니다.
+                    </p>
+                    
+                    <div class="pt-8 border-t border-gray-200 mt-10">
+                      <p class="text-right">
+                        <span class="text-gray-600 text-lg">감사합니다.</span><br />
+                        <span class="font-bold text-gray-900 text-lg mt-2 inline-block">구미디지털적층산업사업협동조합 조합장</span><br />
+                        <span class="font-bold text-teal text-3xl mt-2 inline-block">홍길동</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 조합 소개로 돌아가기 */}
+      <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto text-center">
+            <a 
+              href="/about" 
+              class="inline-flex items-center px-8 py-4 bg-teal text-white rounded-md hover:bg-opacity-90 transition font-medium text-lg"
+            >
+              <i class="fas fa-arrow-left mr-3"></i>
+              조합 소개로 돌아가기
+            </a>
+          </div>
+        </div>
+      </section>
+      
+      <Footer />
+      
+      {/* Scroll to Top 버튼 */}
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      {/* JavaScript */}
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '조합장 인사말 - 구미디지털적층산업사업협동조합' }
   )
 })
 
