@@ -172,9 +172,13 @@ app.get('/', async (c) => {
       
       {/* 히어로 섹션 - 이미지 배경 스타일 */}
       <section class="relative bg-navy text-white py-32 overflow-hidden">
-        {/* 배경 패턴 */}
-        <div class="absolute inset-0 bg-gradient-to-r from-navy via-purple to-teal opacity-90"></div>
-        <div class="absolute inset-0 opacity-10 bg-pattern"></div>
+        {/* 배경 이미지 */}
+        <div 
+          class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9');"
+        ></div>
+        {/* 어두운 오버레이 */}
+        <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-purple/70 to-teal/70"></div>
         
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-3xl">
