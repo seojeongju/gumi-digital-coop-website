@@ -1170,6 +1170,267 @@ app.get('/news', async (c) => {
   )
 })
 
+// 공지사항 상세 페이지
+app.get('/news/:id', async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    // 공지사항 조회
+    const noticeResult = await DB.prepare(`
+      SELECT id, category, title, content, author, created_at, updated_at, views, is_pinned
+      FROM notices
+      WHERE id = ?
+    `).bind(id).first()
+    
+    if (!noticeResult) {
+      return c.render(
+        <div>
+          <Header />
+          <section class="py-20 bg-white">
+            <div class="container mx-auto px-4 text-center">
+              <i class="fas fa-exclamation-triangle text-6xl text-gray-300 mb-4"></i>
+              <h2 class="text-2xl font-bold text-gray-900 mb-4">공지사항을 찾을 수 없습니다</h2>
+              <p class="text-gray-600 mb-8">요청하신 공지사항이 존재하지 않거나 삭제되었습니다.</p>
+              <a href="/news" class="inline-block px-8 py-3 bg-teal text-white rounded-md hover:bg-opacity-90 transition">
+                목록으로 돌아가기
+              </a>
+            </div>
+          </section>
+          <Footer />
+          <script src="/static/js/app.js"></script>
+        </div>,
+        { title: '공지사항을 찾을 수 없습니다' }
+      )
+    }
+    
+    // 조회수 증가
+    await DB.prepare(`
+      UPDATE notices
+      SET views = views + 1
+      WHERE id = ?
+    `).bind(id).run()
+    
+    // 이전 공지사항 가져오기 (더 오래된 글)
+    const prevResult = await DB.prepare(`
+      SELECT id, title
+      FROM notices
+      WHERE created_at < (SELECT created_at FROM notices WHERE id = ?)
+      ORDER BY created_at DESC
+      LIMIT 1
+    `).bind(id).first()
+    
+    // 다음 공지사항 가져오기 (더 최근 글)
+    const nextResult = await DB.prepare(`
+      SELECT id, title
+      FROM notices
+      WHERE created_at > (SELECT created_at FROM notices WHERE id = ?)
+      ORDER BY created_at ASC
+      LIMIT 1
+    `).bind(id).first()
+    
+    return c.render(
+      <div>
+        <Header />
+        
+        {/* Hero Section */}
+        <section class="relative bg-navy text-white py-16">
+          <div class="absolute inset-0 bg-gradient-to-r from-navy to-teal opacity-90"></div>
+          <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+              <div class="flex items-center gap-3 mb-4">
+                {noticeResult.is_pinned && (
+                  <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-coral text-white">
+                    <i class="fas fa-thumbtack mr-1"></i>
+                    공지
+                  </span>
+                )}
+                <span class={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                  noticeResult.category === '공지사항' ? 'bg-blue-500 text-white' :
+                  noticeResult.category === '보도자료' ? 'bg-green-500 text-white' :
+                  noticeResult.category === '행사' ? 'bg-purple-500 text-white' :
+                  'bg-orange-500 text-white'
+                }`}>
+                  {noticeResult.category}
+                </span>
+              </div>
+              <h1 class="text-3xl md:text-4xl font-bold mb-4">{noticeResult.title}</h1>
+              <div class="flex flex-wrap items-center gap-4 text-sm opacity-90">
+                <span>
+                  <i class="far fa-calendar mr-2"></i>
+                  {new Date(noticeResult.created_at).toLocaleDateString('ko-KR', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </span>
+                {noticeResult.author && (
+                  <span>
+                    <i class="far fa-user mr-2"></i>
+                    {noticeResult.author}
+                  </span>
+                )}
+                <span>
+                  <i class="far fa-eye mr-2"></i>
+                  {noticeResult.views + 1}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* 본문 내용 */}
+        <section class="py-16 bg-white">
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+              <div class="prose prose-lg max-w-none">
+                <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+                  <div class="text-gray-700 leading-relaxed whitespace-pre-wrap">
+                    {noticeResult.content}
+                  </div>
+                  
+                  {noticeResult.updated_at && noticeResult.updated_at !== noticeResult.created_at && (
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-500">
+                      <i class="fas fa-pencil-alt mr-2"></i>
+                      최종 수정일: {new Date(noticeResult.updated_at).toLocaleDateString('ko-KR', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* 이전/다음 글 네비게이션 */}
+        <section class="py-8 bg-gray-50 border-t border-b">
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* 이전 글 */}
+                {prevResult ? (
+                  <a 
+                    href={`/news/${prevResult.id}`}
+                    class="group bg-white p-4 rounded-lg border border-gray-200 hover:border-teal hover:shadow-md transition"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-teal group-hover:text-white transition">
+                        <i class="fas fa-chevron-left"></i>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="text-xs text-gray-500 mb-1">이전 글</div>
+                        <div class="text-sm font-medium text-gray-900 truncate group-hover:text-teal transition">
+                          {prevResult.title}
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                        <i class="fas fa-chevron-left"></i>
+                      </div>
+                      <div class="flex-1">
+                        <div class="text-xs text-gray-400 mb-1">이전 글</div>
+                        <div class="text-sm text-gray-400">이전 글이 없습니다</div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* 다음 글 */}
+                {nextResult ? (
+                  <a 
+                    href={`/news/${nextResult.id}`}
+                    class="group bg-white p-4 rounded-lg border border-gray-200 hover:border-teal hover:shadow-md transition"
+                  >
+                    <div class="flex items-center gap-3">
+                      <div class="flex-1 min-w-0 text-right">
+                        <div class="text-xs text-gray-500 mb-1">다음 글</div>
+                        <div class="text-sm font-medium text-gray-900 truncate group-hover:text-teal transition">
+                          {nextResult.title}
+                        </div>
+                      </div>
+                      <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center group-hover:bg-teal group-hover:text-white transition">
+                        <i class="fas fa-chevron-right"></i>
+                      </div>
+                    </div>
+                  </a>
+                ) : (
+                  <div class="bg-gray-100 p-4 rounded-lg border border-gray-200">
+                    <div class="flex items-center gap-3">
+                      <div class="flex-1 text-right">
+                        <div class="text-xs text-gray-400 mb-1">다음 글</div>
+                        <div class="text-sm text-gray-400">다음 글이 없습니다</div>
+                      </div>
+                      <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-400">
+                        <i class="fas fa-chevron-right"></i>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* 목록으로 돌아가기 */}
+        <section class="py-12 bg-white">
+          <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+              <a 
+                href="/news" 
+                class="inline-flex items-center px-8 py-4 bg-teal text-white rounded-md hover:bg-opacity-90 transition font-medium text-lg"
+              >
+                <i class="fas fa-list mr-3"></i>
+                목록으로 돌아가기
+              </a>
+            </div>
+          </div>
+        </section>
+        
+        <Footer />
+        
+        {/* Scroll to Top 버튼 */}
+        <button 
+          id="scroll-to-top" 
+          onclick="scrollToTop()" 
+          class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+        >
+          <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <script src="/static/js/app.js"></script>
+      </div>,
+      { title: `${noticeResult.title} - 구미디지털적층산업사업협동조합` }
+    )
+  } catch (e) {
+    console.error('Database error:', e)
+    return c.render(
+      <div>
+        <Header />
+        <section class="py-20 bg-white">
+          <div class="container mx-auto px-4 text-center">
+            <i class="fas fa-exclamation-circle text-6xl text-red-300 mb-4"></i>
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">오류가 발생했습니다</h2>
+            <p class="text-gray-600 mb-8">공지사항을 불러오는 중 문제가 발생했습니다.</p>
+            <a href="/news" class="inline-block px-8 py-3 bg-teal text-white rounded-md hover:bg-opacity-90 transition">
+              목록으로 돌아가기
+            </a>
+          </div>
+        </section>
+        <Footer />
+        <script src="/static/js/app.js"></script>
+      </div>,
+      { title: '오류 발생' }
+    )
+  }
+})
+
 // API Routes
 app.get('/api/notices', async (c) => {
   const { DB } = c.env
