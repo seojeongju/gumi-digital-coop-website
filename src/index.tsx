@@ -2047,7 +2047,7 @@ app.get('/members', (c) => {
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_03b71d81-9f86-4fd7-bbfc-498062edb881" 
+                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_4deadb6b-a7fc-4e59-bd5d-d4cd9c240e59" 
                           alt="와우쓰리디 로고" 
                           class="w-40 object-contain"
                         />
