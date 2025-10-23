@@ -652,7 +652,7 @@ app.get('/', async (c) => {
               <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
                 <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
                   <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-handshake text-3xl text-white"></i>
+                    <i class="fas fa-users text-3xl text-white"></i>
                   </div>
                 </div>
                 <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소기업협동조합</h4>
