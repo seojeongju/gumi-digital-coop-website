@@ -1804,6 +1804,372 @@ app.get('/news/:id', async (c) => {
 })
 
 // API Routes
+// 조합원 가입 안내 페이지
+app.get('/members/join', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-teal to-purple text-white py-24">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Membership</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">조합원 자격 및 가입안내</h1>
+            <p class="text-xl opacity-90 mb-8">구미디지털적층산업사업협동조합과 함께 성장하세요</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#qualification" class="px-8 py-4 bg-white text-navy rounded-lg hover:bg-opacity-90 transition font-bold shadow-lg">
+                가입자격 확인
+              </a>
+              <a href="#benefits" class="px-8 py-4 bg-teal/20 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold">
+                가입혜택 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 가입자격 섹션 */}
+      <section id="qualification" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Qualification</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">가입자격</h2>
+              <p class="text-gray-600 text-lg">다음 조건 중 하나 이상을 충족하시는 분은 조합원 가입이 가능합니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* 자격 1 */}
+              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-2 border-blue-200 hover:shadow-xl transition group">
+                <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-industry text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">적층제조(3D 프린팅) 관련 기업</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  3D 프린팅 및 적층제조 기술을 활용하는 제조 기업
+                </p>
+              </div>
+
+              {/* 자격 2 */}
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-2 border-purple-200 hover:shadow-xl transition group">
+                <div class="w-16 h-16 bg-purple-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-desktop text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">디지털 제조 기술 보유 기업</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  디지털 제조 기술 및 솔루션을 보유한 기업
+                </p>
+              </div>
+
+              {/* 자격 3 */}
+              <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border-2 border-green-200 hover:shadow-xl transition group">
+                <div class="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-cubes text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">첨단 소재 및 부품 제조 기업</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  적층제조에 사용되는 첨단 소재 및 부품을 제조하는 기업
+                </p>
+              </div>
+
+              {/* 자격 4 */}
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border-2 border-orange-200 hover:shadow-xl transition group">
+                <div class="w-16 h-16 bg-orange-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-tools text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">제조 솔루션 서비스 제공 기관</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  제조 관련 솔루션 및 서비스를 제공하는 기관
+                </p>
+              </div>
+
+              {/* 자격 5 */}
+              <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 border-2 border-indigo-200 hover:shadow-xl transition group">
+                <div class="w-16 h-16 bg-indigo-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-flask text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">관련 연구기관 및 대학교</h3>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  적층제조 및 디지털 제조 관련 연구를 수행하는 기관
+                </p>
+              </div>
+
+              {/* 자격 6 - 강조 */}
+              <div class="bg-gradient-to-br from-teal to-navy text-white rounded-2xl p-8 border-2 border-teal hover:shadow-2xl transition group">
+                <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                  <i class="fas fa-handshake text-2xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">사업 참여 및 이익 분배</h3>
+                <p class="text-sm leading-relaxed opacity-90">
+                  조합 사업에 참여하고 이익을 분배받을 의향이 있는 모든 기업 및 기관
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 가입절차 섹션 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-navy/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-navy font-bold">Process</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">가입절차</h2>
+              <p class="text-gray-600 text-lg">간편한 4단계 절차로 조합원이 되실 수 있습니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {/* Step 1 */}
+              <div class="relative">
+                <div class="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition h-full border-t-4 border-teal">
+                  <div class="w-16 h-16 bg-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                    1
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">신청서 제출</h3>
+                  <p class="text-gray-600 text-sm">
+                    가입신청서 및 관련서류 제출
+                  </p>
+                </div>
+                <div class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <i class="fas fa-arrow-right text-3xl text-teal"></i>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div class="relative">
+                <div class="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition h-full border-t-4 border-navy">
+                  <div class="w-16 h-16 bg-navy text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                    2
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">산학연 협력 강화</h3>
+                  <p class="text-gray-600 text-sm">
+                    기술 개발 및 인재 양성
+                  </p>
+                </div>
+                <div class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <i class="fas fa-arrow-right text-3xl text-navy"></i>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div class="relative">
+                <div class="bg-white rounded-2xl p-8 text-center hover:shadow-xl transition h-full border-t-4 border-purple">
+                  <div class="w-16 h-16 bg-purple text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
+                    3
+                  </div>
+                  <h3 class="text-xl font-bold text-gray-900 mb-3">글로벌 시장 진출</h3>
+                  <p class="text-gray-600 text-sm">
+                    국제 경쟁력 확보 및 시장 확대
+                  </p>
+                </div>
+                <div class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 z-10">
+                  <i class="fas fa-arrow-right text-3xl text-purple"></i>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div>
+                <div class="bg-gradient-to-br from-teal to-navy text-white rounded-2xl p-8 text-center hover:shadow-2xl transition h-full">
+                  <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                    <i class="fas fa-check"></i>
+                  </div>
+                  <h3 class="text-xl font-bold mb-3">가입 완료</h3>
+                  <p class="text-sm opacity-90">
+                    조합원 혜택 이용 시작
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 조합원 권리와 의무 섹션 */}
+      <section id="benefits" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-purple/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-purple font-bold">Rights & Duties</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">조합원 권리와 의무</h2>
+              <p class="text-gray-600 text-lg">조합원으로서 누리는 권리와 지켜야 할 의무를 안내합니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* 권리 */}
+              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-3xl p-10 border-2 border-blue-200 hover:shadow-2xl transition">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mr-4">
+                    <i class="fas fa-crown text-3xl text-white"></i>
+                  </div>
+                  <h3 class="text-3xl font-bold text-gray-900">권리</h3>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">조합 총회 참석 및 의결권 행사</h4>
+                      <p class="text-gray-600 text-sm">조합의 주요 의사결정에 직접 참여</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">조합의 공동시설 및 장비 이용</h4>
+                      <p class="text-gray-600 text-sm">첨단 장비 및 시설 우선 사용</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">교육 및 기술 지원 서비스 이용</h4>
+                      <p class="text-gray-600 text-sm">전문 교육 프로그램 무료 참여</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">사업 참여 및 이익 분배</h4>
+                      <p class="text-gray-600 text-sm">조합 사업 성과에 따른 수익 배분</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 의무 */}
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-3xl p-10 border-2 border-orange-200 hover:shadow-2xl transition">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center mr-4">
+                    <i class="fas fa-balance-scale text-3xl text-white"></i>
+                  </div>
+                  <h3 class="text-3xl font-bold text-gray-900">의무</h3>
+                </div>
+                
+                <div class="space-y-4">
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">조합 총회 참석 및 의결권 행사</h4>
+                      <p class="text-gray-600 text-sm">조합 운영에 적극 참여</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">출자금 및 회비 납부</h4>
+                      <p class="text-gray-600 text-sm">조합 운영을 위한 재정 지원</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">총회 및 주요 활동 참여</h4>
+                      <p class="text-gray-600 text-sm">조합 행사 및 프로그램 참석</p>
+                    </div>
+                  </div>
+
+                  <div class="flex items-start">
+                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center mr-3 flex-shrink-0 mt-1">
+                      <i class="fas fa-exclamation text-white"></i>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-gray-900 mb-1">조합 발전을 위한 협력</h4>
+                      <p class="text-gray-600 text-sm">상호 협력 및 정보 공유</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-20 bg-gradient-to-br from-navy via-teal to-purple text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">지금 바로 조합원으로 가입하세요</h2>
+            <p class="text-xl mb-8 opacity-90">
+              구미디지털적층산업사업협동조합과 함께 미래를 열어가세요
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/support/contact" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
+                <i class="fas fa-envelope mr-2"></i>
+                가입 문의하기
+              </a>
+              <a href="tel:054-123-4567" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+                <i class="fas fa-phone mr-2"></i>
+                전화 상담
+              </a>
+            </div>
+            <div class="mt-12 p-6 bg-white/10 backdrop-blur-sm rounded-2xl">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div class="text-3xl font-bold mb-2">054-123-4567</div>
+                  <div class="text-sm opacity-80">대표 전화</div>
+                </div>
+                <div>
+                  <div class="text-3xl font-bold mb-2">09:00 - 18:00</div>
+                  <div class="text-sm opacity-80">평일 운영시간</div>
+                </div>
+                <div>
+                  <div class="text-3xl font-bold mb-2">info@gumidigital.co.kr</div>
+                  <div class="text-sm opacity-80">이메일 문의</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      {/* Scroll to Top Button */}
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      {/* JavaScript */}
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '조합원 가입안내 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
 app.get('/api/notices', async (c) => {
   const { DB } = c.env
   const category = c.req.query('category')
