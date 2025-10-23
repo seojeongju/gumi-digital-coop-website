@@ -2045,9 +2045,9 @@ app.get('/members', (c) => {
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   <div class="lg:col-span-2 bg-gradient-to-br from-purple-50 to-pink-50 p-8 flex items-start justify-start order-2 lg:order-1">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/a8c88f87e237ea3c72ca9d11a1111859" 
+                      src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_03b71d81-9f86-4fd7-bbfc-498062edb881" 
                       alt="와우쓰리디 로고" 
-                      class="w-64 object-contain"
+                      class="w-52 object-contain"
                     />
                   </div>
                   <div class="lg:col-span-3 p-8 lg:p-12 order-1 lg:order-2">
