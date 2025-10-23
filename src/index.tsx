@@ -656,7 +656,7 @@ app.get('/', async (c) => {
                   </div>
                 </div>
                 <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소기업협동조합</h4>
-                <p class="text-xs text-gray-500 text-center">SME Cooperative</p>
+                <p class="text-xs text-gray-500 text-center">KBIZ</p>
               </div>
 
               {/* 4. 과학기술정보통신부 */}
