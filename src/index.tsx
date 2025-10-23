@@ -3124,6 +3124,285 @@ app.get('/members/join', (c) => {
   )
 })
 
+// 문의 페이지
+app.get('/support', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-teal to-purple text-white py-24">
+        <div class="absolute inset-0 bg-black opacity-10"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold">Contact</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">문의하기</h1>
+            <p class="text-xl opacity-90 mb-8">궁금하신 사항이 있으시면 언제든지 문의해 주세요</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 연락처 정보 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Contact Information</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">연락처 정보</h2>
+              <p class="text-gray-600 text-lg">다양한 방법으로 문의하실 수 있습니다</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {/* 전화 */}
+              <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition text-center">
+                <div class="w-16 h-16 bg-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-phone text-2xl text-teal"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">전화</h3>
+                <p class="text-gray-600 mb-4">평일 09:00 - 18:00</p>
+                <a href="tel:054-478-8011" class="text-teal font-bold text-lg hover:underline">054-478-8011</a>
+              </div>
+
+              {/* 이메일 */}
+              <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition text-center">
+                <div class="w-16 h-16 bg-navy/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-envelope text-2xl text-navy"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">이메일</h3>
+                <p class="text-gray-600 mb-4">언제든지 문의하세요</p>
+                <a href="mailto:info@gumidigital.or.kr" class="text-navy font-bold text-lg hover:underline break-all">info@gumidigital.or.kr</a>
+              </div>
+
+              {/* 주소 */}
+              <div class="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition text-center">
+                <div class="w-16 h-16 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <i class="fas fa-map-marker-alt text-2xl text-purple"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">주소</h3>
+                <p class="text-gray-600 mb-4">방문 전 사전 예약 필수</p>
+                <p class="text-gray-700 font-medium">경북 구미시 3공단3로 302</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 문의 폼 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Send Message</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">메시지 보내기</h2>
+              <p class="text-gray-600 text-lg">아래 양식을 작성하시면 빠르게 답변 드리겠습니다</p>
+            </div>
+
+            <form class="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-xl">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-gray-700 font-bold mb-2">이름 *</label>
+                  <input 
+                    type="text" 
+                    required 
+                    class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
+                    placeholder="홍길동"
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-700 font-bold mb-2">회사명</label>
+                  <input 
+                    type="text" 
+                    class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
+                    placeholder="(주)회사명"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="block text-gray-700 font-bold mb-2">이메일 *</label>
+                  <input 
+                    type="email" 
+                    required 
+                    class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
+                    placeholder="email@example.com"
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-700 font-bold mb-2">연락처 *</label>
+                  <input 
+                    type="tel" 
+                    required 
+                    class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
+                    placeholder="010-0000-0000"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <label class="block text-gray-700 font-bold mb-2">문의 유형 *</label>
+                <select 
+                  required 
+                  class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
+                >
+                  <option value="">선택해주세요</option>
+                  <option value="membership">조합원 가입 문의</option>
+                  <option value="service">서비스 이용 문의</option>
+                  <option value="partnership">협력 제안</option>
+                  <option value="general">일반 문의</option>
+                  <option value="other">기타</option>
+                </select>
+              </div>
+
+              <div class="mb-8">
+                <label class="block text-gray-700 font-bold mb-2">문의 내용 *</label>
+                <textarea 
+                  required 
+                  rows="6" 
+                  class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition resize-none"
+                  placeholder="문의하실 내용을 자세히 작성해주세요"
+                ></textarea>
+              </div>
+
+              <div class="mb-8">
+                <label class="flex items-start">
+                  <input type="checkbox" required class="mt-1 mr-3 w-5 h-5 text-teal rounded focus:ring-teal" />
+                  <span class="text-sm text-gray-600">
+                    개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며, 답변 완료 후 파기됩니다.
+                  </span>
+                </label>
+              </div>
+
+              <button 
+                type="submit" 
+                class="w-full bg-gradient-to-r from-teal to-navy text-white py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition transform hover:scale-105"
+              >
+                <i class="fas fa-paper-plane mr-2"></i>
+                문의 보내기
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* 오시는 길 */}
+      <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+              <div class="inline-block bg-teal/10 rounded-full px-6 py-2 mb-4">
+                <span class="text-teal font-bold">Location</span>
+              </div>
+              <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4">오시는 길</h2>
+              <p class="text-gray-600 text-lg">구미디지털적층산업사업협동조합을 찾아오시는 방법입니다</p>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+              <div class="h-96 bg-gray-200 flex items-center justify-center">
+                <div class="text-center">
+                  <i class="fas fa-map-marked-alt text-6xl text-gray-400 mb-4"></i>
+                  <p class="text-gray-600 font-medium">지도 영역</p>
+                  <p class="text-sm text-gray-500 mt-2">경북 구미시 3공단3로 302</p>
+                </div>
+              </div>
+              
+              <div class="p-8 md:p-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                      <i class="fas fa-car text-teal mr-3"></i>
+                      자가용 이용 시
+                    </h3>
+                    <ul class="space-y-2 text-gray-600">
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-teal mr-2 mt-1"></i>
+                        <span>경부고속도로 구미IC에서 약 15분</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-teal mr-2 mt-1"></i>
+                        <span>구미역에서 약 20분</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-teal mr-2 mt-1"></i>
+                        <span>주차: 건물 내 주차 가능</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4 flex items-center">
+                      <i class="fas fa-bus text-navy mr-3"></i>
+                      대중교통 이용 시
+                    </h3>
+                    <ul class="space-y-2 text-gray-600">
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-navy mr-2 mt-1"></i>
+                        <span>구미역에서 버스 이용</span>
+                      </li>
+                      <li class="flex items-start">
+                        <i class="fas fa-check text-navy mr-2 mt-1"></i>
+                        <span>3공단 정류장 하차 후 도보 5분</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="mt-8 p-6 bg-teal/5 rounded-xl border-2 border-teal/20">
+                  <p class="text-gray-700 flex items-start">
+                    <i class="fas fa-info-circle text-teal mr-3 mt-1"></i>
+                    <span><strong>방문 시 유의사항:</strong> 원활한 상담을 위해 방문 전 사전 예약을 부탁드립니다. (전화: 054-478-8011)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA 섹션 */}
+      <section class="py-20 bg-gradient-to-br from-navy via-teal to-purple text-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">함께 성장하는 디지털 제조 생태계</h2>
+            <p class="text-xl mb-8 opacity-90">
+              구미디지털적층산업사업협동조합과 함께 미래를 만들어가세요
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="/members/join" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
+                <i class="fas fa-user-plus mr-2"></i>
+                조합원 가입하기
+              </a>
+              <a href="/about" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+                <i class="fas fa-info-circle mr-2"></i>
+                조합 소개 보기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '문의하기 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
 app.get('/api/notices', async (c) => {
   const { DB } = c.env
   const category = c.req.query('category')
