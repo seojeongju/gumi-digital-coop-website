@@ -1137,13 +1137,113 @@ app.get('/about/organization', (c) => {
               <p class="text-gray-600 text-lg">협동조합의 체계적인 운영 구조를 소개합니다</p>
             </div>
             
-            {/* 조직도 이미지 */}
-            <div class="mb-16 bg-gray-50 rounded-2xl p-8 border border-gray-200">
-              <img 
-                src="https://page.gensparksite.com/v1/base64_upload/bb2d8fcd9dc3538cbd5afced361c8047" 
-                alt="조직 및 운영구조" 
-                class="w-full max-w-4xl mx-auto"
-              />
+            {/* 조직도 다이어그램 */}
+            <div class="mb-16 bg-white rounded-2xl p-8 border-2 border-gray-200">
+              {/* 로고 및 타이틀 */}
+              <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-24 h-24 bg-navy rounded-full mb-4">
+                  <div class="text-white">
+                    <div class="text-sm font-bold">조직 및 운영 구조</div>
+                    <div class="text-xs">Organization</div>
+                  </div>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mt-4">주요조직 구성 및 역할</h3>
+              </div>
+              
+              {/* 주요 조직 (상단 3개) */}
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                {/* 이사회 */}
+                <div class="bg-blue-50 rounded-xl p-6 border-2 border-blue-200 text-center">
+                  <div class="w-16 h-16 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-users text-2xl text-white"></i>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">이사회</h4>
+                  <p class="text-sm text-gray-600">조합의 주요 정책심의 결정,<br/>사업 계획 수립</p>
+                </div>
+                
+                {/* 총회 */}
+                <div class="bg-purple-50 rounded-xl p-6 border-2 border-purple-200 text-center">
+                  <div class="w-16 h-16 bg-purple-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-user-friends text-2xl text-white"></i>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">총회</h4>
+                  <p class="text-sm text-gray-600">조합의 최고 의사결정기구로<br/>조합원 전체로 구성</p>
+                </div>
+                
+                {/* 감사 */}
+                <div class="bg-green-50 rounded-xl p-6 border-2 border-green-200 text-center">
+                  <div class="w-16 h-16 bg-green-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-search text-2xl text-white"></i>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">감사</h4>
+                  <p class="text-sm text-gray-600">조합의 업무 집행상황,<br/>재산상태, 장부 등 검사</p>
+                </div>
+              </div>
+              
+              {/* 연결선 */}
+              <div class="flex justify-center mb-8">
+                <div class="w-px h-12 bg-gray-300"></div>
+              </div>
+              
+              {/* 이사장 (중앙) */}
+              <div class="max-w-md mx-auto mb-8">
+                <div class="bg-orange-50 rounded-xl p-6 border-2 border-orange-200 text-center">
+                  <div class="w-16 h-16 bg-orange-500 rounded-lg flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-user-tie text-2xl text-white"></i>
+                  </div>
+                  <h4 class="text-lg font-bold text-gray-900 mb-2">이사장</h4>
+                  <p class="text-sm text-gray-600">조합을 대표하고 업무를 총괄,<br/>이사의 의장</p>
+                </div>
+              </div>
+              
+              {/* 연결선 */}
+              <div class="flex justify-center mb-8">
+                <div class="w-px h-12 bg-gray-300"></div>
+              </div>
+              
+              {/* 실행조직 및 기능 타이틀 */}
+              <div class="text-center mb-6">
+                <h3 class="text-xl font-bold text-teal">실행조직 및 기능</h3>
+              </div>
+              
+              {/* 실행조직 (하단 4개) */}
+              <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                {/* 운영위원회 */}
+                <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-navy text-center">
+                  <div class="w-12 h-12 bg-navy/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-cog text-xl text-navy"></i>
+                  </div>
+                  <h5 class="text-sm font-bold text-gray-900 mb-2">운영위원회</h5>
+                  <p class="text-xs text-gray-600">사업 운영 및 실무 전반을 위한 의사결정기구</p>
+                </div>
+                
+                {/* 기술전문분과 */}
+                <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-teal text-center">
+                  <div class="w-12 h-12 bg-teal/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-laptop-code text-xl text-teal"></i>
+                  </div>
+                  <h5 class="text-sm font-bold text-gray-900 mb-2">기술전문분과</h5>
+                  <p class="text-xs text-gray-600">3D프린팅 및 적층제조 관련 기술개발 및 자문</p>
+                </div>
+                
+                {/* 교육연구분과 */}
+                <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-purple text-center">
+                  <div class="w-12 h-12 bg-purple/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-graduation-cap text-xl text-purple"></i>
+                  </div>
+                  <h5 class="text-sm font-bold text-gray-900 mb-2">교육연구분과</h5>
+                  <p class="text-xs text-gray-600">교육 프로그램 개발 및 인력양성 업무</p>
+                </div>
+                
+                {/* 사무국 */}
+                <div class="bg-gray-50 rounded-lg p-4 border-l-4 border-coral text-center">
+                  <div class="w-12 h-12 bg-coral/10 rounded-lg flex items-center justify-center mx-auto mb-2">
+                    <i class="fas fa-building text-xl text-coral"></i>
+                  </div>
+                  <h5 class="text-sm font-bold text-gray-900 mb-2">사무국</h5>
+                  <p class="text-xs text-gray-600">행정, 회계, 대외협력, 회원관리 등 실무 지원</p>
+                </div>
+              </div>
             </div>
             
             {/* 주요 조직 상세 설명 */}
