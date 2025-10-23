@@ -1951,9 +1951,15 @@ app.get('/members', (c) => {
                         </div>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
-                      <i class="fas fa-map-marker-alt text-teal mr-2"></i>
-                      경북 구미시 고아읍 들성로7길 5-36
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-teal mr-2"></i>
+                        경북 구미시 고아읍 들성로7길 5-36
+                      </div>
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-phone text-teal mr-2"></i>
+                        054-451-7186
+                      </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">보조공학기기</span>
@@ -2001,7 +2007,7 @@ app.get('/members', (c) => {
                     </div>
                     <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
                       <i class="fas fa-phone text-navy mr-2"></i>
-                      054-1234-5678
+                      010-3531-5727
                     </div>
                     <div class="flex flex-wrap gap-2">
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
@@ -2057,9 +2063,15 @@ app.get('/members', (c) => {
                         <span class="text-gray-700">전기기기 제품 및 전자부품 제조</span>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
-                      <i class="fas fa-map-marker-alt text-cyan-600 mr-2"></i>
-                      경상북도 구미시 산호대로 253번지 구미첨단의료기술타워 607-1호
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-cyan-600 mr-2"></i>
+                        구미시 산호대로 253 의료기술타워 607-1호
+                      </div>
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-phone text-cyan-600 mr-2"></i>
+                        010-9359-1420
+                      </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">의료기기</span>
@@ -2124,9 +2136,15 @@ app.get('/members', (c) => {
                         <p>• 기업 사례품(PR/Mock-Up) 제작지원</p>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
-                      <i class="fas fa-map-marker-alt text-purple-600 mr-2"></i>
-                      경북 구미시 산호대로 253 구미첨단의료기기타워 606호
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-purple-600 mr-2"></i>
+                        구미시 산호대로 253 의료기기타워 606호
+                      </div>
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-phone text-purple-600 mr-2"></i>
+                        054-464-3137
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -2167,9 +2185,15 @@ app.get('/members', (c) => {
                         <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
-                      <i class="fas fa-map-marker-alt text-orange-600 mr-2"></i>
-                      경상북도 구미시 산호대로 253번지 구미첨단의료기술타워 608-1호
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-orange-600 mr-2"></i>
+                        구미시 산호대로 253 의료기술타워 608-1호
+                      </div>
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-phone text-orange-600 mr-2"></i>
+                        054-620-2786
+                      </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
