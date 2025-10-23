@@ -66,7 +66,19 @@ const Header = () => (
           </div>
           
           <a href="/services" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">서비스</a>
-          <a href="/members" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">조합원</a>
+          
+          {/* 조합원 드롭다운 */}
+          <div class="relative group">
+            <a href="/members" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm flex items-center">
+              조합원
+              <i class="fas fa-chevron-down ml-1 text-xs"></i>
+            </a>
+            <div class="absolute left-0 mt-2 w-52 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+              <a href="/members" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합원 소개</a>
+              <a href="/members/join" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합원 가입</a>
+            </div>
+          </div>
+          
           <a href="/news" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">소식</a>
           <a href="/support" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">문의</a>
         </nav>
@@ -104,10 +116,18 @@ const Header = () => (
         </div>
         
         <a href="/services" class="block py-2 text-gray-700 hover:text-teal">서비스</a>
-        <a href="/members" class="block py-2 text-gray-700 hover:text-teal">조합원</a>
+        
+        {/* 조합원 */}
+        <div>
+          <a href="/members" class="block py-2 text-gray-700 hover:text-teal font-medium">조합원</a>
+          <div class="pl-4 space-y-1">
+            <a href="/members" class="block py-1 text-sm text-gray-600 hover:text-teal">조합원 소개</a>
+            <a href="/members/join" class="block py-1 text-sm text-gray-600 hover:text-teal">조합원 가입</a>
+          </div>
+        </div>
+        
         <a href="/news" class="block py-2 text-gray-700 hover:text-teal">소식</a>
         <a href="/support" class="block py-2 text-gray-700 hover:text-teal">문의</a>
-        <a href="/members/join" class="block py-2 text-teal font-medium">조합원 가입</a>
       </nav>
     </div>
   </header>
