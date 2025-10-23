@@ -167,10 +167,10 @@ const Footer = () => (
         <div>
           <h3 class="text-white font-bold mb-4">고객지원</h3>
           <ul class="space-y-2 text-sm">
-            <li><a href="/support/faq" class="hover:text-white transition">자주 묻는 질문</a></li>
-            <li><a href="/support/contact" class="hover:text-white transition">문의하기</a></li>
-            <li><a href="/support/quote" class="hover:text-white transition">견적 요청</a></li>
-            <li><a href="/resources" class="hover:text-white transition">자료실</a></li>
+            <li><a href="/support" class="hover:text-white transition">자주 묻는 질문</a></li>
+            <li><a href="/support" class="hover:text-white transition">문의하기</a></li>
+            <li><a href="/support" class="hover:text-white transition">견적 요청</a></li>
+            <li><a href="/support" class="hover:text-white transition">자료실</a></li>
           </ul>
         </div>
       </div>
@@ -2204,7 +2204,7 @@ app.get('/members', (c) => {
                 <i class="fas fa-user-plus mr-2"></i>
                 조합원 가입하기
               </a>
-              <a href="/support/contact" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+              <a href="/support" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
                 <i class="fas fa-phone mr-2"></i>
                 문의하기
               </a>
@@ -2707,11 +2707,11 @@ app.get('/services', (c) => {
               전문가와 상담하고 귀사에 최적화된 솔루션을 받아보세요
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-              <a href="/support/contact" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
+              <a href="/support" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
                 <i class="fas fa-comments mr-2"></i>
                 상담 신청하기
               </a>
-              <a href="/support/quote" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+              <a href="/support" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
