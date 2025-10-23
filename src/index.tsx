@@ -322,8 +322,8 @@ app.get('/', async (c) => {
             <div class="relative rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
               {/* 배경 이미지 (흐림 효과) */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d'); filter: blur(3px) brightness(0.4);"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d');"
               ></div>
               {/* 그라데이션 오버레이 */}
               <div class="absolute inset-0 bg-gradient-to-br from-teal/70 to-navy/70"></div>
@@ -359,8 +359,8 @@ app.get('/', async (c) => {
             <div class="relative rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
               {/* 배경 이미지 (흐림 효과) */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba'); filter: blur(3px) brightness(0.4);"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba');"
               ></div>
               {/* 그라데이션 오버레이 */}
               <div class="absolute inset-0 bg-gradient-to-br from-purple/70 to-pink-600/70"></div>
@@ -396,8 +396,8 @@ app.get('/', async (c) => {
             <div class="relative rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
               {/* 배경 이미지 (흐림 효과) */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731'); filter: blur(3px) brightness(0.4);"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731');"
               ></div>
               {/* 그라데이션 오버레이 */}
               <div class="absolute inset-0 bg-gradient-to-br from-green-600/70 to-teal-700/70"></div>
@@ -433,8 +433,8 @@ app.get('/', async (c) => {
             <div class="relative rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
               {/* 배경 이미지 (흐림 효과) */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362'); filter: blur(3px) brightness(0.4);"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362');"
               ></div>
               {/* 그라데이션 오버레이 */}
               <div class="absolute inset-0 bg-gradient-to-br from-coral/70 to-red-600/70"></div>
@@ -733,8 +733,8 @@ app.get('/about', (c) => {
               <div class="relative rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
                 {/* 배경 이미지 (흐림 효과) */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d'); filter: blur(3px) brightness(0.4);"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
                 <div class="absolute inset-0 bg-gradient-to-br from-teal/70 to-navy/70"></div>
@@ -770,8 +770,8 @@ app.get('/about', (c) => {
               <div class="relative rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
                 {/* 배경 이미지 (흐림 효과) */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba'); filter: blur(3px) brightness(0.4);"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
                 <div class="absolute inset-0 bg-gradient-to-br from-purple/70 to-pink-600/70"></div>
@@ -807,8 +807,8 @@ app.get('/about', (c) => {
               <div class="relative rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
                 {/* 배경 이미지 (흐림 효과) */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731'); filter: blur(3px) brightness(0.4);"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
                 <div class="absolute inset-0 bg-gradient-to-br from-green-600/70 to-teal-700/70"></div>
@@ -844,8 +844,8 @@ app.get('/about', (c) => {
               <div class="relative rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
                 {/* 배경 이미지 (흐림 효과) */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362'); filter: blur(3px) brightness(0.4);"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
                 <div class="absolute inset-0 bg-gradient-to-br from-coral/70 to-red-600/70"></div>
