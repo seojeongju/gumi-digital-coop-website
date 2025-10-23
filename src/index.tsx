@@ -1911,18 +1911,18 @@ app.get('/members', (c) => {
               {/* 조합원 1: (주)휴먼아이티 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 flex items-start justify-start">
-                    <img 
-                      src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_b34f4765-e59a-45a9-8427-33226e074cf5" 
-                      alt="휴먼아이티 로고" 
-                      class="w-52 object-contain"
-                    />
-                  </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12">
+                  <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
-                      <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)휴먼아이티</h3>
-                        <p class="text-teal font-semibold">HUMAN IT</p>
+                      <div class="flex items-center gap-6">
+                        <img 
+                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_b34f4765-e59a-45a9-8427-33226e074cf5" 
+                          alt="휴먼아이티 로고" 
+                          class="w-40 object-contain"
+                        />
+                        <div>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)휴먼아이티</h3>
+                          <p class="text-teal font-semibold">HUMAN IT</p>
+                        </div>
                       </div>
                       <span class="px-4 py-2 bg-teal/10 text-teal rounded-full text-sm font-bold">정회원</span>
                     </div>
@@ -1955,18 +1955,18 @@ app.get('/members', (c) => {
               {/* 조합원 2: 두맥스전자 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-indigo-50 to-blue-50 p-8 flex items-center justify-center order-2 lg:order-1">
-                    <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/ff5545e4bc4077cb31de8171c6682841" 
-                      alt="두맥스전자" 
-                      class="w-full max-w-sm object-contain"
-                    />
-                  </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12 order-1 lg:order-2">
+                  <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
-                      <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
-                        <p class="text-navy font-semibold">DOOMEX ELECTRONICS</p>
+                      <div class="flex items-center gap-6">
+                        <img 
+                          src="https://page.gensparksite.com/v1/base64_upload/ff5545e4bc4077cb31de8171c6682841" 
+                          alt="두맥스전자 로고" 
+                          class="w-40 object-contain"
+                        />
+                        <div>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
+                          <p class="text-navy font-semibold">DOOMEX ELECTRONICS</p>
+                        </div>
                       </div>
                       <span class="px-4 py-2 bg-navy/10 text-navy rounded-full text-sm font-bold">정회원</span>
                     </div>
@@ -1999,18 +1999,18 @@ app.get('/members', (c) => {
               {/* 조합원 3: (주)하이엘스 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-cyan-50 to-teal-50 p-8 flex items-center justify-center">
-                    <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/b9ff8920a27cb55fce522ccf139fc1d5" 
-                      alt="하이엘스" 
-                      class="w-full max-w-sm object-contain"
-                    />
-                  </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12">
+                  <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
-                      <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이엘스</h3>
-                        <p class="text-cyan-600 font-semibold">HIELSS</p>
+                      <div class="flex items-center gap-6">
+                        <img 
+                          src="https://page.gensparksite.com/v1/base64_upload/b9ff8920a27cb55fce522ccf139fc1d5" 
+                          alt="하이엘스 로고" 
+                          class="w-40 object-contain"
+                        />
+                        <div>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이엘스</h3>
+                          <p class="text-cyan-600 font-semibold">HIELSS</p>
+                        </div>
                       </div>
                       <span class="px-4 py-2 bg-cyan-600/10 text-cyan-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
@@ -2105,18 +2105,18 @@ app.get('/members', (c) => {
               {/* 조합원 5: 스파코(주) */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-orange-50 to-yellow-50 p-8 flex items-center justify-center">
-                    <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/937e0c6edf4a0013b2dd1939a2b430b5" 
-                      alt="스파코" 
-                      class="w-full max-w-sm object-contain"
-                    />
-                  </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12">
+                  <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
-                      <div>
-                        <h3 class="text-3xl font-bold text-gray-900 mb-2">스파코(주)</h3>
-                        <p class="text-orange-600 font-semibold">SPACO</p>
+                      <div class="flex items-center gap-6">
+                        <img 
+                          src="https://page.gensparksite.com/v1/base64_upload/937e0c6edf4a0013b2dd1939a2b430b5" 
+                          alt="스파코 로고" 
+                          class="w-40 object-contain"
+                        />
+                        <div>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">스파코(주)</h3>
+                          <p class="text-orange-600 font-semibold">SPACO</p>
+                        </div>
                       </div>
                       <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
