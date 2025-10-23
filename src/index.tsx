@@ -791,7 +791,7 @@ app.get('/about/greeting', (c) => {
                   <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden">
                     <i class="fas fa-user text-8xl text-white/60"></i>
                   </div>
-                  <h3 class="text-2xl font-bold mb-2">홍길동</h3>
+                  <h3 class="text-2xl font-bold mb-2">김한수</h3>
                   <p class="text-lg opacity-90 mb-4">조합장</p>
                   <div class="text-sm opacity-75 text-center">
                     <p>구미디지털적층산업</p>
@@ -804,7 +804,7 @@ app.get('/about/greeting', (c) => {
                   <div class="space-y-6 text-gray-700 leading-relaxed">
                     <p class="text-xl font-medium text-gray-900 mb-8">
                       안녕하십니까,<br />
-                      구미디지털적층산업사업협동조합 조합장 <span class="text-teal">홍길동</span>입니다.
+                      구미디지털적층산업사업협동조합 조합장 <span class="text-teal">김한수</span>입니다.
                     </p>
                     
                     <p>
@@ -860,7 +860,7 @@ app.get('/about/greeting', (c) => {
                       <p class="text-right">
                         <span class="text-gray-600 text-lg">감사합니다.</span><br />
                         <span class="font-bold text-gray-900 text-lg mt-2 inline-block">구미디지털적층산업사업협동조합 조합장</span><br />
-                        <span class="font-bold text-teal text-3xl mt-2 inline-block">홍길동</span>
+                        <span class="font-bold text-teal text-3xl mt-2 inline-block">김한수</span>
                       </p>
                     </div>
                   </div>
