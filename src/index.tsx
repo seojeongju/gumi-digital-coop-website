@@ -170,332 +170,238 @@ app.get('/', async (c) => {
     <div>
       <Header />
       
-      {/* 히어로 섹션 - 건설 스타일 */}
-      <section class="relative bg-navy text-white overflow-hidden" style="height: 600px;">
+      {/* 히어로 섹션 - AKIS 스타일 */}
+      <section class="relative bg-navy text-white overflow-hidden" style="height: 700px;">
         {/* 배경 이미지 */}
         <div 
           class="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9');"
         ></div>
         {/* 어두운 오버레이 */}
-        <div class="absolute inset-0 bg-navy/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-navy/80 to-navy/50"></div>
         
-        <div class="container mx-auto px-4 relative z-10 h-full flex items-center justify-center">
-          <div class="text-center max-w-4xl">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-              The Best Digital Manufacturing<br />
-              <span class="text-teal">Cooperative</span>
+        <div class="container mx-auto px-4 relative z-10 h-full flex items-center">
+          <div class="max-w-2xl">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              Value Partner
             </h1>
-            <p class="text-lg md:text-xl mb-8 opacity-90">
-              구미디지털적층산업사업협동조합 - 3D 프린팅 및 적층제조 기술로 미래를 만듭니다
+            <p class="text-lg md:text-xl mb-8 leading-relaxed">
+              고객과 파트너사, 회원 기업과의<br />
+              협업을 기반으로 최상의 가치를 제공하는 기업
             </p>
-            <a href="/support/contact" class="inline-block px-8 py-4 bg-teal text-white rounded-md font-bold text-lg hover:bg-opacity-90 transition">
-              문의하기
+            <a href="/about" class="inline-block px-8 py-3 border-2 border-white text-white rounded-md font-medium hover:bg-white hover:text-navy transition">
+              더 알아보기 →
             </a>
           </div>
         </div>
       </section>
       
-      {/* 서비스 아이콘 섹션 - 심플 스타일 */}
-      <section class="py-16 bg-white border-b">
+      {/* INDUSTRY 섹션 */}
+      <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {/* 3D 프린팅 */}
-            <div class="text-center group cursor-pointer">
-              <div class="mb-4 flex justify-center">
-                <i class="fas fa-print text-6xl text-gray-400 group-hover:text-teal transition"></i>
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">INDUSTRY</h2>
+            <p class="text-gray-600 text-lg">
+              협동조합이 고객과 회원 기업에 제공하는 가치와 비즈니스<br />
+              산업별 기술 / 서비스 분야의 디지털 혁신 모델 및 주요 레퍼런스 안내
+            </p>
+            <a href="/industry" class="inline-block mt-4 text-teal hover:underline">
+              + VIEW MORE
+            </a>
+          </div>
+          
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            {/* 산업 카드 1 - 자동차 */}
+            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">자동차</h3>
+                <p class="text-sm opacity-90">Automotive</p>
               </div>
-              <h3 class="font-bold text-gray-900 mb-2">3D 프린팅</h3>
-              <p class="text-sm text-gray-600 mb-3">시제품 제작부터 대량 생산까지 다양한 적층제조 서비스</p>
-              <a href="/services" class="text-teal text-sm hover:underline">More →</a>
             </div>
             
-            {/* 설계/모델링 */}
-            <div class="text-center group cursor-pointer">
-              <div class="mb-4 flex justify-center">
-                <i class="fas fa-drafting-compass text-6xl text-gray-400 group-hover:text-teal transition"></i>
+            {/* 산업 카드 2 - 항공우주 */}
+            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-purple/90 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">항공우주</h3>
+                <p class="text-sm opacity-90">Aerospace</p>
               </div>
-              <h3 class="font-bold text-gray-900 mb-2">설계/모델링</h3>
-              <p class="text-sm text-gray-600 mb-3">3D 설계, 역설계, 최적화 설계 전문 서비스</p>
-              <a href="/services" class="text-teal text-sm hover:underline">More →</a>
             </div>
             
-            {/* 품질관리 */}
-            <div class="text-center group cursor-pointer">
-              <div class="mb-4 flex justify-center">
-                <i class="fas fa-check-circle text-6xl text-gray-400 group-hover:text-teal transition"></i>
+            {/* 산업 카드 3 - 의료기기 */}
+            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/fe2aac66-c63c-423f-8f72-31746563a63a.jpeg');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">의료기기</h3>
+                <p class="text-sm opacity-90">Medical</p>
               </div>
-              <h3 class="font-bold text-gray-900 mb-2">품질관리</h3>
-              <p class="text-sm text-gray-600 mb-3">엄격한 품질 기준과 검사 시스템을 통한 완벽한 품질 보증</p>
-              <a href="/services" class="text-teal text-sm hover:underline">More →</a>
             </div>
             
-            {/* 후가공 */}
-            <div class="text-center group cursor-pointer">
-              <div class="mb-4 flex justify-center">
-                <i class="fas fa-tools text-6xl text-gray-400 group-hover:text-teal transition"></i>
+            {/* 산업 카드 4 - 전자제품 */}
+            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-coral/90 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">전자제품</h3>
+                <p class="text-sm opacity-90">Electronics</p>
               </div>
-              <h3 class="font-bold text-gray-900 mb-2">후가공</h3>
-              <p class="text-sm text-gray-600 mb-3">표면 처리, 도장, 조립까지 완벽한 마무리</p>
-              <a href="/services" class="text-teal text-sm hover:underline">More →</a>
+            </div>
+            
+            {/* 산업 카드 5 - 산업기계 */}
+            <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer" style="height: 320px;">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg');"
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
+              <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 class="text-xl font-bold mb-2">산업기계</h3>
+                <p class="text-sm opacity-90">Industrial</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
       
-      {/* 통계 섹션 - Superheroes 스타일 */}
+      {/* SERVICE 섹션 */}
       <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* 왼쪽: 이미지 */}
-            <div class="relative">
-              <img 
-                src="https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg" 
-                alt="Digital Manufacturing" 
-                class="rounded-lg shadow-xl w-full"
-              />
+          <div class="text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">SERVICE</h2>
+            <p class="text-gray-600 text-lg">
+              사업협동조합의 서비스는 모든 산업 분야의 기술 및 경영 전문가들이<br />
+              고객과 회원 기업의 가치 향상 및 비즈니스 성공을 지원합니다
+            </p>
+            <a href="/services" class="inline-block mt-4 text-teal hover:underline">
+              + VIEW MORE
+            </a>
+          </div>
+          
+          {/* 서비스 아이콘 그리드 */}
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
+            {/* AI 개발 */}
+            <div class="text-center group cursor-pointer">
+              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
+                <i class="fas fa-robot text-3xl text-teal"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm">AI 개발</h3>
             </div>
             
-            {/* 오른쪽: 통계 */}
-            <div>
-              <p class="text-teal font-semibold mb-2 uppercase text-sm">We Are Best</p>
-              <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
-                Super<span class="text-teal">heroes</span>
-              </h2>
-              <p class="text-gray-600 mb-12">
-                구미디지털적층산업사업협동조합은 3D 프린팅 및 적층제조 분야의 선두주자로서<br />
-                회원사와 함께 지속적인 성장을 이루어가고 있습니다.
-              </p>
-              
-              {/* 통계 그리드 */}
-              <div class="grid grid-cols-2 gap-8">
-                <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                  <div class="text-5xl font-bold text-teal mb-2">348</div>
-                  <div class="text-gray-600 text-sm">완료 프로젝트</div>
-                </div>
-                <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                  <div class="text-5xl font-bold text-teal mb-2">500</div>
-                  <div class="text-gray-600 text-sm">만족한 고객</div>
-                </div>
-                <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                  <div class="text-5xl font-bold text-teal mb-2">845</div>
-                  <div class="text-gray-600 text-sm">제작 부품</div>
-                </div>
-                <div class="text-center p-6 bg-white rounded-lg shadow-md">
-                  <div class="text-5xl font-bold text-teal mb-2">190</div>
-                  <div class="text-gray-600 text-sm">전문 인력</div>
-                </div>
+            {/* 데이터 분석 */}
+            <div class="text-center group cursor-pointer">
+              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
+                <i class="fas fa-chart-line text-3xl text-teal"></i>
               </div>
+              <h3 class="font-bold text-gray-900 text-sm">데이터 분석</h3>
+            </div>
+            
+            {/* 클라우드 */}
+            <div class="text-center group cursor-pointer">
+              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
+                <i class="fas fa-cloud text-3xl text-teal"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm">클라우드</h3>
+            </div>
+            
+            {/* 디자인/설계 */}
+            <div class="text-center group cursor-pointer">
+              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
+                <i class="fas fa-pencil-ruler text-3xl text-teal"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm">디자인/설계</h3>
+            </div>
+            
+            {/* IT 아웃소싱 */}
+            <div class="text-center group cursor-pointer">
+              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
+                <i class="fas fa-handshake text-3xl text-teal"></i>
+              </div>
+              <h3 class="font-bold text-gray-900 text-sm">IT 아웃소싱</h3>
             </div>
           </div>
         </div>
       </section>
       
-      {/* 프로젝트 섹션 */}
+      {/* NEWS 섹션 */}
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
-            <p class="text-teal font-semibold mb-2 uppercase text-sm">Our Work</p>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
-              Our Recent<br />
-              <span class="text-teal">Projects</span>
-            </h2>
-            <p class="text-gray-600 mt-4">
-              협동조합이 진행한 주요 프로젝트를 소개합니다
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">AKIS NEWS</h2>
+            <p class="text-gray-600 text-lg">
+              AI개발자모임의 최신 소식을 가장 빠르게 전해드립니다
             </p>
+            <a href="/news" class="inline-block mt-4 text-teal hover:underline">
+              + VIEW MORE
+            </a>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* 프로젝트 1 */}
-            <div class="group relative overflow-hidden rounded-lg shadow-lg">
-              <img 
-                src="https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg" 
-                alt="Project 1" 
-                class="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent flex items-end p-6">
-                <div class="text-white">
-                  <h3 class="text-xl font-bold mb-2">자동차 부품 프로토타입</h3>
-                  <p class="text-sm opacity-90">3D 프린팅을 활용한 신속한 시제품 제작</p>
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {notices.length > 0 ? notices.map((notice: any, index: number) => (
+              <a 
+                href={`/news/${notice.id}`} 
+                class={`group bg-white rounded-xl overflow-hidden border hover:shadow-xl transition ${index === 1 ? 'md:col-span-2 bg-teal text-white' : 'border-gray-200 shadow-md'}`}
+              >
+                <div class="p-6">
+                  <div class="text-sm mb-3">
+                    <span class={`${index === 1 ? 'text-white/80' : 'text-gray-500'}`}>
+                      {new Date(notice.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '.').slice(0, -1)}
+                    </span>
+                  </div>
+                  <h3 class={`font-bold mb-3 line-clamp-2 ${index === 1 ? 'text-2xl' : 'text-lg'} ${index === 1 ? '' : 'group-hover:text-teal'} transition`}>
+                    {notice.title}
+                  </h3>
+                  {index === 1 && (
+                    <p class="text-white/90 text-sm mb-4 line-clamp-3">
+                      협동조합의 주요 소식과 업데이트를 확인하세요.
+                    </p>
+                  )}
+                  <div class={`inline-flex items-center text-sm font-medium ${index === 1 ? 'text-white' : 'text-teal'}`}>
+                    자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
+                  </div>
                 </div>
+              </a>
+            )) : (
+              <div class="col-span-4 text-center text-gray-500 py-12">
+                등록된 공지사항이 없습니다.
               </div>
-            </div>
-            
-            {/* 프로젝트 2 */}
-            <div class="group relative overflow-hidden rounded-lg shadow-lg">
-              <img 
-                src="https://cdn1.genspark.ai/user-upload-image/5_generated/7f3579e1-f906-48c0-8900-84353a817a87.jpeg" 
-                alt="Project 2" 
-                class="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent flex items-end p-6">
-                <div class="text-white">
-                  <h3 class="text-xl font-bold mb-2">의료기기 금형 제작</h3>
-                  <p class="text-sm opacity-90">정밀 금형 설계 및 제조 서비스</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* 프로젝트 3 */}
-            <div class="group relative overflow-hidden rounded-lg shadow-lg">
-              <img 
-                src="https://cdn1.genspark.ai/user-upload-image/5_generated/fe2aac66-c63c-423f-8f72-31746563a63a.jpeg" 
-                alt="Project 3" 
-                class="w-full h-80 object-cover group-hover:scale-110 transition duration-500"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent flex items-end p-6">
-                <div class="text-white">
-                  <h3 class="text-xl font-bold mb-2">항공 부품 후가공</h3>
-                  <p class="text-sm opacity-90">표면 처리 및 정밀 마무리 작업</p>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>
       
-      {/* 문의 폼 섹션 */}
-      <section class="py-20 bg-gray-50 relative">
-        {/* 배경 이미지 */}
-        <div 
-          class="absolute inset-0 bg-cover bg-center opacity-10"
-          style="background-image: url('https://cdn1.genspark.ai/user-upload-image/5_generated/a57703b8-97d7-4c8d-b6fb-9c660027e4df.jpeg');"
-        ></div>
-        
-        <div class="container mx-auto px-4 relative z-10">
-          <div class="max-w-2xl mx-auto text-center mb-12">
-            <p class="text-teal font-semibold mb-2 uppercase text-sm">Contact Today</p>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Free <span class="text-teal">Quote</span>
-            </h2>
-            <p class="text-gray-600">
-              프로젝트 문의나 견적 요청을 남겨주시면 빠른 시일 내에 답변드리겠습니다
-            </p>
-          </div>
-          
-          <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-8">
-            <form class="space-y-6">
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input 
-                    type="text" 
-                    placeholder="이름" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal"
-                  />
-                </div>
-                <div>
-                  <input 
-                    type="email" 
-                    placeholder="이메일" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal"
-                  />
-                </div>
-              </div>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <input 
-                    type="tel" 
-                    placeholder="연락처" 
-                    class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal"
-                  />
-                </div>
-                <div>
-                  <select class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal text-gray-600">
-                    <option>서비스 선택</option>
-                    <option>3D 프린팅</option>
-                    <option>설계/모델링</option>
-                    <option>금형 제작</option>
-                    <option>후가공</option>
-                    <option>기타</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div>
-                <textarea 
-                  placeholder="문의 내용을 입력해주세요" 
-                  rows="6"
-                  class="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-teal"
-                ></textarea>
-              </div>
-              
-              <div class="text-center">
-                <button 
-                  type="submit" 
-                  class="px-12 py-4 bg-teal text-white rounded-md font-bold text-lg hover:bg-opacity-90 transition"
-                >
-                  문의하기
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </section>
-      
-      {/* 리뷰 섹션 */}
-      <section class="py-20 bg-white">
+      {/* 클라이언트/파트너 섹션 */}
+      <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
           <div class="text-center mb-12">
-            <p class="text-teal font-semibold mb-2 uppercase text-sm">Testimonials</p>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900">
-              <span class="text-teal">Reviews</span>
-            </h2>
-            <p class="text-gray-600 mt-4">
-              협동조합과 함께한 고객들의 생생한 후기
-            </p>
+            <h3 class="text-2xl font-bold text-gray-900 mb-8">협동조합 주요 파트너</h3>
           </div>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* 리뷰 1 */}
-            <div class="bg-gray-50 rounded-xl p-8 shadow-md">
-              <div class="flex items-start mb-6">
-                <img 
-                  src="https://ui-avatars.com/api/?name=Kim+Manager&background=00A9CE&color=fff&size=80" 
-                  alt="Customer" 
-                  class="w-16 h-16 rounded-full mr-4"
-                />
-                <div>
-                  <h4 class="font-bold text-gray-900 mb-1">김대리</h4>
-                  <div class="flex text-yellow-400 mb-2">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
+            {/* 파트너 로고 플레이스홀더 */}
+            {[1, 2, 3, 4, 5].map((item) => (
+              <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition flex items-center justify-center h-24">
+                <div class="text-center">
+                  <i class="fas fa-industry text-3xl text-gray-400 mb-2"></i>
+                  <p class="text-xs text-gray-500">Partner {item}</p>
                 </div>
               </div>
-              <p class="text-gray-600 leading-relaxed">
-                "3D 프린팅 시제품 제작을 의뢰했는데, 품질과 납기 모두 만족스러웠습니다. 
-                전문적인 상담과 빠른 대응이 인상적이었고, 앞으로도 계속 이용할 계획입니다."
-              </p>
-            </div>
-            
-            {/* 리뷰 2 */}
-            <div class="bg-gray-50 rounded-xl p-8 shadow-md">
-              <div class="flex items-start mb-6">
-                <img 
-                  src="https://ui-avatars.com/api/?name=Park+CEO&background=00A9CE&color=fff&size=80" 
-                  alt="Customer" 
-                  class="w-16 h-16 rounded-full mr-4"
-                />
-                <div>
-                  <h4 class="font-bold text-gray-900 mb-1">박대표</h4>
-                  <div class="flex text-yellow-400 mb-2">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                  </div>
-                </div>
-              </div>
-              <p class="text-gray-600 leading-relaxed">
-                "금형 설계부터 제작까지 원스톱으로 진행했는데 결과물이 기대 이상이었습니다. 
-                기술력과 경험이 풍부한 협동조합과 함께해서 든든했습니다."
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
