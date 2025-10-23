@@ -236,11 +236,8 @@ app.get('/', async (c) => {
             </h1>
             <p class="text-lg md:text-xl mb-8 leading-relaxed">
               고객과 파트너사, 회원 기업과의<br />
-              협업을 기반으로 최상의 가치를 제공하는 기업
+              협업을 기반으로 최상의 가치를 제공하는 협동조합
             </p>
-            <a href="/about" class="inline-block px-8 py-3 border-2 border-white text-white rounded-md font-medium hover:bg-white hover:text-navy transition">
-              더 알아보기 →
-            </a>
           </div>
         </div>
       </section>
