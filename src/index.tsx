@@ -480,49 +480,138 @@ app.get('/', async (c) => {
         </div>
       </section>
       
-      {/* NEWS 섹션 */}
-      <section class="py-20 bg-white">
+      {/* NEWS 섹션 - 개선된 디자인 */}
+      <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">구미 디지털적층제조산업사업협동조합 소식</h2>
-            <p class="text-gray-600 text-lg">
-              사업협동조합의 최신 소식을 가장 빠르게 전해드립니다
-            </p>
-            <a href="/news" class="inline-block mt-4 text-teal hover:underline">
-              + VIEW MORE
-            </a>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {notices.length > 0 ? notices.map((notice: any, index: number) => (
-              <a 
-                href={`/news/${notice.id}`} 
-                class={`group bg-white rounded-xl overflow-hidden border hover:shadow-xl transition ${index === 1 ? 'md:col-span-2 bg-teal text-white' : 'border-gray-200 shadow-md'}`}
-              >
-                <div class="p-6">
-                  <div class="text-sm mb-3">
-                    <span class={`${index === 1 ? 'text-white/80' : 'text-gray-500'}`}>
-                      {new Date(notice.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '.').slice(0, -1)}
-                    </span>
-                  </div>
-                  <h3 class={`font-bold mb-3 line-clamp-2 ${index === 1 ? 'text-2xl' : 'text-lg'} ${index === 1 ? '' : 'group-hover:text-teal'} transition`}>
-                    {notice.title}
-                  </h3>
-                  {index === 1 && (
-                    <p class="text-white/90 text-sm mb-4 line-clamp-3">
-                      협동조합의 주요 소식과 업데이트를 확인하세요.
-                    </p>
-                  )}
-                  <div class={`inline-flex items-center text-sm font-medium ${index === 1 ? 'text-white' : 'text-teal'}`}>
-                    자세히 보기 <i class="fas fa-arrow-right ml-2"></i>
-                  </div>
-                </div>
-              </a>
-            )) : (
-              <div class="col-span-4 text-center text-gray-500 py-12">
-                등록된 공지사항이 없습니다.
+          <div class="max-w-7xl mx-auto">
+            {/* 헤더 */}
+            <div class="flex items-end justify-between mb-12">
+              <div>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+                  협동조합 소식
+                </h2>
+                <p class="text-gray-600 text-lg">
+                  사업협동조합의 최신 소식과 가치 있는 정보를 빠르게 전해드립니다
+                </p>
               </div>
-            )}
+              <a 
+                href="/news" 
+                class="hidden md:inline-flex items-center px-6 py-3 bg-teal text-white rounded-xl hover:bg-opacity-90 transition font-medium shadow-lg hover:shadow-xl"
+              >
+                전체보기
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
+            
+            {/* 뉴스 그리드 */}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {notices.length > 0 ? notices.map((notice: any, index: number) => (
+                <a 
+                  href={`/news/${notice.id}`} 
+                  class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                >
+                  {/* 썸네일 영역 */}
+                  <div class={`relative h-48 overflow-hidden ${
+                    notice.category === '공지사항' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
+                    notice.category === '보도자료' ? 'bg-gradient-to-br from-green-500 to-green-600' :
+                    notice.category === '행사' ? 'bg-gradient-to-br from-purple-500 to-purple-600' :
+                    'bg-gradient-to-br from-orange-500 to-orange-600'
+                  }`}>
+                    {/* 배경 패턴 */}
+                    <div class="absolute inset-0 opacity-10">
+                      <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center;"></div>
+                    </div>
+                    
+                    {/* 카테고리 배지 */}
+                    <div class="absolute top-4 left-4">
+                      <span class="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-gray-900">
+                        <i class={`mr-1.5 ${
+                          notice.category === '공지사항' ? 'fas fa-bullhorn' :
+                          notice.category === '보도자료' ? 'fas fa-newspaper' :
+                          notice.category === '행사' ? 'fas fa-calendar-alt' :
+                          'fas fa-trophy'
+                        }`}></i>
+                        {notice.category}
+                      </span>
+                    </div>
+                    
+                    {/* 핀 표시 */}
+                    {notice.is_pinned && (
+                      <div class="absolute top-4 right-4">
+                        <span class="inline-flex items-center px-2.5 py-1 bg-coral rounded-full text-xs font-bold text-white">
+                          <i class="fas fa-thumbtack mr-1"></i>
+                          중요
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* 그라데이션 오버레이 */}
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                  </div>
+                  
+                  {/* 콘텐츠 영역 */}
+                  <div class="p-6">
+                    {/* 날짜 및 조회수 */}
+                    <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                      <span class="flex items-center">
+                        <i class="far fa-calendar mr-1.5"></i>
+                        {new Date(notice.created_at).toLocaleDateString('ko-KR', { 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric' 
+                        })}
+                      </span>
+                      <span class="flex items-center">
+                        <i class="far fa-eye mr-1.5"></i>
+                        {notice.views || 0}
+                      </span>
+                    </div>
+                    
+                    {/* 제목 */}
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-teal transition">
+                      {notice.title}
+                    </h3>
+                    
+                    {/* 내용 미리보기 */}
+                    <p class="text-gray-600 text-sm line-clamp-2 mb-4">
+                      {notice.content || '협동조합의 최신 소식을 확인해보세요.'}
+                    </p>
+                    
+                    {/* 더보기 버튼 */}
+                    <div class="flex items-center justify-between">
+                      <div class="inline-flex items-center text-sm font-medium text-teal group-hover:gap-2 transition-all">
+                        자세히 보기
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                      </div>
+                      
+                      {/* 작성자 */}
+                      {notice.author && (
+                        <div class="flex items-center text-xs text-gray-400">
+                          <i class="far fa-user mr-1"></i>
+                          {notice.author}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </a>
+              )) : (
+                <div class="col-span-3 text-center py-20">
+                  <i class="fas fa-inbox text-6xl text-gray-300 mb-4"></i>
+                  <p class="text-gray-500 text-lg">등록된 공지사항이 없습니다.</p>
+                </div>
+              )}
+            </div>
+            
+            {/* 모바일 전체보기 버튼 */}
+            <div class="mt-8 text-center md:hidden">
+              <a 
+                href="/news" 
+                class="inline-flex items-center px-8 py-4 bg-teal text-white rounded-xl hover:bg-opacity-90 transition font-medium shadow-lg"
+              >
+                전체보기
+                <i class="fas fa-arrow-right ml-2"></i>
+              </a>
+            </div>
           </div>
         </div>
       </section>
