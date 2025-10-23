@@ -2056,7 +2056,7 @@ app.get('/members', (c) => {
                           <p class="text-purple-600 font-semibold">WOW3D MAKER SPACE</p>
                         </div>
                       </div>
-                      <span class="px-4 py-2 bg-purple-600 text-white rounded-full text-sm font-bold">정회원</span>
+                      <span class="px-4 py-2 bg-purple-600/10 text-purple-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                       3D 프린터, 3D 홀로그래피 디스플레이 개발 및 교육 서비스를 제공하는 메이커 스페이스 운영 기업입니다.
