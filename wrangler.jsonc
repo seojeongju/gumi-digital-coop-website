@@ -5,5 +5,12 @@
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gumi-coop-db",
+      "database_id": "5f9b2685-5cc9-4f34-b4e7-ba108ce4e213"
+    }
   ]
 }
