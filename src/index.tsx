@@ -2158,7 +2158,7 @@ app.get('/services', (c) => {
                 <div class="relative">
                   <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/9991bb70ecfdca973bf8f3c5b4ecd403" 
+                      src="https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362" 
                       alt="사업화 지원" 
                       class="w-full h-full object-cover"
                     />
