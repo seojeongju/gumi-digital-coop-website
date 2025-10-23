@@ -1911,11 +1911,11 @@ app.get('/members', (c) => {
               {/* 조합원 1: (주)휴먼아이티 */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 flex items-center justify-center">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-blue-50 to-cyan-50 p-8 flex items-start justify-start">
                     <img 
-                      src="https://page.gensparksite.com/v1/base64_upload/76a009931fb17d7e4d3f92f44ca06f1c" 
-                      alt="휴먼아이티" 
-                      class="w-full max-w-sm object-contain"
+                      src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_b34f4765-e59a-45a9-8427-33226e074cf5" 
+                      alt="휴먼아이티 로고" 
+                      class="w-52 object-contain"
                     />
                   </div>
                   <div class="lg:col-span-3 p-8 lg:p-12">
