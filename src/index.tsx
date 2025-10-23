@@ -81,6 +81,7 @@ const Header = () => (
           
           <a href="/news" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">소식</a>
           <a href="/support" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">문의</a>
+          <a href="/location" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">오시는 길</a>
         </nav>
         
         {/* CTA 버튼 */}
@@ -128,6 +129,7 @@ const Header = () => (
         
         <a href="/news" class="block py-2 text-gray-700 hover:text-teal">소식</a>
         <a href="/support" class="block py-2 text-gray-700 hover:text-teal">문의</a>
+        <a href="/location" class="block py-2 text-gray-700 hover:text-teal">오시는 길</a>
       </nav>
     </div>
   </header>
@@ -3855,6 +3857,172 @@ app.get('/resources', (c) => {
       <script src="/static/js/app.js"></script>
     </div>,
     { title: '자료실 - 구미디지털적층산업사업협동조합' }
+  )
+})
+
+// 오시는 길 페이지
+app.get('/location', (c) => {
+  return c.render(
+    <div>
+      <Header />
+      
+      {/* 페이지 헤더 */}
+      <section class="relative bg-gradient-to-br from-navy via-indigo-600 to-blue-600 text-white py-32">
+        <div class="absolute inset-0 bg-black opacity-20"></div>
+        <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
+        <div class="container mx-auto px-4 relative z-10">
+          <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-6">
+              <span class="text-sm font-semibold tracking-wider">LOCATION</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">오시는 길</h1>
+            <p class="text-xl opacity-90 mb-8">
+              구미디지털적층산업사업협동조합을 찾아오시는 길을 안내해드립니다
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 지도 섹션 */}
+      <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            {/* 네이버 지도 */}
+            <div class="mb-12">
+              <div class="rounded-2xl overflow-hidden shadow-2xl" style="height: 500px;">
+                <iframe 
+                  src="https://map.naver.com/p/embed/search/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253?c=15.00,0,0,0,dh"
+                  width="100%"
+                  height="100%"
+                  style="border:0;"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
+            </div>
+
+            {/* 주소 및 연락처 정보 */}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* 주소 */}
+              <div class="bg-gradient-to-br from-navy/5 to-teal/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="flex items-start mb-6">
+                  <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-map-marker-alt text-3xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">주소</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                      경상북도 구미시 산호대로 253<br />
+                      구미첨단의료기술타워
+                    </p>
+                  </div>
+                </div>
+                <a 
+                  href="https://map.naver.com/p/search/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253"
+                  target="_blank"
+                  class="inline-flex items-center px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-medium"
+                >
+                  <i class="fas fa-external-link-alt mr-2"></i>
+                  네이버 지도에서 보기
+                </a>
+              </div>
+
+              {/* 연락처 */}
+              <div class="bg-gradient-to-br from-teal/5 to-cyan/5 rounded-2xl p-8 hover:shadow-xl transition">
+                <div class="flex items-start mb-6">
+                  <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center mr-4 flex-shrink-0">
+                    <i class="fas fa-phone text-3xl text-white"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">연락처</h3>
+                    <div class="space-y-2 text-gray-600">
+                      <p>
+                        <i class="fas fa-phone-alt mr-2 text-teal"></i>
+                        <span class="font-medium">054-123-4567</span>
+                      </p>
+                      <p>
+                        <i class="fas fa-envelope mr-2 text-teal"></i>
+                        <span class="font-medium">info@gumidigital.co.kr</span>
+                      </p>
+                      <p>
+                        <i class="fas fa-clock mr-2 text-teal"></i>
+                        <span>평일 09:00 - 18:00</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a 
+                  href="/support"
+                  class="inline-flex items-center px-6 py-3 bg-teal text-white rounded-lg hover:bg-opacity-90 transition font-medium"
+                >
+                  <i class="fas fa-comment-dots mr-2"></i>
+                  온라인 문의하기
+                </a>
+              </div>
+            </div>
+
+            {/* 대중교통 안내 */}
+            <div class="mt-12 bg-gray-50 rounded-2xl p-8">
+              <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
+                <i class="fas fa-bus text-teal mr-3"></i>
+                대중교통 이용 안내
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* 버스 */}
+                <div class="bg-white rounded-xl p-6">
+                  <h4 class="font-bold text-lg text-gray-900 mb-3 flex items-center">
+                    <i class="fas fa-bus text-blue-600 mr-2"></i>
+                    버스
+                  </h4>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-xs text-teal mr-3 mt-1.5"></i>
+                      <span>구미역에서 시내버스 이용</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-xs text-teal mr-3 mt-1.5"></i>
+                      <span>첨단의료기술타워 정류장 하차</span>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* 자가용 */}
+                <div class="bg-white rounded-xl p-6">
+                  <h4 class="font-bold text-lg text-gray-900 mb-3 flex items-center">
+                    <i class="fas fa-car text-green-600 mr-2"></i>
+                    자가용
+                  </h4>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-xs text-teal mr-3 mt-1.5"></i>
+                      <span>중앙고속도로 구미IC 이용</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-xs text-teal mr-3 mt-1.5"></i>
+                      <span>주차장 이용 가능</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+      
+      <button 
+        id="scroll-to-top" 
+        onclick="scrollToTop()" 
+        class="hidden fixed bottom-8 right-8 w-12 h-12 bg-teal text-white rounded-full shadow-lg hover:bg-opacity-90 transition z-40"
+      >
+        <i class="fas fa-arrow-up"></i>
+      </button>
+      
+      <script src="/static/js/app.js"></script>
+    </div>,
+    { title: '오시는 길 - 구미디지털적층산업사업협동조합' }
   )
 })
 
