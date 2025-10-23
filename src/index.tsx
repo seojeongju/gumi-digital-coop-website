@@ -21,7 +21,7 @@ const Header = () => (
       <div class="flex items-center justify-between h-20">
         {/* 로고 */}
         <a href="/" class="flex items-center space-x-3">
-          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-12" />
+          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-16 md:h-20" />
         </a>
         
         {/* 데스크톱 메뉴 */}
@@ -70,7 +70,7 @@ const Footer = () => (
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* 조합 정보 */}
         <div class="col-span-1 md:col-span-2">
-          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-12 mb-4" />
+          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-16 mb-4" />
           <p class="text-sm mb-4">
             3D 프린팅 및 적층제조 기술을 중심으로<br />
             회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합
