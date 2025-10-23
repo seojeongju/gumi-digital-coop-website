@@ -1245,62 +1245,7 @@ app.get('/about/organization', (c) => {
                 </div>
               </div>
             </div>
-            
-            {/* 주요 조직 상세 설명 */}
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              {/* 이사회 */}
-              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-8 border-l-4 border-blue-500 hover:shadow-lg transition">
-                <div class="flex items-start mb-4">
-                  <div class="w-14 h-14 bg-blue-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-users text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">이사회</h3>
-                    <p class="text-sm text-gray-600">조합의 주요 정책심의 결정, 사업 계획 수립</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* 총회 */}
-              <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-8 border-l-4 border-purple-500 hover:shadow-lg transition">
-                <div class="flex items-start mb-4">
-                  <div class="w-14 h-14 bg-purple-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-user-friends text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">총회</h3>
-                    <p class="text-sm text-gray-600">조합의 최고 의사결정기구로 조합원 전체로 구성</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* 감사 */}
-              <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-8 border-l-4 border-green-500 hover:shadow-lg transition">
-                <div class="flex items-start mb-4">
-                  <div class="w-14 h-14 bg-green-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-search text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">감사</h3>
-                    <p class="text-sm text-gray-600">조합의 업무 집행상황, 재산상태, 장부 등 검사</p>
-                  </div>
-                </div>
-              </div>
-              
-              {/* 이사장 */}
-              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl p-8 border-l-4 border-orange-500 hover:shadow-lg transition">
-                <div class="flex items-start mb-4">
-                  <div class="w-14 h-14 bg-orange-500 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
-                    <i class="fas fa-user-tie text-2xl text-white"></i>
-                  </div>
-                  <div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-2">이사장</h3>
-                    <p class="text-sm text-gray-600">조합을 대표하고 업무를 총괄, 이사의 의장</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+                                
             {/* 실행조직 및 기능 */}
             <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
               <div class="bg-gradient-to-r from-teal to-navy text-white px-8 py-6">
