@@ -307,64 +307,119 @@ app.get('/', async (c) => {
       </section>
       
       {/* SERVICE 섹션 */}
-      <section class="py-20 bg-gray-50">
+      <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">SERVICE</h2>
+          <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">주요 사업 분야</h2>
             <p class="text-gray-600 text-lg">
-              사업협동조합의 서비스는 모든 산업 분야의 기술 및 경영 전문가들이<br />
-              고객과 회원 기업의 가치 향상 및 비즈니스 성공을 지원합니다
+              협동조합의 핵심 사업 영역과 전문 서비스를 소개합니다
             </p>
           </div>
           
-          {/* 서비스 카드 그리드 */}
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* 3D 프린팅 서비스 */}
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
-              <div class="h-48 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-                <i class="fas fa-print text-white text-7xl"></i>
+          {/* 서비스 카드 그리드 - 2x2 레이아웃 */}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
+            <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300">
+              <div class="flex items-start mb-6">
+                <div class="bg-teal text-white rounded-lg p-3 mr-4">
+                  <i class="fas fa-cube text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">첨단 적층제조 기술 보급 및 R&D</h3>
+                </div>
               </div>
-              <div class="p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">3D 프린팅 서비스</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                  FDM, SLA, SLS 등 다양한 적층제조 기술을 활용한 시제품 제작부터 소량 생산까지
-                </p>
-                <a href="/services/3d-printing" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
-                  자세히 보기 →
-                </a>
-              </div>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                </li>
+              </ul>
             </div>
             
-            {/* 설계 및 모델링 */}
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
-              <div class="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
-                <i class="fas fa-compass-drafting text-white text-7xl"></i>
+            {/* 2. 인력 양성 및 교육·세미나 */}
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300">
+              <div class="flex items-start mb-6">
+                <div class="bg-purple text-white rounded-lg p-3 mr-4">
+                  <i class="fas fa-graduation-cap text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">인력 양성 및 교육·세미나</h3>
+                </div>
               </div>
-              <div class="p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">설계 및 모델링</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                  3D CAD 설계, 역설계, 최적화 설계 등 전문 엔지니어링 서비스 제공
-                </p>
-                <a href="/services/design" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
-                  자세히 보기 →
-                </a>
-              </div>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">적층제조 전문 기술 인력 양성</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">정기 세미나 및 워크샵 개최</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">산업 전문가 교류 네트워크 구축</span>
+                </li>
+              </ul>
             </div>
             
-            {/* 후가공 서비스 */}
-            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
-              <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                <i class="fas fa-tools text-white text-7xl"></i>
+            {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
+            <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300">
+              <div class="flex items-start mb-6">
+                <div class="bg-green-600 text-white rounded-lg p-3 mr-4">
+                  <i class="fas fa-industry text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">공동 구매, 장비 운용 및 인프라 제공</h3>
+                </div>
               </div>
-              <div class="p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">후가공 서비스</h3>
-                <p class="text-gray-600 mb-6 leading-relaxed">
-                  표면 처리, 도장, 조립, 품질 검사 등 완벽한 마무리 작업 지원
-                </p>
-                <a href="/services/post-processing" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
-                  자세히 보기 →
-                </a>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">원자재 및 장비 공동구매 지원</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">고가 장비 공동 활용 시스템 구축</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">테스트베드 및 공동 작업공간 제공</span>
+                </li>
+              </ul>
+            </div>
+            
+            {/* 4. 정부 및 지자체 협력사업 */}
+            <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300">
+              <div class="flex items-start mb-6">
+                <div class="bg-coral text-white rounded-lg p-3 mr-4">
+                  <i class="fas fa-handshake text-3xl"></i>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-gray-900 mb-2">정부 및 지자체 협력사업</h3>
+                </div>
               </div>
+              <ul class="space-y-3">
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">지역 산업 육성 정책 협력</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">정부 R&D 사업 공동 참여</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                  <span class="text-gray-700">지역 특화 산업 클러스터 구축</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
@@ -625,56 +680,113 @@ app.get('/about', (c) => {
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16">
               <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">주요 사업 분야</h2>
-              <p class="text-gray-600 text-lg">협동조합이 제공하는 핵심 서비스</p>
+              <p class="text-gray-600 text-lg">협동조합의 핵심 사업 영역과 전문 서비스를 소개합니다</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* 3D 프린팅 */}
-              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-                <div class="h-48 bg-gradient-to-br from-teal to-navy flex items-center justify-center">
-                  <i class="fas fa-print text-6xl text-white"></i>
+            {/* 서비스 카드 그리드 - 2x2 레이아웃 */}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
+              <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300">
+                <div class="flex items-start mb-6">
+                  <div class="bg-teal text-white rounded-lg p-3 mr-4">
+                    <i class="fas fa-cube text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">첨단 적층제조 기술 보급 및 R&D</h3>
+                  </div>
                 </div>
-                <div class="p-6">
-                  <h3 class="text-xl font-bold mb-3 text-gray-900">3D 프린팅 서비스</h3>
-                  <p class="text-gray-600 mb-4">
-                    FDM, SLA, SLS 등 다양한 적층제조 기술을 활용한 시제품 제작부터 소량 생산까지
-                  </p>
-                  <a href="/services" class="text-teal hover:underline font-medium">
-                    자세히 보기 →
-                  </a>
-                </div>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-teal mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                  </li>
+                </ul>
               </div>
               
-              {/* 설계/모델링 */}
-              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-                <div class="h-48 bg-gradient-to-br from-purple to-teal flex items-center justify-center">
-                  <i class="fas fa-drafting-compass text-6xl text-white"></i>
+              {/* 2. 인력 양성 및 교육·세미나 */}
+              <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300">
+                <div class="flex items-start mb-6">
+                  <div class="bg-purple text-white rounded-lg p-3 mr-4">
+                    <i class="fas fa-graduation-cap text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">인력 양성 및 교육·세미나</h3>
+                  </div>
                 </div>
-                <div class="p-6">
-                  <h3 class="text-xl font-bold mb-3 text-gray-900">설계 및 모델링</h3>
-                  <p class="text-gray-600 mb-4">
-                    3D CAD 설계, 역설계, 최적화 설계 등 전문적인 엔지니어링 서비스 제공
-                  </p>
-                  <a href="/services" class="text-teal hover:underline font-medium">
-                    자세히 보기 →
-                  </a>
-                </div>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">적층제조 전문 기술 인력 양성</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">정기 세미나 및 워크샵 개최</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-purple mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">산업 전문가 교류 네트워크 구축</span>
+                  </li>
+                </ul>
               </div>
               
-              {/* 후가공 */}
-              <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
-                <div class="h-48 bg-gradient-to-br from-navy to-purple flex items-center justify-center">
-                  <i class="fas fa-tools text-6xl text-white"></i>
+              {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
+              <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300">
+                <div class="flex items-start mb-6">
+                  <div class="bg-green-600 text-white rounded-lg p-3 mr-4">
+                    <i class="fas fa-industry text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">공동 구매, 장비 운용 및 인프라 제공</h3>
+                  </div>
                 </div>
-                <div class="p-6">
-                  <h3 class="text-xl font-bold mb-3 text-gray-900">후가공 서비스</h3>
-                  <p class="text-gray-600 mb-4">
-                    표면 처리, 도장, 조립, 품질 검사 등 완벽한 마무리 작업 지원
-                  </p>
-                  <a href="/services" class="text-teal hover:underline font-medium">
-                    자세히 보기 →
-                  </a>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">원자재 및 장비 공동구매 지원</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">고가 장비 공동 활용 시스템 구축</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-green-600 mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">테스트베드 및 공동 작업공간 제공</span>
+                  </li>
+                </ul>
+              </div>
+              
+              {/* 4. 정부 및 지자체 협력사업 */}
+              <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300">
+                <div class="flex items-start mb-6">
+                  <div class="bg-coral text-white rounded-lg p-3 mr-4">
+                    <i class="fas fa-handshake text-3xl"></i>
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">정부 및 지자체 협력사업</h3>
+                  </div>
                 </div>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">지역 산업 육성 정책 협력</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">정부 R&D 사업 공동 참여</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check-circle text-coral mt-1 mr-3 flex-shrink-0"></i>
+                    <span class="text-gray-700">지역 특화 산업 클러스터 구축</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
