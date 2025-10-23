@@ -81,7 +81,6 @@ const Header = () => (
           
           <a href="/news" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">소식</a>
           <a href="/support" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">문의</a>
-          <a href="/location" class="text-gray-700 hover:text-teal font-medium transition uppercase text-sm">오시는 길</a>
         </nav>
         
         {/* CTA 버튼 */}
@@ -129,7 +128,6 @@ const Header = () => (
         
         <a href="/news" class="block py-2 text-gray-700 hover:text-teal">소식</a>
         <a href="/support" class="block py-2 text-gray-700 hover:text-teal">문의</a>
-        <a href="/location" class="block py-2 text-gray-700 hover:text-teal">오시는 길</a>
       </nav>
     </div>
   </header>
@@ -3911,11 +3909,11 @@ app.get('/location', (c) => {
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="max-w-6xl mx-auto">
-            {/* 네이버 지도 */}
+            {/* 구글 지도 */}
             <div class="mb-12">
               <div class="rounded-2xl overflow-hidden shadow-2xl" style="height: 500px;">
                 <iframe 
-                  src="https://map.naver.com/p/embed/search/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253?c=15.00,0,0,0,dh"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3227.8987654321!2d128.3445678!3d36.1234567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDA3JzI0LjQiTiAxMjjCsDIwJzQwLjQiRQ!5e0!3m2!1sko!2skr!4v1234567890!5m2!1sko!2skr&q=%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84+%EA%B5%AC%EB%AF%B8%EC%8B%9C+%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C+253"
                   width="100%"
                   height="100%"
                   style="border:0;"
@@ -3943,12 +3941,12 @@ app.get('/location', (c) => {
                   </div>
                 </div>
                 <a 
-                  href="https://map.naver.com/p/search/%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253"
+                  href="https://www.google.com/maps/search/?api=1&query=%ED%95%9C%EA%B5%AD%20%EA%B2%BD%EC%83%81%EB%B6%81%EB%8F%84%20%EA%B5%AC%EB%AF%B8%EC%8B%9C%20%EC%82%B0%ED%98%B8%EB%8C%80%EB%A1%9C%20253"
                   target="_blank"
                   class="inline-flex items-center px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-medium"
                 >
                   <i class="fas fa-external-link-alt mr-2"></i>
-                  네이버 지도에서 보기
+                  구글 지도에서 보기
                 </a>
               </div>
 
