@@ -1924,7 +1924,7 @@ app.get('/members', (c) => {
                         <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)휴먼아이티</h3>
                         <p class="text-teal font-semibold">HUMAN IT</p>
                       </div>
-                      <span class="px-4 py-2 bg-teal/10 text-teal rounded-full text-sm font-bold">핵심 회원사</span>
+                      <span class="px-4 py-2 bg-teal/10 text-teal rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                       3D 프린팅 기술을 활용한 연구개발 및 최신 기술 트렌드를 선도하는 기업입니다.
@@ -2041,43 +2041,43 @@ app.get('/members', (c) => {
               </div>
 
               {/* 조합원 4: (주)와우쓰리디 */}
-              <div class="bg-gradient-to-br from-purple-900 to-pink-900 rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
+              <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group border-4 border-purple-500">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                  <div class="lg:col-span-2 bg-black/20 p-8 flex items-center justify-center order-2 lg:order-1">
+                  <div class="lg:col-span-2 bg-gradient-to-br from-purple-50 to-pink-50 p-8 flex items-center justify-center order-2 lg:order-1">
                     <img 
                       src="https://page.gensparksite.com/v1/base64_upload/1f0b843c259e4ab7f9a466d6e332460a" 
                       alt="와우쓰리디" 
                       class="w-full max-w-sm object-contain"
                     />
                   </div>
-                  <div class="lg:col-span-3 p-8 lg:p-12 text-white order-1 lg:order-2">
+                  <div class="lg:col-span-3 p-8 lg:p-12 order-1 lg:order-2">
                     <div class="flex items-start justify-between mb-6">
                       <div>
-                        <h3 class="text-3xl font-bold mb-2">(주)와우쓰리디</h3>
-                        <p class="text-pink-300 font-semibold">WOW3D MAKER SPACE</p>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)와우쓰리디</h3>
+                        <p class="text-purple-600 font-semibold">WOW3D MAKER SPACE</p>
                       </div>
-                      <span class="px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-full text-sm font-bold">특별회원</span>
+                      <span class="px-4 py-2 bg-purple-600 text-white rounded-full text-sm font-bold">특별회원</span>
                     </div>
-                    <p class="text-white/90 mb-6 leading-relaxed">
+                    <p class="text-gray-600 mb-6 leading-relaxed">
                       3D 프린터, 3D 홀로그래피 디스플레이 개발 및 교육 서비스를 제공하는 메이커 스페이스 운영 기업입니다.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                        <h4 class="font-bold mb-2 flex items-center">
-                          <i class="fas fa-wrench mr-2"></i>개발
+                      <div class="bg-purple-50 border-2 border-purple-200 rounded-xl p-4">
+                        <h4 class="font-bold mb-2 flex items-center text-gray-900">
+                          <i class="fas fa-wrench text-purple-600 mr-2"></i>개발
                         </h4>
-                        <ul class="text-sm space-y-1 text-white/80">
+                        <ul class="text-sm space-y-1 text-gray-700">
                           <li>- 3D Hologram Display</li>
                           <li>- 적층 가공제조 장비(MSLA)</li>
                           <li>- AI 데이터 가공 Software</li>
                           <li>- 산학연 공동 R&D</li>
                         </ul>
                       </div>
-                      <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4">
-                        <h4 class="font-bold mb-2 flex items-center">
-                          <i class="fas fa-graduation-cap mr-2"></i>교육
+                      <div class="bg-pink-50 border-2 border-pink-200 rounded-xl p-4">
+                        <h4 class="font-bold mb-2 flex items-center text-gray-900">
+                          <i class="fas fa-graduation-cap text-pink-600 mr-2"></i>교육
                         </h4>
-                        <ul class="text-sm space-y-1 text-white/80">
+                        <ul class="text-sm space-y-1 text-gray-700">
                           <li>- 4차산업 전문 교육기관</li>
                           <li>- 국가/국제 자격증 인증교육</li>
                           <li>- 노동부(HRD) 교육장</li>
@@ -2085,17 +2085,17 @@ app.get('/members', (c) => {
                         </ul>
                       </div>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 mb-6">
-                      <h4 class="font-bold mb-2 flex items-center">
-                        <i class="fas fa-cube mr-2"></i>FAB/LAB
+                    <div class="bg-purple-100 border-2 border-purple-300 rounded-xl p-4 mb-6">
+                      <h4 class="font-bold mb-2 flex items-center text-gray-900">
+                        <i class="fas fa-cube text-purple-600 mr-2"></i>FAB/LAB
                       </h4>
-                      <div class="text-sm text-white/80">
+                      <div class="text-sm text-gray-700">
                         <p>• Maker Space 제품 제작실 운영</p>
                         <p>• 기업 사례품(PR/Mock-Up) 제작지원</p>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-white/80">
-                      <i class="fas fa-map-marker-alt mr-2"></i>
+                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                      <i class="fas fa-map-marker-alt text-purple-600 mr-2"></i>
                       경북 구미시 산호대로 253 구미첨단의료기기타워 606호
                     </div>
                   </div>
