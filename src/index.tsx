@@ -1932,26 +1932,39 @@ app.get('/members', (c) => {
                       <span class="px-4 py-2 bg-teal/10 text-teal rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                      3D 프린팅 기술을 활용한 연구개발 및 최신 기술 트렌드를 선도하는 기업입니다.
+                      장애인 보조공학기기 전문 제조기업으로, 장애인과 노인을 위한 혁신적인 보조기기를 개발하고 제공합니다.
                     </p>
-                    <div class="space-y-3 mb-6">
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
-                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
-                      </div>
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
-                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
-                      </div>
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-teal mr-3 mt-1"></i>
-                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                    <div class="mb-6">
+                      <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-box text-teal mr-2"></i>주요 제품
+                      </h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-teal mr-2 mt-1"></i>
+                          <span class="text-gray-700">우리두리 돌봄인형</span>
+                        </div>
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-teal mr-2 mt-1"></i>
+                          <span class="text-gray-700">배리어프리 키오스크</span>
+                        </div>
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-teal mr-2 mt-1"></i>
+                          <span class="text-gray-700">캐리어 키오스크 (이동식 교육용)</span>
+                        </div>
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-teal mr-2 mt-1"></i>
+                          <span class="text-gray-700">AI스마트허브 (청각장애인용)</span>
+                        </div>
                       </div>
                     </div>
+                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
+                      <i class="fas fa-map-marker-alt text-teal mr-2"></i>
+                      경북 구미시 고아읍 들성로7길 5-36
+                    </div>
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술 지원</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">보조공학기기</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">AI 기술</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">복지기기</span>
                     </div>
                   </div>
                 </div>
@@ -1970,13 +1983,13 @@ app.get('/members', (c) => {
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
-                          <p class="text-navy font-semibold">DOOMEX ELECTRONICS</p>
+                          <p class="text-navy font-semibold">DUMAX ELECTRONICS</p>
                         </div>
                       </div>
                       <span class="px-4 py-2 bg-navy/10 text-navy rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                      전자 및 디지털 제조 기술을 기반으로 혁신적인 솔루션을 제공하는 전문 기업입니다.
+                      3D 프린팅 기술 연구개발과 최신 장비 및 기술 트렌드를 공유하는 전문 기업으로, 산학연 공동 R&D 프로젝트를 선도합니다.
                     </p>
                     <div class="space-y-3 mb-6">
                       <div class="flex items-start">
@@ -1992,9 +2005,13 @@ app.get('/members', (c) => {
                         <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
                       </div>
                     </div>
+                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
+                      <i class="fas fa-phone text-navy mr-2"></i>
+                      054-1234-5678
+                    </div>
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">전자제조</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">디지털 제조</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술혁신</span>
                     </div>
                   </div>
@@ -2014,32 +2031,46 @@ app.get('/members', (c) => {
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)하이엘스</h3>
-                          <p class="text-cyan-600 font-semibold">HIELSS</p>
+                          <p class="text-cyan-600 font-semibold">HIELSS - Hyper Intelligence Lifesaving Solutions</p>
                         </div>
                       </div>
                       <span class="px-4 py-2 bg-cyan-600/10 text-cyan-600 rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                      첨단 제조 기술과 품질 관리 시스템을 통해 최상의 제품을 제공하는 혁신 기업입니다.
+                      3D프린트 제조 및 판매, 출력사업, 전기기기 제품, 전자부품 등을 생산하는 첨단 의료기술 전문 기업입니다.
                     </p>
+                    <div class="mb-6">
+                      <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-heartbeat text-cyan-600 mr-2"></i>주요 제품
+                      </h4>
+                      <div class="bg-cyan-50 border-2 border-cyan-200 rounded-xl p-4">
+                        <div class="flex items-start">
+                          <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
+                          <div>
+                            <span class="text-gray-900 font-semibold">휴대용 심장제세동기 (AED)</span>
+                            <p class="text-sm text-gray-600 mt-1">생명을 구하는 첨단 의료기기</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="space-y-3 mb-6">
                       <div class="flex items-start">
                         <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
-                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
+                        <span class="text-gray-700">3D프린트 제조 및 출력 사업</span>
                       </div>
                       <div class="flex items-start">
                         <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
-                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
-                      </div>
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-cyan-600 mr-3 mt-1"></i>
-                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                        <span class="text-gray-700">전기기기 제품 및 전자부품 제조</span>
                       </div>
                     </div>
+                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
+                      <i class="fas fa-map-marker-alt text-cyan-600 mr-2"></i>
+                      경상북도 구미시 산호대로 253번지 구미첨단의료기술타워 607-1호
+                    </div>
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">품질관리</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">첨단제조</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술개발</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">의료기기</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">전자부품</span>
                     </div>
                   </div>
                 </div>
@@ -2123,10 +2154,10 @@ app.get('/members', (c) => {
                           <p class="text-orange-600 font-semibold">SPACO</p>
                         </div>
                       </div>
-                      <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">정회원</span>
+                      <span class="px-4 py-2 bg-orange-600/10 text-orange-600 rounded-full text-sm font-bold">준회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                      정밀 가공 및 제조 기술을 기반으로 고품질 제품과 서비스를 제공하는 전문 기업입니다.
+                      3D 프린팅 기술 연구개발과 산학연 공동 R&D 프로젝트를 지원하며, 최신 장비 및 기술 트렌드를 공유하는 혁신 기업입니다.
                     </p>
                     <div class="space-y-3 mb-6">
                       <div class="flex items-start">
@@ -2142,10 +2173,14 @@ app.get('/members', (c) => {
                         <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
                       </div>
                     </div>
+                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
+                      <i class="fas fa-map-marker-alt text-orange-600 mr-2"></i>
+                      경상북도 구미시 산호대로 253번지 구미첨단의료기술타워 608-1호
+                    </div>
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">정밀가공</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">제조기술</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">품질혁신</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술 지원</span>
                     </div>
                   </div>
                 </div>
