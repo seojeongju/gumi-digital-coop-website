@@ -617,22 +617,97 @@ app.get('/', async (c) => {
       </section>
       
       {/* 클라이언트/파트너 섹션 */}
-      <section class="py-16 bg-gray-50">
+      <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
-          <div class="text-center mb-12">
-            <h3 class="text-2xl font-bold text-gray-900 mb-8">협동조합 주요 파트너</h3>
-          </div>
-          
-          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
-            {/* 파트너 로고 플레이스홀더 */}
-            {[1, 2, 3, 4, 5].map((item) => (
-              <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition flex items-center justify-center h-24">
+          <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+              <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">협동조합 주요 파트너</h2>
+              <p class="text-gray-600 text-lg">지역 산업 발전을 위해 함께하는 협력 기관</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+              {/* 1. 경상북도 */}
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-landmark text-3xl text-white"></i>
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 text-center mb-1">경상북도</h4>
+                <p class="text-xs text-gray-500 text-center">Gyeongsangbuk-do</p>
+              </div>
+
+              {/* 2. 구미시 */}
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-20 h-20 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-city text-3xl text-white"></i>
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 text-center mb-1">구미시</h4>
+                <p class="text-xs text-gray-500 text-center">Gumi City</p>
+              </div>
+
+              {/* 3. 중소기업협동조합 */}
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-handshake text-3xl text-white"></i>
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소기업협동조합</h4>
+                <p class="text-xs text-gray-500 text-center">SME Cooperative</p>
+              </div>
+
+              {/* 4. 과학기술정보통신부 */}
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-20 h-20 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-satellite-dish text-3xl text-white"></i>
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">과학기술정보통신부</h4>
+                <p class="text-xs text-gray-500 text-center">MSIT</p>
+              </div>
+
+              {/* 5. 중소벤처기업부 */}
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-20 h-20 bg-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-rocket text-3xl text-white"></i>
+                  </div>
+                </div>
+                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소벤처기업부</h4>
+                <p class="text-xs text-gray-500 text-center">MSS</p>
+              </div>
+            </div>
+
+            {/* 협력 내용 요약 */}
+            <div class="mt-16 bg-gradient-to-r from-navy/5 via-teal/5 to-navy/5 rounded-2xl p-8">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
-                  <i class="fas fa-industry text-3xl text-gray-400 mb-2"></i>
-                  <p class="text-xs text-gray-500">Partner {item}</p>
+                  <div class="w-16 h-16 bg-teal rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-hands-helping text-2xl text-white"></i>
+                  </div>
+                  <h4 class="font-bold text-gray-900 mb-2">지역 산업 육성</h4>
+                  <p class="text-gray-600 text-sm">지역 경제 활성화를 위한 정책 협력 및 지원</p>
+                </div>
+                <div class="text-center">
+                  <div class="w-16 h-16 bg-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-lightbulb text-2xl text-white"></i>
+                  </div>
+                  <h4 class="font-bold text-gray-900 mb-2">기술 혁신 지원</h4>
+                  <p class="text-gray-600 text-sm">R&D 프로젝트 및 기술 개발 사업 지원</p>
+                </div>
+                <div class="text-center">
+                  <div class="w-16 h-16 bg-purple rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-network-wired text-2xl text-white"></i>
+                  </div>
+                  <h4 class="font-bold text-gray-900 mb-2">네트워크 구축</h4>
+                  <p class="text-gray-600 text-sm">산학연 협력 네트워크 및 클러스터 조성</p>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
