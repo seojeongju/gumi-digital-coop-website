@@ -1915,9 +1915,9 @@ app.get('/members', (c) => {
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_b34f4765-e59a-45a9-8427-33226e074cf5" 
+                          src="https://page.gensparksite.com/v1/base64_upload/a083f176d0e758352a6c24af9ebea7fa" 
                           alt="휴먼아이티 로고" 
-                          class="w-40 object-contain"
+                          class="w-64 object-contain"
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">(주)휴먼아이티</h3>
