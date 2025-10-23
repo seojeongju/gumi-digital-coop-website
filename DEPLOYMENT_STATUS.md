@@ -169,7 +169,8 @@ Check your database UUID and try again.
 
 ### Git 커밋 히스토리
 ```
-5cd6868 Remove D1 database configuration to fix deployment error
+880fee1 Add D1 database binding removal guide
+7ef9617 Remove D1 database configuration to fix deployment error
 3529827 Update NEWS section title and description
 [이전 커밋들...]
 ```
@@ -221,17 +222,21 @@ Check your database UUID and try again.
 
 ## 📝 다음 세션 작업 순서
 
-### 🎯 1단계: D1 바인딩 제거 (최우선)
+### 🎯 1단계: D1 바인딩 제거 (최우선) ✨
 
-**필요한 스크린샷:**
-1. Cloudflare Pages > gumi-digital-coop-website > Settings > Functions 화면
-2. D1 database bindings 섹션 (있다면)
+**상세 가이드 제공 완료:**
+- ✅ `D1_BINDING_FIX_GUIDE.md` 작성 완료
+- ✅ 단계별 스크린샷 가이드 포함
+- ✅ 트러블슈팅 섹션 포함
+- ✅ GitHub에 푸시 완료
 
-**작업:**
-1. 스크린샷 공유
-2. D1 바인딩 제거
-3. 저장 후 재배포
-4. 배포 결과 스크린샷 공유
+**작업 순서 (가이드 참고):**
+1. 📖 `D1_BINDING_FIX_GUIDE.md` 파일 열기
+2. 🌐 Cloudflare Dashboard 접속
+3. ⚙️ Settings > Functions > D1 바인딩 제거
+4. 💾 변경사항 저장
+5. 🚀 재배포 (Retry deployment 또는 GitHub 빈 커밋)
+6. ✅ 배포 성공 확인
 
 ### 🎯 2단계: 배포 성공 확인
 
@@ -335,7 +340,8 @@ npx wrangler pages deploy dist --project-name gumi-digital-coop-website
 
 ---
 
-**마지막 업데이트**: 2025-10-23 05:09 (KST)
+**마지막 업데이트**: 2025-10-23 05:20 (KST)
 **작성자**: AI Assistant
-**현재 상태**: ⚠️ D1 Database UUID 오류로 배포 실패 - Settings에서 D1 바인딩 제거 필요
-**다음 액션**: Cloudflare Pages > Settings > Functions > D1 바인딩 제거 후 재배포
+**현재 상태**: ⚠️ D1 Database UUID 오류로 배포 실패 - 상세 가이드 제공 완료
+**다음 액션**: D1_BINDING_FIX_GUIDE.md 참고하여 Cloudflare Pages Dashboard에서 D1 바인딩 제거
+**가이드 문서**: `/home/user/webapp/D1_BINDING_FIX_GUIDE.md`
