@@ -32,7 +32,7 @@
     - 작성일, 작성자, 조회수
 - **커밋**: `bcacd58` - "Add /news page with database integration"
 
-### 4. `/news/:id` 공지사항 상세 페이지 추가 ✅ (NEW!)
+### 4. `/news/:id` 공지사항 상세 페이지 추가 ✅
 - **라우트**: `/news/:id` (예: `/news/1`)
 - **기능**:
   - 공지사항 전체 내용 표시
@@ -49,9 +49,39 @@
   - 오류 처리 (데이터베이스 에러)
 - **커밋**: `6e82f94` - "Add /news/:id detail page with view counter and navigation"
 
-### 5. 배포 완료 ✅
-- **Production URL**: `https://48bbd4ff.gumi-digital-coop-website.pages.dev`
-- **최신 커밋**: `6e82f94`
+### 5. 서비스 카드 배경 이미지 개선 ✅
+- **메인 페이지 및 `/about` 페이지의 서비스 카드**
+- **변경 사항**:
+  - 배경 이미지의 blur 효과 제거 (blur-sm 삭제)
+  - 밝기 조정 제거 (brightness-[0.4] 삭제)
+  - 오버레이 투명도 조정 (70% → 50%)
+  - 더 선명하고 깔끔한 배경 이미지 표시
+- **커밋**: `7cf0e55` - "Remove blur effect and reduce overlay opacity for clearer background images"
+
+### 6. `/about/organization` 조직 및 운영구조 페이지 추가 ✅
+- **라우트**: `/about/organization`
+- **기능**:
+  - Hero Section (조직 및 운영구조)
+  - **HTML/CSS 기반 조직도 다이어그램**:
+    - 중앙 로고 (조직 및 운영 구조)
+    - 3단 구조:
+      * 상단: 이사회 (Board), 총회 (General Assembly), 감사 (Auditor)
+      * 중단: 이사장 (Chairman)
+      * 하단: 운영위원회, 기술전문분과, 교육연구분과, 사무국
+    - 각 카드: 아이콘, 제목, 설명
+    - 반응형 디자인 (Tailwind CSS)
+    - 모든 해상도에서 선명한 표시
+  - 주요 조직 설명 섹션
+  - 실행조직 및 기능 설명
+  - 운영 원칙 섹션
+- **커밋**: 
+  - `863f631` - "Add organization structure page (/about/organization)"
+  - `c1a5f64` - "Replace low-resolution organization chart image with HTML/CSS diagram" (최신!)
+- **배경**: 기존 이미지 해상도가 낮아 흐릿하게 표시되는 문제를 HTML/CSS 다이어그램으로 해결
+
+### 7. 배포 완료 ✅
+- **Production URL**: `https://gumi-digital-coop-website.pages.dev`
+- **최신 커밋**: `c1a5f64`
 - **배포 방식**: Git push를 통한 자동 배포 (Cloudflare Pages)
 
 ---
@@ -92,8 +122,9 @@ https://48bbd4ff.gumi-digital-coop-website.pages.dev
 - ✅ `/` - 메인 페이지
 - ✅ `/about` - 조합 소개
 - ✅ `/about/greeting` - 조합장 인사말
+- ✅ `/about/organization` - 조직 및 운영구조 (NEW!)
 - ✅ `/news` - 소식/공지사항 목록
-- ✅ `/news/:id` - 공지사항 상세 페이지 (NEW!)
+- ✅ `/news/:id` - 공지사항 상세 페이지
 
 ### API 엔드포인트
 - ✅ `/api/notices` - 공지사항 목록 API
@@ -229,11 +260,11 @@ Environment: Production
 ## 📝 최근 커밋 히스토리
 
 ```
-6e82f94 - Add /news/:id detail page with view counter and navigation (최신)
-bfa5439 - Add session summary documentation
-bcacd58 - Add /news page with database integration
-da4e91d - Trigger redeployment after D1 binding reconfiguration
-87ec820 - Add urgent fix guide for D1 binding configuration
+c1a5f64 - Replace low-resolution organization chart image with HTML/CSS diagram (최신!)
+7cf0e55 - Remove blur effect and reduce overlay opacity for clearer background images
+863f631 - Add organization structure page (/about/organization)
+ca5af9a - Fix blur effect using Tailwind CSS classes instead of inline filter
+3966f85 - Add background images to service cards with blur effect
 ```
 
 ---
@@ -352,7 +383,7 @@ da4e91d - Trigger redeployment after D1 binding reconfiguration
 
 ### 1. 웹사이트 접속
 ```
-https://48bbd4ff.gumi-digital-coop-website.pages.dev
+https://gumi-digital-coop-website.pages.dev
 ```
 
 ### 2. D1 Console에서 데이터 확인
@@ -391,16 +422,19 @@ SELECT COUNT(*) FROM members;
 - **프로젝트 이름**: 구미디지털적층산업사업협동조합 홈페이지
 - **GitHub Repository**: https://github.com/seojeongju/gumi-digital-coop-website
 - **Cloudflare Project**: gumi-digital-coop-website
-- **Production URL**: https://48bbd4ff.gumi-digital-coop-website.pages.dev
+- **Production URL**: https://gumi-digital-coop-website.pages.dev
 - **개발 시작**: 2025년 1월
 - **현재 버전**: 1.0.0-beta
-- **완성도**: 약 50% (메인, 조합소개, 소식/상세 페이지 완료)
+- **완성도**: 약 55% (메인, 조합소개, 조직구조, 소식/상세 페이지 완료)
 
 ---
 
 **마지막 업데이트**: 2025-10-23  
 **세션 시작**: 2025-10-23 (오후 세션)  
-**완료 작업**: `/news/:id` 공지사항 상세 페이지 구현 완료 ✅  
+**최근 완료 작업**: 
+- ✅ 조직 및 운영구조 페이지 HTML/CSS 다이어그램 구현
+- ✅ 서비스 카드 배경 이미지 선명도 개선
+- ✅ `/news/:id` 공지사항 상세 페이지 구현 완료
 **다음 작업**: `/members` 조합원 목록 페이지 구현
 
 ---
