@@ -2003,7 +2003,7 @@ app.get('/members', (c) => {
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://page.gensparksite.com/v1/base64_upload/b9ff8920a27cb55fce522ccf139fc1d5" 
+                          src="https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_b32f9de6-7a78-4155-9238-251a676f151e" 
                           alt="하이엘스 로고" 
                           class="w-40 object-contain"
                         />
