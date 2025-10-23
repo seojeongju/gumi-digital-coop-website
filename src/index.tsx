@@ -315,51 +315,56 @@ app.get('/', async (c) => {
               사업협동조합의 서비스는 모든 산업 분야의 기술 및 경영 전문가들이<br />
               고객과 회원 기업의 가치 향상 및 비즈니스 성공을 지원합니다
             </p>
-            <a href="/services" class="inline-block mt-4 text-teal hover:underline">
-              + VIEW MORE
-            </a>
           </div>
           
-          {/* 서비스 아이콘 그리드 */}
-          <div class="grid grid-cols-2 md:grid-cols-5 gap-8 max-w-5xl mx-auto">
-            {/* AI 개발 */}
-            <div class="text-center group cursor-pointer">
-              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
-                <i class="fas fa-robot text-3xl text-teal"></i>
+          {/* 서비스 카드 그리드 */}
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* 3D 프린팅 서비스 */}
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
+              <div class="h-48 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
+                <i class="fas fa-print text-white text-7xl"></i>
               </div>
-              <h3 class="font-bold text-gray-900 text-sm">AI 개발</h3>
+              <div class="p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">3D 프린팅 서비스</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                  FDM, SLA, SLS 등 다양한 적층제조 기술을 활용한 시제품 제작부터 소량 생산까지
+                </p>
+                <a href="/services/3d-printing" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
+                  자세히 보기 →
+                </a>
+              </div>
             </div>
             
-            {/* 데이터 분석 */}
-            <div class="text-center group cursor-pointer">
-              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
-                <i class="fas fa-chart-line text-3xl text-teal"></i>
+            {/* 설계 및 모델링 */}
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
+              <div class="h-48 bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center">
+                <i class="fas fa-compass-drafting text-white text-7xl"></i>
               </div>
-              <h3 class="font-bold text-gray-900 text-sm">데이터 분석</h3>
+              <div class="p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">설계 및 모델링</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                  3D CAD 설계, 역설계, 최적화 설계 등 전문 엔지니어링 서비스 제공
+                </p>
+                <a href="/services/design" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
+                  자세히 보기 →
+                </a>
+              </div>
             </div>
             
-            {/* 클라우드 */}
-            <div class="text-center group cursor-pointer">
-              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
-                <i class="fas fa-cloud text-3xl text-teal"></i>
+            {/* 후가공 서비스 */}
+            <div class="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer">
+              <div class="h-48 bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <i class="fas fa-tools text-white text-7xl"></i>
               </div>
-              <h3 class="font-bold text-gray-900 text-sm">클라우드</h3>
-            </div>
-            
-            {/* 디자인/설계 */}
-            <div class="text-center group cursor-pointer">
-              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
-                <i class="fas fa-pencil-ruler text-3xl text-teal"></i>
+              <div class="p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">후가공 서비스</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                  표면 처리, 도장, 조립, 품질 검사 등 완벽한 마무리 작업 지원
+                </p>
+                <a href="/services/post-processing" class="inline-flex items-center text-teal font-medium hover:underline group-hover:translate-x-2 transition-transform">
+                  자세히 보기 →
+                </a>
               </div>
-              <h3 class="font-bold text-gray-900 text-sm">디자인/설계</h3>
-            </div>
-            
-            {/* IT 아웃소싱 */}
-            <div class="text-center group cursor-pointer">
-              <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full shadow-md flex items-center justify-center group-hover:shadow-xl transition">
-                <i class="fas fa-handshake text-3xl text-teal"></i>
-              </div>
-              <h3 class="font-bold text-gray-900 text-sm">IT 아웃소싱</h3>
             </div>
           </div>
         </div>
