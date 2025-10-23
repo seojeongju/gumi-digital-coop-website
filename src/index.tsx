@@ -322,13 +322,13 @@ app.get('/', async (c) => {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
             <div class="relative rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-              {/* 배경 이미지 (흐림 효과) */}
+              {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d');"
               ></div>
               {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-teal/70 to-navy/70"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-teal/50 to-navy/50"></div>
               
               {/* 콘텐츠 */}
               <div class="relative z-10">
@@ -359,13 +359,13 @@ app.get('/', async (c) => {
             
             {/* 2. 인력 양성 및 교육·세미나 */}
             <div class="relative rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-              {/* 배경 이미지 (흐림 효과) */}
+              {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba');"
               ></div>
               {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-purple/70 to-pink-600/70"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-purple/50 to-pink-600/50"></div>
               
               {/* 콘텐츠 */}
               <div class="relative z-10">
@@ -396,13 +396,13 @@ app.get('/', async (c) => {
             
             {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
             <div class="relative rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-              {/* 배경 이미지 (흐림 효과) */}
+              {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731');"
               ></div>
               {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-green-600/70 to-teal-700/70"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-green-600/50 to-teal-700/50"></div>
               
               {/* 콘텐츠 */}
               <div class="relative z-10">
@@ -433,13 +433,13 @@ app.get('/', async (c) => {
             
             {/* 4. 정부 및 지자체 협력사업 */}
             <div class="relative rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-              {/* 배경 이미지 (흐림 효과) */}
+              {/* 배경 이미지 */}
               <div 
-                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                 style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362');"
               ></div>
               {/* 그라데이션 오버레이 */}
-              <div class="absolute inset-0 bg-gradient-to-br from-coral/70 to-red-600/70"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-coral/50 to-red-600/50"></div>
               
               {/* 콘텐츠 */}
               <div class="relative z-10">
@@ -733,13 +733,13 @@ app.get('/about', (c) => {
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
               <div class="relative rounded-2xl p-8 border-l-4 border-teal hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-                {/* 배경 이미지 (흐림 효과) */}
+                {/* 배경 이미지 */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                   style="background-image: url('https://page.gensparksite.com/v1/base64_upload/e985d0f133cca39aabb147ed71d9452d');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
-                <div class="absolute inset-0 bg-gradient-to-br from-teal/70 to-navy/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-teal/50 to-navy/50"></div>
                 
                 {/* 콘텐츠 */}
                 <div class="relative z-10">
@@ -770,13 +770,13 @@ app.get('/about', (c) => {
               
               {/* 2. 인력 양성 및 교육·세미나 */}
               <div class="relative rounded-2xl p-8 border-l-4 border-purple hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-                {/* 배경 이미지 (흐림 효과) */}
+                {/* 배경 이미지 */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                   style="background-image: url('https://page.gensparksite.com/v1/base64_upload/02f72688e045858d8dcddfb723b006ba');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
-                <div class="absolute inset-0 bg-gradient-to-br from-purple/70 to-pink-600/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-purple/50 to-pink-600/50"></div>
                 
                 {/* 콘텐츠 */}
                 <div class="relative z-10">
@@ -807,13 +807,13 @@ app.get('/about', (c) => {
               
               {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
               <div class="relative rounded-2xl p-8 border-l-4 border-green-600 hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-                {/* 배경 이미지 (흐림 효과) */}
+                {/* 배경 이미지 */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                   style="background-image: url('https://page.gensparksite.com/v1/base64_upload/1b6485fc8a9ba3ba29be7b5a52d27731');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
-                <div class="absolute inset-0 bg-gradient-to-br from-green-600/70 to-teal-700/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-green-600/50 to-teal-700/50"></div>
                 
                 {/* 콘텐츠 */}
                 <div class="relative z-10">
@@ -844,13 +844,13 @@ app.get('/about', (c) => {
               
               {/* 4. 정부 및 지자체 협력사업 */}
               <div class="relative rounded-2xl p-8 border-l-4 border-coral hover:shadow-xl transition-all duration-300 overflow-hidden group" style="min-height: 320px;">
-                {/* 배경 이미지 (흐림 효과) */}
+                {/* 배경 이미지 */}
                 <div 
-                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105 blur-sm brightness-[0.4]"
+                  class="absolute inset-0 bg-cover bg-center transition-all duration-500 group-hover:scale-105"
                   style="background-image: url('https://page.gensparksite.com/v1/base64_upload/b6951dd5fc1e6e28ac54dff2aaef8362');"
                 ></div>
                 {/* 그라데이션 오버레이 */}
-                <div class="absolute inset-0 bg-gradient-to-br from-coral/70 to-red-600/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-coral/50 to-red-600/50"></div>
                 
                 {/* 콘텐츠 */}
                 <div class="relative z-10">
