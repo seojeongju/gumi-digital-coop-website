@@ -12,5 +12,11 @@
       "database_name": "gumi-coop-db",
       "database_id": "5f9b2685-5cc9-4f34-b4e7-ba108ce4e213"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "RESOURCES_BUCKET",
+      "bucket_name": "gumi-coop-resources"
+    }
   ]
 }

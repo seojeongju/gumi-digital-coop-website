@@ -6,6 +6,7 @@ import { setCookie, getCookie } from 'hono/cookie'
 
 type Bindings = {
   DB: D1Database
+  RESOURCES_BUCKET: R2Bucket
   ADMIN_PASSWORD?: string
   JWT_SECRET?: string
 }
@@ -5099,10 +5100,14 @@ app.get('/resources', async (c) => {
                           </div>
                         </div>
                       </div>
-                      <button class={`ml-4 px-6 py-3 bg-${fileInfo.color} text-white rounded-lg hover:bg-opacity-90 transition font-bold`}>
+                      <a 
+                        href={resource.file_url === '#' ? '#' : `/api/resources/${resource.id}/download`}
+                        class={`ml-4 px-6 py-3 bg-${fileInfo.color} text-white rounded-lg hover:bg-opacity-90 transition font-bold inline-block ${resource.file_url === '#' ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        onclick={resource.file_url === '#' ? 'return false;' : ''}
+                      >
                         <i class="fas fa-download mr-2"></i>
-                        다운로드
-                      </button>
+                        {resource.file_url === '#' ? '준비중' : '다운로드'}
+                      </a>
                     </div>
                   </div>
                 )
@@ -5505,6 +5510,247 @@ app.get('/admin/logout', (c) => {
   return c.redirect('/admin/login')
 })
 
+// 자료 관리 페이지 (인증 필요)
+app.get('/admin/resources', authMiddleware, async (c) => {
+  const { DB } = c.env
+  
+  // 모든 자료 가져오기
+  const resources = await DB.prepare(`
+    SELECT * FROM resources 
+    ORDER BY created_at DESC
+  `).all()
+  
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>자료 관리 - 관리자</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </head>
+      <body class="bg-gray-50">
+        {/* 헤더 */}
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+          <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold text-gray-900">
+                <i class="fas fa-folder-open mr-2 text-teal"></i>
+                자료 관리
+              </h1>
+              <div class="flex items-center gap-4">
+                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
+                  <i class="fas fa-home mr-1"></i>
+                  대시보드
+                </a>
+                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                  로그아웃
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* 메인 컨텐츠 */}
+        <main class="container mx-auto px-4 py-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* 왼쪽: 자료 목록 */}
+            <div class="lg:col-span-2">
+              <div class="bg-white rounded-xl shadow-sm p-6">
+                <h2 class="text-xl font-bold mb-6">등록된 자료 목록</h2>
+                
+                {resources.results && resources.results.length > 0 ? (
+                  <div class="space-y-4">
+                    {resources.results.map((resource: any) => (
+                      <div key={resource.id} class="border rounded-lg p-4 hover:border-teal transition">
+                        <div class="flex items-start justify-between">
+                          <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                              <span class="px-3 py-1 bg-teal/10 text-teal rounded-full text-xs font-bold">
+                                {resource.category}
+                              </span>
+                              <span class="text-xs text-gray-500">
+                                {new Date(resource.created_at).toLocaleDateString('ko-KR')}
+                              </span>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-1">{resource.title}</h3>
+                            <p class="text-sm text-gray-600 mb-2">{resource.description}</p>
+                            <div class="flex items-center gap-4 text-xs text-gray-500">
+                              <span><i class="fas fa-file mr-1"></i>{resource.file_type}</span>
+                              <span><i class="fas fa-weight mr-1"></i>{resource.file_size}</span>
+                              <span><i class="fas fa-download mr-1"></i>{resource.download_count}회</span>
+                            </div>
+                          </div>
+                          <button 
+                            onclick={`deleteResource(${resource.id}, '${resource.title}')`}
+                            class="ml-4 px-3 py-1 text-red-600 hover:bg-red-50 rounded transition"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p class="text-gray-500 text-center py-8">등록된 자료가 없습니다.</p>
+                )}
+              </div>
+            </div>
+
+            {/* 오른쪽: 업로드 폼 */}
+            <div class="lg:col-span-1">
+              <div class="bg-white rounded-xl shadow-sm p-6 sticky top-24">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">자료 업로드</h3>
+                
+                <form id="uploadForm" enctype="multipart/form-data" class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      카테고리 *
+                    </label>
+                    <select 
+                      id="category" 
+                      name="category" 
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
+                    >
+                      <option value="조합 소개서">조합 소개서</option>
+                      <option value="신청서 양식">신청서 양식</option>
+                      <option value="기술 자료">기술 자료</option>
+                      <option value="교육 자료">교육 자료</option>
+                      <option value="사업 안내">사업 안내</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      제목 *
+                    </label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      required
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
+                      placeholder="자료 제목을 입력하세요"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      설명
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      rows="3"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
+                      placeholder="자료에 대한 설명을 입력하세요"
+                    ></textarea>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      파일 선택 *
+                    </label>
+                    <input
+                      type="file"
+                      id="file"
+                      name="file"
+                      required
+                      accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx"
+                      class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
+                    />
+                    <p class="text-xs text-gray-500 mt-1">
+                      지원 형식: PDF, Word, PowerPoint, Excel
+                    </p>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    class="w-full py-3 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition"
+                  >
+                    <i class="fas fa-upload mr-2"></i>
+                    업로드
+                  </button>
+                </form>
+
+                <div id="uploadStatus" class="mt-4 hidden"></div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        {/* JavaScript */}
+        <script dangerouslySetInnerHTML={{__html: `
+          // 파일 업로드
+          document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const statusDiv = document.getElementById('uploadStatus');
+            
+            statusDiv.className = 'mt-4 p-4 rounded-lg bg-blue-50 text-blue-800';
+            statusDiv.textContent = '업로드 중...';
+            statusDiv.classList.remove('hidden');
+            
+            try {
+              const response = await fetch('/api/resources/upload', {
+                method: 'POST',
+                body: formData
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                statusDiv.className = 'mt-4 p-4 rounded-lg bg-green-50 text-green-800';
+                statusDiv.textContent = '✓ ' + data.message;
+                
+                // 폼 초기화
+                e.target.reset();
+                
+                // 3초 후 페이지 새로고침
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              } else {
+                statusDiv.className = 'mt-4 p-4 rounded-lg bg-red-50 text-red-800';
+                statusDiv.textContent = '✗ ' + data.error;
+              }
+            } catch (error) {
+              statusDiv.className = 'mt-4 p-4 rounded-lg bg-red-50 text-red-800';
+              statusDiv.textContent = '✗ 업로드 중 오류가 발생했습니다.';
+            }
+          });
+          
+          // 자료 삭제
+          window.deleteResource = async function(id, title) {
+            if (!confirm(\`"\${title}" 자료를 삭제하시겠습니까?\`)) {
+              return;
+            }
+            
+            try {
+              const response = await fetch(\`/api/resources/\${id}\`, {
+                method: 'DELETE'
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert('자료가 삭제되었습니다.');
+                window.location.reload();
+              } else {
+                alert('삭제 실패: ' + data.error);
+              }
+            } catch (error) {
+              alert('삭제 중 오류가 발생했습니다.');
+            }
+          };
+        `}} />
+      </body>
+    </html>
+  )
+})
+
 // 관리자 대시보드 (인증 필요)
 app.get('/admin/dashboard', authMiddleware, async (c) => {
   const { DB } = c.env
@@ -5543,6 +5789,10 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                 <a href="/" class="text-gray-600 hover:text-teal transition">
                   <i class="fas fa-home mr-2"></i>
                   홈페이지
+                </a>
+                <a href="/admin/resources" class="px-4 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition">
+                  <i class="fas fa-folder-open mr-2"></i>
+                  자료 관리
                 </a>
                 <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
                   <i class="fas fa-sign-out-alt mr-2"></i>
@@ -5935,6 +6185,131 @@ app.get('/api/notices', async (c) => {
     return c.json({ success: true, data: result.results })
   } catch (e) {
     return c.json({ success: false, error: 'Database error' }, 500)
+  }
+})
+
+// 파일 업로드 API (관리자 전용)
+app.post('/api/resources/upload', async (c) => {
+  const { RESOURCES_BUCKET, DB } = c.env
+  
+  try {
+    const formData = await c.req.formData()
+    const file = formData.get('file') as File
+    const category = formData.get('category') as string
+    const title = formData.get('title') as string
+    const description = formData.get('description') as string
+    
+    if (!file || !category || !title) {
+      return c.json({ success: false, error: '필수 필드가 누락되었습니다.' }, 400)
+    }
+    
+    // 파일 확장자 추출
+    const fileName = file.name
+    const fileExtension = fileName.split('.').pop()?.toUpperCase() || ''
+    const fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB'
+    
+    // R2에 파일 업로드 (고유 키 생성)
+    const timestamp = Date.now()
+    const fileKey = `resources/${timestamp}_${fileName}`
+    
+    await RESOURCES_BUCKET.put(fileKey, file.stream(), {
+      httpMetadata: {
+        contentType: file.type,
+      },
+    })
+    
+    // 공개 URL 생성 (R2 버킷이 public access로 설정되어 있다면)
+    const publicUrl = `https://pub-YOUR_ACCOUNT_ID.r2.dev/${fileKey}`
+    
+    // 데이터베이스에 자료 정보 저장
+    await DB.prepare(`
+      INSERT INTO resources (category, title, description, file_type, file_url, file_size, download_count)
+      VALUES (?, ?, ?, ?, ?, ?, 0)
+    `).bind(category, title, description, fileExtension, publicUrl, fileSize).run()
+    
+    return c.json({ 
+      success: true, 
+      message: '파일이 성공적으로 업로드되었습니다.',
+      fileKey,
+      publicUrl
+    })
+  } catch (error) {
+    console.error('Upload error:', error)
+    return c.json({ success: false, error: '파일 업로드 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// 파일 다운로드 API (다운로드 카운트 증가)
+app.get('/api/resources/:id/download', async (c) => {
+  const { RESOURCES_BUCKET, DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    // 자료 정보 조회
+    const resource = await DB.prepare(`
+      SELECT * FROM resources WHERE id = ?
+    `).bind(id).first()
+    
+    if (!resource) {
+      return c.json({ success: false, error: '자료를 찾을 수 없습니다.' }, 404)
+    }
+    
+    // 다운로드 카운트 증가
+    await DB.prepare(`
+      UPDATE resources SET download_count = download_count + 1 WHERE id = ?
+    `).bind(id).run()
+    
+    // 파일 키 추출 (URL에서)
+    const fileKey = resource.file_url.split('/').slice(-2).join('/')
+    
+    // R2에서 파일 가져오기
+    const object = await RESOURCES_BUCKET.get(fileKey)
+    
+    if (!object) {
+      return c.json({ success: false, error: '파일을 찾을 수 없습니다.' }, 404)
+    }
+    
+    // 파일 스트림 반환
+    return new Response(object.body, {
+      headers: {
+        'Content-Type': object.httpMetadata?.contentType || 'application/octet-stream',
+        'Content-Disposition': `attachment; filename="${resource.title}.${resource.file_type.toLowerCase()}"`,
+      },
+    })
+  } catch (error) {
+    console.error('Download error:', error)
+    return c.json({ success: false, error: '다운로드 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// 자료 삭제 API (관리자 전용)
+app.delete('/api/resources/:id', async (c) => {
+  const { RESOURCES_BUCKET, DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    // 자료 정보 조회
+    const resource = await DB.prepare(`
+      SELECT * FROM resources WHERE id = ?
+    `).bind(id).first()
+    
+    if (!resource) {
+      return c.json({ success: false, error: '자료를 찾을 수 없습니다.' }, 404)
+    }
+    
+    // R2에서 파일 삭제
+    const fileKey = resource.file_url.split('/').slice(-2).join('/')
+    await RESOURCES_BUCKET.delete(fileKey)
+    
+    // 데이터베이스에서 삭제
+    await DB.prepare(`
+      DELETE FROM resources WHERE id = ?
+    `).bind(id).run()
+    
+    return c.json({ success: true, message: '자료가 삭제되었습니다.' })
+  } catch (error) {
+    console.error('Delete error:', error)
+    return c.json({ success: false, error: '삭제 중 오류가 발생했습니다.' }, 500)
   }
 })
 
