@@ -5641,10 +5641,13 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                     <label for="isPinned" class="text-sm text-gray-700 font-medium">상단 고정</label>
                   </div>
 
-                  <div class="flex gap-2 pt-4 border-t">
+                  <div class="flex gap-2 pt-4 border-t border-gray-200">
                     <button 
                       type="submit"
-                      class="flex-1 py-3 bg-gradient-to-r from-teal to-cyan-600 text-white rounded-lg hover:opacity-90 transition font-bold shadow-lg"
+                      class="flex-1 py-3 rounded-lg font-bold shadow-lg transition"
+                      style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                      onmouseover="this.style.opacity='0.9'"
+                      onmouseout="this.style.opacity='1'"
                     >
                       <i class="fas fa-save mr-2"></i>
                       저장하기
@@ -5652,7 +5655,10 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                     <button 
                       type="button"
                       onclick="resetForm()"
-                      class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium"
+                      class="px-6 py-3 rounded-lg font-medium transition"
+                      style="background-color: #e5e7eb; color: #374151;"
+                      onmouseover="this.style.backgroundColor='#d1d5db'"
+                      onmouseout="this.style.backgroundColor='#e5e7eb'"
                     >
                       <i class="fas fa-times mr-2"></i>
                       취소
@@ -5682,6 +5688,72 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
             }
           });
 
+          // 전역 함수 선언 (onclick 속성에서 사용 가능하도록)
+          window.showCreateForm = function() {
+            resetForm();
+            document.getElementById('formTitle').textContent = '새 소식 작성';
+          };
+
+          window.editNotice = async function(id) {
+            try {
+              const response = await fetch(\`/api/notices?id=\${id}\`);
+              const data = await response.json();
+              
+              if (data.success && data.data.length > 0) {
+                const notice = data.data[0];
+                document.getElementById('noticeId').value = notice.id;
+                document.getElementById('category').value = notice.category;
+                document.getElementById('title').value = notice.title;
+                document.getElementById('author').value = notice.author || '';
+                document.getElementById('isPinned').checked = notice.is_pinned;
+                quill.root.innerHTML = notice.content;
+                document.getElementById('formTitle').textContent = '소식 수정';
+                
+                // 폼으로 스크롤
+                document.getElementById('noticeForm').scrollIntoView({ behavior: 'smooth' });
+              } else {
+                alert('소식을 찾을 수 없습니다.');
+              }
+            } catch (error) {
+              console.error('Edit error:', error);
+              alert('소식을 불러오는데 실패했습니다.');
+            }
+          };
+
+          window.deleteNotice = async function(id, title) {
+            if (!confirm(\`"\${title}" 소식을 삭제하시겠습니까?\`)) {
+              return;
+            }
+            
+            try {
+              const response = await fetch(\`/api/admin/notices/\${id}\`, {
+                method: 'DELETE'
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert('소식이 삭제되었습니다.');
+                location.reload();
+              } else {
+                alert('삭제 실패: ' + (data.error || '알 수 없는 오류'));
+              }
+            } catch (error) {
+              console.error('Delete error:', error);
+              alert('서버 오류가 발생했습니다.');
+            }
+          };
+
+          window.resetForm = function() {
+            document.getElementById('noticeId').value = '';
+            document.getElementById('category').value = '공지사항';
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '관리자';
+            document.getElementById('isPinned').checked = false;
+            quill.setContents([]);
+            document.getElementById('formTitle').textContent = '새 소식 작성';
+          };
+
           // 폼 제출
           document.getElementById('noticeFormElement').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -5692,6 +5764,16 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
             const author = document.getElementById('author').value;
             const content = quill.root.innerHTML;
             const isPinned = document.getElementById('isPinned').checked;
+            
+            if (!title.trim()) {
+              alert('제목을 입력해주세요.');
+              return;
+            }
+            
+            if (!content.trim() || content === '<p><br></p>') {
+              alert('내용을 입력해주세요.');
+              return;
+            }
             
             const method = id ? 'PUT' : 'POST';
             const url = id ? \`/api/admin/notices/\${id}\` : '/api/admin/notices';
@@ -5712,74 +5794,10 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                 alert('오류: ' + (data.error || '알 수 없는 오류'));
               }
             } catch (error) {
+              console.error('Submit error:', error);
               alert('서버 오류가 발생했습니다.');
             }
           });
-
-          // 새 소식 작성 폼 표시
-          function showCreateForm() {
-            resetForm();
-            document.getElementById('formTitle').textContent = '새 소식 작성';
-          }
-
-          // 소식 수정
-          async function editNotice(id) {
-            try {
-              const response = await fetch(\`/api/notices?id=\${id}\`);
-              const data = await response.json();
-              
-              if (data.success && data.data.length > 0) {
-                const notice = data.data[0];
-                document.getElementById('noticeId').value = notice.id;
-                document.getElementById('category').value = notice.category;
-                document.getElementById('title').value = notice.title;
-                document.getElementById('author').value = notice.author || '';
-                document.getElementById('isPinned').checked = notice.is_pinned;
-                quill.root.innerHTML = notice.content;
-                document.getElementById('formTitle').textContent = '소식 수정';
-                
-                // 폼으로 스크롤
-                document.getElementById('noticeForm').scrollIntoView({ behavior: 'smooth' });
-              }
-            } catch (error) {
-              alert('소식을 불러오는데 실패했습니다.');
-            }
-          }
-
-          // 소식 삭제
-          async function deleteNotice(id, title) {
-            if (!confirm(\`"\${title}" 소식을 삭제하시겠습니까?\`)) {
-              return;
-            }
-            
-            try {
-              const response = await fetch(\`/api/admin/notices/\${id}\`, {
-                method: 'DELETE'
-              });
-              
-              const data = await response.json();
-              
-              if (data.success) {
-                alert('소식이 삭제되었습니다.');
-                location.reload();
-              } else {
-                alert('삭제 실패: ' + (data.error || '알 수 없는 오류'));
-              }
-            } catch (error) {
-              alert('서버 오류가 발생했습니다.');
-            }
-          }
-
-          // 폼 초기화
-          function resetForm() {
-            document.getElementById('noticeId').value = '';
-            document.getElementById('category').value = '공지사항';
-            document.getElementById('title').value = '';
-            document.getElementById('author').value = '관리자';
-            document.getElementById('isPinned').checked = false;
-            quill.setContents([]);
-            document.getElementById('formTitle').textContent = '새 소식 작성';
-          }
         `}} />
       </body>
     </html>
