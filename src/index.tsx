@@ -4398,7 +4398,13 @@ app.get('/industry/iot', (c) => {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">IoT 솔루션이 필요하신가요?</h2>
             <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/quote" class="px-8 py-4 bg-white text-teal rounded-lg hover:bg-opacity-90 transition font-bold">
+              <a 
+                href="/support/quote" 
+                class="px-8 py-4 rounded-lg transition font-bold"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
@@ -4543,7 +4549,13 @@ app.get('/industry/3d-printing', (c) => {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">3D 프린팅 서비스가 필요하신가요?</h2>
             <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/quote" class="px-8 py-4 bg-white text-purple rounded-lg hover:bg-opacity-90 transition font-bold">
+              <a 
+                href="/support/quote" 
+                class="px-8 py-4 rounded-lg transition font-bold"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
@@ -4688,7 +4700,13 @@ app.get('/industry/ai', (c) => {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">AI 솔루션이 필요하신가요?</h2>
             <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/quote" class="px-8 py-4 bg-white text-navy rounded-lg hover:bg-opacity-90 transition font-bold">
+              <a 
+                href="/support/quote" 
+                class="px-8 py-4 rounded-lg transition font-bold"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
@@ -4833,7 +4851,13 @@ app.get('/industry/robotics', (c) => {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">로봇 솔루션이 필요하신가요?</h2>
             <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/quote" class="px-8 py-4 bg-white text-orange rounded-lg hover:bg-opacity-90 transition font-bold">
+              <a 
+                href="/support/quote" 
+                class="px-8 py-4 rounded-lg transition font-bold"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
@@ -4978,7 +5002,13 @@ app.get('/industry/big-data', (c) => {
             <h2 class="text-3xl md:text-4xl font-bold mb-4">빅데이터 솔루션이 필요하신가요?</h2>
             <p class="text-xl opacity-90 mb-8">전문가와 상담하여 최적의 솔루션을 찾아보세요</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/quote" class="px-8 py-4 bg-white text-teal rounded-lg hover:bg-opacity-90 transition font-bold">
+              <a 
+                href="/support/quote" 
+                class="px-8 py-4 rounded-lg transition font-bold"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
