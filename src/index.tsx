@@ -5691,35 +5691,57 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
             }
           });
 
-          // 전역 함수 선언 (onclick 속성에서 사용 가능하도록)
-          window.showCreateForm = function() {
-            resetForm();
+          // 폼 초기화 함수 (먼저 선언)
+          window.resetForm = function() {
+            console.log('resetForm called');
+            document.getElementById('noticeId').value = '';
+            document.getElementById('category').value = '공지사항';
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '관리자';
+            document.getElementById('isPinned').checked = false;
+            quill.setContents([]);
             document.getElementById('formTitle').textContent = '새 소식 작성';
           };
 
+          // 전역 함수 선언 (onclick 속성에서 사용 가능하도록)
+          window.showCreateForm = function() {
+            console.log('showCreateForm called');
+            window.resetForm();
+          };
+
           window.editNotice = async function(id) {
+            console.log('editNotice called with id:', id);
             try {
               const response = await fetch(\`/api/notices?id=\${id}\`);
               const data = await response.json();
+              console.log('API response:', data);
               
               if (data.success && data.data.length > 0) {
                 const notice = data.data[0];
+                console.log('Notice data:', notice);
+                
                 document.getElementById('noticeId').value = notice.id;
                 document.getElementById('category').value = notice.category;
                 document.getElementById('title').value = notice.title;
-                document.getElementById('author').value = notice.author || '';
-                document.getElementById('isPinned').checked = notice.is_pinned;
+                document.getElementById('author').value = notice.author || '관리자';
+                document.getElementById('isPinned').checked = notice.is_pinned ? true : false;
+                
+                // Quill 에디터에 HTML 내용 설정
                 quill.root.innerHTML = notice.content;
+                
                 document.getElementById('formTitle').textContent = '소식 수정';
                 
                 // 폼으로 스크롤
-                document.getElementById('noticeForm').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('noticeForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                console.log('Form populated successfully');
               } else {
+                console.error('No data found');
                 alert('소식을 찾을 수 없습니다.');
               }
             } catch (error) {
               console.error('Edit error:', error);
-              alert('소식을 불러오는데 실패했습니다.');
+              alert('소식을 불러오는데 실패했습니다: ' + error.message);
             }
           };
 
