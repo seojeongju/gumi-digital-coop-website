@@ -4922,7 +4922,53 @@ app.get('/industry/big-data', (c) => {
 })
 
 // 자료실 페이지
-app.get('/resources', (c) => {
+app.get('/resources', async (c) => {
+  const { DB } = c.env
+  const category = c.req.query('category') || ''
+  const search = c.req.query('search') || ''
+  
+  // 자료 가져오기
+  let resources = []
+  try {
+    let query = `
+      SELECT id, category, title, description, file_type, file_size, download_count, created_at
+      FROM resources
+      WHERE 1=1
+    `
+    const bindings = []
+    
+    if (category) {
+      query += ` AND category = ?`
+      bindings.push(category)
+    }
+    
+    if (search) {
+      query += ` AND (title LIKE ? OR description LIKE ?)`
+      bindings.push(`%${search}%`, `%${search}%`)
+    }
+    
+    query += ` ORDER BY created_at DESC`
+    
+    const result = bindings.length > 0
+      ? await DB.prepare(query).bind(...bindings).all()
+      : await DB.prepare(query).all()
+    
+    resources = result.results || []
+  } catch (e) {
+    console.error('Database error:', e)
+  }
+  
+  // 파일 타입에 따른 아이콘 및 색상
+  const getFileIcon = (fileType: string) => {
+    switch(fileType) {
+      case 'PDF': return { icon: 'fa-file-pdf', color: 'teal' }
+      case 'DOCX': return { icon: 'fa-file-word', color: 'navy' }
+      case 'PPTX': return { icon: 'fa-file-powerpoint', color: 'orange-500' }
+      case 'XLSX': return { icon: 'fa-file-excel', color: 'green-500' }
+      default: return { icon: 'fa-file', color: 'gray-500' }
+    }
+  }
+  
   return c.render(
     <div>
       <Header />
@@ -4942,166 +4988,136 @@ app.get('/resources', (c) => {
         </div>
       </section>
 
-      {/* 카테고리 필터 */}
+      {/* 검색 및 필터 */}
+      <section class="py-8 bg-white border-b">
+        <div class="container mx-auto px-4">
+          <div class="max-w-6xl mx-auto">
+            {/* 검색바 */}
+            <form method="GET" action="/resources" class="mb-6">
+              <div class="flex gap-3">
+                <div class="flex-1 relative">
+                  <input
+                    type="text"
+                    name="search"
+                    value={search}
+                    placeholder="자료명이나 내용으로 검색하세요..."
+                    class="w-full px-6 py-4 pr-12 border-2 border-gray-300 rounded-lg focus:border-teal focus:outline-none text-lg"
+                  />
+                  <i class="fas fa-search absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"></i>
+                </div>
+                <button 
+                  type="submit"
+                  class="px-8 py-4 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition"
+                >
+                  검색
+                </button>
+              </div>
+              <input type="hidden" name="category" value={category} />
+            </form>
+            
+            {/* 카테고리 필터 */}
+            <div class="flex flex-wrap gap-3">
+              <a 
+                href="/resources" 
+                class={`px-6 py-3 rounded-lg font-bold transition ${!category ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                전체
+              </a>
+              <a 
+                href={`/resources?category=${encodeURIComponent('조합 소개서')}${search ? '&search=' + encodeURIComponent(search) : ''}`}
+                class={`px-6 py-3 rounded-lg font-medium transition ${category === '조합 소개서' ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                조합 소개서
+              </a>
+              <a 
+                href={`/resources?category=${encodeURIComponent('신청서 양식')}${search ? '&search=' + encodeURIComponent(search) : ''}`}
+                class={`px-6 py-3 rounded-lg font-medium transition ${category === '신청서 양식' ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                신청서 양식
+              </a>
+              <a 
+                href={`/resources?category=${encodeURIComponent('기술 자료')}${search ? '&search=' + encodeURIComponent(search) : ''}`}
+                class={`px-6 py-3 rounded-lg font-medium transition ${category === '기술 자료' ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                기술 자료
+              </a>
+              <a 
+                href={`/resources?category=${encodeURIComponent('교육 자료')}${search ? '&search=' + encodeURIComponent(search) : ''}`}
+                class={`px-6 py-3 rounded-lg font-medium transition ${category === '교육 자료' ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                교육 자료
+              </a>
+              <a 
+                href={`/resources?category=${encodeURIComponent('사업 안내')}${search ? '&search=' + encodeURIComponent(search) : ''}`}
+                class={`px-6 py-3 rounded-lg font-medium transition ${category === '사업 안내' ? 'bg-teal text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+              >
+                사업 안내
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 자료 목록 */}
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="max-w-6xl mx-auto">
-            <div class="flex flex-wrap gap-3 mb-12">
-              <button class="px-6 py-3 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition">
-                전체
-              </button>
-              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
-                조합 소개서
-              </button>
-              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
-                신청서 양식
-              </button>
-              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
-                기술 자료
-              </button>
-              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
-                교육 자료
-              </button>
-              <button class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
-                사업 안내
-              </button>
+            {search && (
+              <div class="mb-6">
+                <p class="text-gray-600">
+                  '<span class="font-bold text-teal">{search}</span>' 검색 결과: <span class="font-bold">{resources.length}건</span>
+                </p>
+              </div>
+            )}
+            
+            {resources.length > 0 ? (
+              <div class="grid grid-cols-1 gap-6">
+              {resources.map((resource) => {
+                const fileInfo = getFileIcon(resource.file_type || '')
+                return (
+                  <div key={resource.id} class={`bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-${fileInfo.color} hover:shadow-lg transition`}>
+                    <div class="flex items-start justify-between">
+                      <div class="flex items-start gap-4 flex-1">
+                        <div class={`w-16 h-16 bg-${fileInfo.color}/10 rounded-lg flex items-center justify-center flex-shrink-0`}>
+                          <i class={`fas ${fileInfo.icon} text-2xl text-${fileInfo.color}`}></i>
+                        </div>
+                        <div class="flex-1">
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class={`px-3 py-1 bg-${fileInfo.color}/10 text-${fileInfo.color} rounded-full text-xs font-bold`}>{resource.category}</span>
+                            <span class="text-xs text-gray-500">
+                              {new Date(resource.created_at).toLocaleDateString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\. /g, '.').slice(0, -1)}
+                            </span>
+                          </div>
+                          <h3 class="text-lg font-bold text-gray-900 mb-2">{resource.title}</h3>
+                          <p class="text-sm text-gray-600 mb-3">
+                            {resource.description}
+                          </p>
+                          <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span><i class="fas fa-file mr-1"></i>{resource.file_type}</span>
+                            <span><i class="fas fa-weight mr-1"></i>{resource.file_size}</span>
+                            <span><i class="fas fa-download mr-1"></i>{resource.download_count}회</span>
+                          </div>
+                        </div>
+                      </div>
+                      <button class={`ml-4 px-6 py-3 bg-${fileInfo.color} text-white rounded-lg hover:bg-opacity-90 transition font-bold`}>
+                        <i class="fas fa-download mr-2"></i>
+                        다운로드
+                      </button>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-
-            {/* 자료 목록 */}
-            <div class="grid grid-cols-1 gap-6">
-              {/* 자료 1 */}
-              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-teal hover:shadow-lg transition">
-                <div class="flex items-start justify-between">
-                  <div class="flex items-start gap-4 flex-1">
-                    <div class="w-16 h-16 bg-teal/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fas fa-file-pdf text-2xl text-teal"></i>
-                    </div>
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span class="px-3 py-1 bg-teal/10 text-teal rounded-full text-xs font-bold">조합 소개서</span>
-                        <span class="text-xs text-gray-500">2025.01.15</span>
-                      </div>
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">구미디지털적층산업사업협동조합 소개서</h3>
-                      <p class="text-sm text-gray-600 mb-3">
-                        협동조합의 비전, 주요 사업, 조직 구성 등을 담은 공식 소개 자료입니다.
-                      </p>
-                      <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span><i class="fas fa-file mr-1"></i>PDF</span>
-                        <span><i class="fas fa-weight mr-1"></i>2.5 MB</span>
-                        <span><i class="fas fa-download mr-1"></i>124회</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="ml-4 px-6 py-3 bg-teal text-white rounded-lg hover:bg-opacity-90 transition font-bold">
-                    <i class="fas fa-download mr-2"></i>
-                    다운로드
-                  </button>
-                </div>
+            ) : (
+              <div class="text-center py-20">
+                <i class="fas fa-folder-open text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500 text-lg mb-2">등록된 자료가 없습니다.</p>
+                {search && (
+                  <p class="text-gray-400 text-sm">다른 검색어로 시도해보세요.</p>
+                )}
               </div>
+            )}
 
-              {/* 자료 2 */}
-              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-navy hover:shadow-lg transition">
-                <div class="flex items-start justify-between">
-                  <div class="flex items-start gap-4 flex-1">
-                    <div class="w-16 h-16 bg-navy/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fas fa-file-word text-2xl text-navy"></i>
-                    </div>
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span class="px-3 py-1 bg-navy/10 text-navy rounded-full text-xs font-bold">신청서 양식</span>
-                        <span class="text-xs text-gray-500">2025.01.10</span>
-                      </div>
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">조합원 가입 신청서</h3>
-                      <p class="text-sm text-gray-600 mb-3">
-                        조합원 가입을 위한 신청서 양식입니다. 작성 후 이메일 또는 방문 제출해 주세요.
-                      </p>
-                      <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span><i class="fas fa-file mr-1"></i>DOCX</span>
-                        <span><i class="fas fa-weight mr-1"></i>156 KB</span>
-                        <span><i class="fas fa-download mr-1"></i>89회</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="ml-4 px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-bold">
-                    <i class="fas fa-download mr-2"></i>
-                    다운로드
-                  </button>
-                </div>
-              </div>
-
-              {/* 자료 3 */}
-              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-purple hover:shadow-lg transition">
-                <div class="flex items-start justify-between">
-                  <div class="flex items-start gap-4 flex-1">
-                    <div class="w-16 h-16 bg-purple/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fas fa-file-pdf text-2xl text-purple"></i>
-                    </div>
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span class="px-3 py-1 bg-purple/10 text-purple rounded-full text-xs font-bold">기술 자료</span>
-                        <span class="text-xs text-gray-500">2025.01.08</span>
-                      </div>
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">3D 프린팅 기술 가이드북</h3>
-                      <p class="text-sm text-gray-600 mb-3">
-                        3D 프린팅 기술의 기초부터 활용까지, 실무자를 위한 종합 가이드북입니다.
-                      </p>
-                      <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span><i class="fas fa-file mr-1"></i>PDF</span>
-                        <span><i class="fas fa-weight mr-1"></i>8.3 MB</span>
-                        <span><i class="fas fa-download mr-1"></i>256회</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="ml-4 px-6 py-3 bg-purple text-white rounded-lg hover:bg-opacity-90 transition font-bold">
-                    <i class="fas fa-download mr-2"></i>
-                    다운로드
-                  </button>
-                </div>
-              </div>
-
-              {/* 자료 4 */}
-              <div class="bg-white border-2 border-gray-200 rounded-xl p-6 hover:border-orange-500 hover:shadow-lg transition">
-                <div class="flex items-start justify-between">
-                  <div class="flex items-start gap-4 flex-1">
-                    <div class="w-16 h-16 bg-orange-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <i class="fas fa-file-powerpoint text-2xl text-orange-500"></i>
-                    </div>
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 mb-2">
-                        <span class="px-3 py-1 bg-orange-500/10 text-orange-500 rounded-full text-xs font-bold">교육 자료</span>
-                        <span class="text-xs text-gray-500">2024.12.20</span>
-                      </div>
-                      <h3 class="text-lg font-bold text-gray-900 mb-2">디지털 제조 혁신 사례집</h3>
-                      <p class="text-sm text-gray-600 mb-3">
-                        국내외 디지털 제조 혁신 우수 사례를 소개하는 자료입니다.
-                      </p>
-                      <div class="flex items-center gap-4 text-xs text-gray-500">
-                        <span><i class="fas fa-file mr-1"></i>PPTX</span>
-                        <span><i class="fas fa-weight mr-1"></i>12.7 MB</span>
-                        <span><i class="fas fa-download mr-1"></i>178회</span>
-                      </div>
-                    </div>
-                  </div>
-                  <button class="ml-4 px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-opacity-90 transition font-bold">
-                    <i class="fas fa-download mr-2"></i>
-                    다운로드
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* 페이지네이션 */}
-            <div class="flex justify-center items-center gap-2 mt-12">
-              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition flex items-center justify-center">
-                <i class="fas fa-chevron-left text-sm"></i>
-              </button>
-              <button class="w-10 h-10 rounded-lg bg-teal text-white font-bold">1</button>
-              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition font-medium">2</button>
-              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition font-medium">3</button>
-              <button class="w-10 h-10 rounded-lg bg-gray-200 hover:bg-gray-300 transition flex items-center justify-center">
-                <i class="fas fa-chevron-right text-sm"></i>
-              </button>
-            </div>
           </div>
         </div>
       </section>
