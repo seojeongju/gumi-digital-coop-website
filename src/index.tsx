@@ -3532,12 +3532,14 @@ app.get('/support', (c) => {
               <p class="text-gray-600 text-lg">아래 양식을 작성하시면 빠르게 답변 드리겠습니다</p>
             </div>
 
-            <form class="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-xl">
+            <form id="contactForm" class="bg-gray-50 rounded-3xl p-8 md:p-12 shadow-xl">
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
                   <label class="block text-gray-700 font-bold mb-2">이름 *</label>
                   <input 
                     type="text" 
+                    name="name"
+                    id="contactName"
                     required 
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
                     placeholder="홍길동"
@@ -3547,6 +3549,8 @@ app.get('/support', (c) => {
                   <label class="block text-gray-700 font-bold mb-2">회사명</label>
                   <input 
                     type="text" 
+                    name="company"
+                    id="contactCompany"
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
                     placeholder="(주)회사명"
                   />
@@ -3558,6 +3562,8 @@ app.get('/support', (c) => {
                   <label class="block text-gray-700 font-bold mb-2">이메일 *</label>
                   <input 
                     type="email" 
+                    name="email"
+                    id="contactEmail"
                     required 
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
                     placeholder="email@example.com"
@@ -3567,6 +3573,8 @@ app.get('/support', (c) => {
                   <label class="block text-gray-700 font-bold mb-2">연락처 *</label>
                   <input 
                     type="tel" 
+                    name="phone"
+                    id="contactPhone"
                     required 
                     class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
                     placeholder="010-0000-0000"
@@ -3577,6 +3585,8 @@ app.get('/support', (c) => {
               <div class="mb-6">
                 <label class="block text-gray-700 font-bold mb-2">문의 유형 *</label>
                 <select 
+                  name="inquiryType"
+                  id="contactInquiryType"
                   required 
                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition"
                 >
@@ -3592,6 +3602,8 @@ app.get('/support', (c) => {
               <div class="mb-8">
                 <label class="block text-gray-700 font-bold mb-2">문의 내용 *</label>
                 <textarea 
+                  name="message"
+                  id="contactMessage"
                   required 
                   rows="6" 
                   class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-teal focus:outline-none transition resize-none"
@@ -3601,7 +3613,7 @@ app.get('/support', (c) => {
 
               <div class="mb-8">
                 <label class="flex items-start">
-                  <input type="checkbox" required class="mt-1 mr-3 w-5 h-5 text-teal rounded focus:ring-teal" />
+                  <input type="checkbox" id="contactPrivacyAgree" required class="mt-1 mr-3 w-5 h-5 text-teal rounded focus:ring-teal" />
                   <span class="text-sm text-gray-600">
                     개인정보 수집 및 이용에 동의합니다. 수집된 정보는 문의 답변 목적으로만 사용되며, 답변 완료 후 파기됩니다.
                   </span>
@@ -3610,12 +3622,81 @@ app.get('/support', (c) => {
 
               <button 
                 type="submit" 
+                id="contactSubmitBtn"
                 class="w-full bg-gradient-to-r from-teal to-navy text-white py-4 rounded-lg font-bold text-lg hover:shadow-2xl transition transform hover:scale-105"
               >
                 <i class="fas fa-paper-plane mr-2"></i>
                 문의 보내기
               </button>
+              
+              <div id="contactFormMessage" class="mt-4 text-center hidden"></div>
             </form>
+            
+            <script dangerouslySetInnerHTML={{__html: `
+              document.getElementById('contactForm').addEventListener('submit', async (e) => {
+                e.preventDefault()
+                
+                const submitBtn = document.getElementById('contactSubmitBtn')
+                const messageDiv = document.getElementById('contactFormMessage')
+                const originalBtnText = submitBtn.innerHTML
+                
+                // 버튼 비활성화 및 로딩 상태
+                submitBtn.disabled = true
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>전송 중...'
+                messageDiv.classList.add('hidden')
+                
+                try {
+                  const formData = {
+                    name: document.getElementById('contactName').value,
+                    company: document.getElementById('contactCompany').value || null,
+                    email: document.getElementById('contactEmail').value,
+                    phone: document.getElementById('contactPhone').value,
+                    inquiryType: document.getElementById('contactInquiryType').value,
+                    message: document.getElementById('contactMessage').value
+                  }
+                  
+                  const response = await fetch('/api/contacts/submit', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                  })
+                  
+                  const result = await response.json()
+                  
+                  if (result.success) {
+                    // 성공 메시지
+                    messageDiv.className = 'mt-4 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center'
+                    messageDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + result.message
+                    messageDiv.classList.remove('hidden')
+                    
+                    // 폼 초기화
+                    document.getElementById('contactForm').reset()
+                    
+                    // 3초 후 메시지 숨기기
+                    setTimeout(() => {
+                      messageDiv.classList.add('hidden')
+                    }, 5000)
+                  } else {
+                    // 오류 메시지
+                    messageDiv.className = 'mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-center'
+                    messageDiv.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>' + result.error
+                    messageDiv.classList.remove('hidden')
+                  }
+                } catch (error) {
+                  console.error('Contact form error:', error)
+                  messageDiv.className = 'mt-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-center'
+                  messageDiv.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>문의 전송 중 오류가 발생했습니다. 다시 시도해주세요.'
+                  messageDiv.classList.remove('hidden')
+                } finally {
+                  // 버튼 복원
+                  submitBtn.disabled = false
+                  submitBtn.innerHTML = originalBtnText
+                }
+              })
+            `}} />
+          </div>
           </div>
         </div>
       </section>
@@ -6029,6 +6110,484 @@ app.get('/admin/quotes', authMiddleware, async (c) => {
   )
 })
 
+// ============================================
+// Admin Contact Messages Management Page
+// ============================================
+
+app.get('/admin/contacts', authMiddleware, async (c) => {
+  const { DB } = c.env
+  
+  // 모든 문의 가져오기
+  const contacts = await DB.prepare(`
+    SELECT * FROM contact_messages 
+    ORDER BY created_at DESC
+  `).all()
+  
+  // 상태별 카운트
+  const statusCounts = {
+    pending: contacts.results?.filter((c: any) => c.status === 'pending').length || 0,
+    reviewing: contacts.results?.filter((c: any) => c.status === 'reviewing').length || 0,
+    replied: contacts.results?.filter((c: any) => c.status === 'replied').length || 0,
+    closed: contacts.results?.filter((c: any) => c.status === 'closed').length || 0,
+  }
+  
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>문의 관리 - 관리자</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </head>
+      <body class="bg-gray-50">
+        {/* 헤더 */}
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+          <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold text-gray-900">
+                <i class="fas fa-envelope mr-2 text-teal-600"></i>
+                문의 관리
+              </h1>
+              <div class="flex items-center gap-4">
+                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
+                  <i class="fas fa-home mr-1"></i>
+                  대시보드
+                </a>
+                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                  로그아웃
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+          {/* 상태 통계 */}
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-yellow-600">{statusCounts.pending}</div>
+              <div class="text-sm text-gray-600 mt-1">대기중</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-blue-600">{statusCounts.reviewing}</div>
+              <div class="text-sm text-gray-600 mt-1">검토중</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-teal-600">{statusCounts.replied}</div>
+              <div class="text-sm text-gray-600 mt-1">답변완료</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-gray-600">{statusCounts.closed}</div>
+              <div class="text-sm text-gray-600 mt-1">종료</div>
+            </div>
+          </div>
+
+          {/* 필터 */}
+          <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="text-sm font-semibold text-gray-700">필터:</span>
+              <button 
+                onclick="filterContacts('all')" 
+                class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition"
+                style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                data-status="all"
+              >
+                전체
+              </button>
+              <button 
+                onclick="filterContacts('pending')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-yellow-100 transition"
+                data-status="pending"
+              >
+                대기중
+              </button>
+              <button 
+                onclick="filterContacts('reviewing')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition"
+                data-status="reviewing"
+              >
+                검토중
+              </button>
+              <button 
+                onclick="filterContacts('replied')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-teal-100 transition"
+                data-status="replied"
+              >
+                답변완료
+              </button>
+            </div>
+          </div>
+
+          {/* 문의 목록 */}
+          <div class="bg-white rounded-xl shadow-sm p-6">
+            <h2 class="text-xl font-bold mb-6">문의 목록</h2>
+            
+            {contacts.results && contacts.results.length > 0 ? (
+              <div class="space-y-4" id="contactsList">
+                {contacts.results.map((contact: any) => (
+                  <div 
+                    key={contact.id} 
+                    class="contact-item border rounded-lg p-4 hover:border-teal-300 transition"
+                    data-status={contact.status}
+                  >
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                          <span class={`px-3 py-1 rounded-full text-xs font-bold ${
+                            contact.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                            contact.status === 'reviewing' ? 'bg-blue-100 text-blue-700' :
+                            contact.status === 'replied' ? 'bg-teal-100 text-teal-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {contact.status === 'pending' ? '대기중' :
+                             contact.status === 'reviewing' ? '검토중' :
+                             contact.status === 'replied' ? '답변완료' : '종료'}
+                          </span>
+                          <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-100 text-indigo-700">
+                            {contact.inquiry_type === 'membership' ? '조합원 가입' :
+                             contact.inquiry_type === 'service' ? '서비스 이용' :
+                             contact.inquiry_type === 'partnership' ? '협력 제안' :
+                             contact.inquiry_type === 'general' ? '일반 문의' : '기타'}
+                          </span>
+                          <span class="text-sm text-gray-500">
+                            {new Date(contact.created_at).toLocaleDateString('ko-KR')} {new Date(contact.created_at).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">이름:</span>
+                            <span class="text-sm text-gray-900 ml-2">
+                              {contact.name}
+                              {contact.company && <span class="text-gray-600"> ({contact.company})</span>}
+                            </span>
+                          </div>
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">연락처:</span>
+                            <span class="text-sm text-gray-900 ml-2">{contact.phone}</span>
+                          </div>
+                          <div class="md:col-span-2">
+                            <span class="text-sm font-semibold text-gray-700">이메일:</span>
+                            <span class="text-sm text-gray-900 ml-2">{contact.email}</span>
+                          </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mb-2 bg-gray-50 p-3 rounded-lg">
+                          <span class="font-semibold">문의 내용:</span>
+                          <p class="mt-1 whitespace-pre-wrap">{contact.message}</p>
+                        </div>
+                        
+                        {contact.replied_at && (
+                          <div class="text-xs text-teal-600 mb-2">
+                            <i class="fas fa-check-circle mr-1"></i>
+                            답변일시: {new Date(contact.replied_at).toLocaleDateString('ko-KR')} {new Date(contact.replied_at).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                          </div>
+                        )}
+                        
+                        {contact.admin_notes && (
+                          <div class="text-sm bg-blue-50 border-l-4 border-blue-400 p-3 mt-2">
+                            <span class="font-semibold text-blue-900">관리자 메모:</span>
+                            <p class="text-blue-800 mt-1 whitespace-pre-wrap">{contact.admin_notes}</p>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div class="flex flex-col gap-2">
+                        <button 
+                          onclick={`viewContact(${contact.id})`}
+                          class="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition text-sm"
+                          title="상세보기"
+                        >
+                          <i class="fas fa-eye mr-1"></i>
+                          상세
+                        </button>
+                        <button 
+                          onclick={`updateStatus(${contact.id}, '${contact.status}')`}
+                          class="px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition text-sm"
+                          title="상태변경"
+                        >
+                          <i class="fas fa-edit mr-1"></i>
+                          상태
+                        </button>
+                        <button 
+                          onclick={`deleteContact(${contact.id}, '${contact.name}')`}
+                          class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition text-sm"
+                          title="삭제"
+                        >
+                          <i class="fas fa-trash mr-1"></i>
+                          삭제
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="text-gray-500 text-center py-8">등록된 문의가 없습니다.</p>
+            )}
+          </div>
+        </main>
+
+        {/* 상태 변경 모달 */}
+        <div id="statusModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+          <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold mb-6">상태 변경</h3>
+            <input type="hidden" id="modalContactId" />
+            
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">상태 선택</label>
+              <select id="modalStatus" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500">
+                <option value="pending">대기중</option>
+                <option value="reviewing">검토중</option>
+                <option value="replied">답변완료</option>
+                <option value="closed">종료</option>
+              </select>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">관리자 메모</label>
+              <textarea 
+                id="modalNotes" 
+                rows="4"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 resize-none"
+                placeholder="답변 내용, 처리 사항, 특이사항 등을 입력하세요"
+              ></textarea>
+            </div>
+            
+            <div class="flex gap-3">
+              <button 
+                onclick="saveStatus()"
+                class="flex-1 py-3 rounded-lg font-bold text-white"
+                style="background: linear-gradient(to right, #00A9CE, #00bcd4);"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
+                <i class="fas fa-save mr-2"></i>
+                저장
+              </button>
+              <button 
+                onclick="closeModal()"
+                class="flex-1 py-3 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300 transition"
+              >
+                <i class="fas fa-times mr-2"></i>
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* 상세보기 모달 */}
+        <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+          <div class="bg-white rounded-xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="text-2xl font-bold">문의 상세 정보</h3>
+              <button onclick="closeDetailModal()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+              </button>
+            </div>
+            <div id="detailContent"></div>
+          </div>
+        </div>
+
+        <script dangerouslySetInnerHTML={{__html: `
+          // 필터링 함수
+          function filterContacts(status) {
+            const items = document.querySelectorAll('.contact-item')
+            const buttons = document.querySelectorAll('.filter-btn')
+            
+            buttons.forEach(btn => {
+              if (btn.dataset.status === status) {
+                btn.style.background = 'linear-gradient(to right, #00A9CE, #00bcd4)'
+                btn.style.color = 'white'
+              } else {
+                btn.style.background = '#f3f4f6'
+                btn.style.color = '#374151'
+              }
+            })
+            
+            items.forEach(item => {
+              if (status === 'all' || item.dataset.status === status) {
+                item.style.display = 'block'
+              } else {
+                item.style.display = 'none'
+              }
+            })
+          }
+          
+          // 상세보기
+          async function viewContact(id) {
+            try {
+              const response = await fetch('/api/contacts/' + id, {
+                headers: {
+                  'Authorization': 'Bearer ' + localStorage.getItem('adminToken')
+                }
+              })
+              const result = await response.json()
+              
+              if (result.success) {
+                const contact = result.data
+                const inquiryTypes = {
+                  'membership': '조합원 가입 문의',
+                  'service': '서비스 이용 문의',
+                  'partnership': '협력 제안',
+                  'general': '일반 문의',
+                  'other': '기타'
+                }
+                const statusLabels = {
+                  'pending': '대기중',
+                  'reviewing': '검토중',
+                  'replied': '답변완료',
+                  'closed': '종료'
+                }
+                
+                document.getElementById('detailContent').innerHTML = \`
+                  <div class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">상태</label>
+                        <p class="text-base mt-1">\${statusLabels[contact.status]}</p>
+                      </div>
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">문의 유형</label>
+                        <p class="text-base mt-1">\${inquiryTypes[contact.inquiry_type]}</p>
+                      </div>
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">이름</label>
+                        <p class="text-base mt-1">\${contact.name}</p>
+                      </div>
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">회사명</label>
+                        <p class="text-base mt-1">\${contact.company || '-'}</p>
+                      </div>
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">이메일</label>
+                        <p class="text-base mt-1">\${contact.email}</p>
+                      </div>
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">연락처</label>
+                        <p class="text-base mt-1">\${contact.phone}</p>
+                      </div>
+                      <div class="col-span-2">
+                        <label class="text-sm font-semibold text-gray-600">접수일시</label>
+                        <p class="text-base mt-1">\${new Date(contact.created_at).toLocaleString('ko-KR')}</p>
+                      </div>
+                      \${contact.replied_at ? \`
+                        <div class="col-span-2">
+                          <label class="text-sm font-semibold text-gray-600">답변일시</label>
+                          <p class="text-base mt-1">\${new Date(contact.replied_at).toLocaleString('ko-KR')}</p>
+                        </div>
+                      \` : ''}
+                    </div>
+                    
+                    <div>
+                      <label class="text-sm font-semibold text-gray-600">문의 내용</label>
+                      <div class="mt-2 p-4 bg-gray-50 rounded-lg">
+                        <p class="whitespace-pre-wrap">\${contact.message}</p>
+                      </div>
+                    </div>
+                    
+                    \${contact.admin_notes ? \`
+                      <div>
+                        <label class="text-sm font-semibold text-gray-600">관리자 메모</label>
+                        <div class="mt-2 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                          <p class="whitespace-pre-wrap">\${contact.admin_notes}</p>
+                        </div>
+                      </div>
+                    \` : ''}
+                  </div>
+                \`
+                
+                document.getElementById('detailModal').classList.remove('hidden')
+                document.getElementById('detailModal').classList.add('flex')
+              }
+            } catch (error) {
+              console.error('View contact error:', error)
+              alert('문의 정보를 불러오는데 실패했습니다.')
+            }
+          }
+          
+          function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden')
+            document.getElementById('detailModal').classList.remove('flex')
+          }
+          
+          // 상태 변경 모달
+          function updateStatus(id, currentStatus) {
+            document.getElementById('modalContactId').value = id
+            document.getElementById('modalStatus').value = currentStatus
+            document.getElementById('modalNotes').value = ''
+            document.getElementById('statusModal').classList.remove('hidden')
+            document.getElementById('statusModal').classList.add('flex')
+          }
+          
+          function closeModal() {
+            document.getElementById('statusModal').classList.add('hidden')
+            document.getElementById('statusModal').classList.remove('flex')
+          }
+          
+          async function saveStatus() {
+            const id = document.getElementById('modalContactId').value
+            const status = document.getElementById('modalStatus').value
+            const adminNotes = document.getElementById('modalNotes').value
+            
+            try {
+              const response = await fetch('/api/contacts/' + id + '/status', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer ' + localStorage.getItem('adminToken')
+                },
+                body: JSON.stringify({ status, adminNotes })
+              })
+              
+              const result = await response.json()
+              
+              if (result.success) {
+                alert('상태가 업데이트되었습니다.')
+                location.reload()
+              } else {
+                alert('오류: ' + result.error)
+              }
+            } catch (error) {
+              console.error('Update status error:', error)
+              alert('상태 업데이트에 실패했습니다.')
+            }
+          }
+          
+          // 삭제
+          async function deleteContact(id, name) {
+            if (!confirm(name + '님의 문의를 삭제하시겠습니까?')) {
+              return
+            }
+            
+            try {
+              const response = await fetch('/api/contacts/' + id, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': 'Bearer ' + localStorage.getItem('adminToken')
+                }
+              })
+              
+              const result = await response.json()
+              
+              if (result.success) {
+                alert('문의가 삭제되었습니다.')
+                location.reload()
+              } else {
+                alert('오류: ' + result.error)
+              }
+            } catch (error) {
+              console.error('Delete contact error:', error)
+              alert('삭제에 실패했습니다.')
+            }
+          }
+        `}} />
+      </body>
+    </html>
+  )
+})
+
 app.get('/admin/resources', authMiddleware, async (c) => {
   const { DB } = c.env
   
@@ -6450,6 +7009,16 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
   // 견적요청 상태별 카운트
   const pendingQuotes = quotes.results?.filter((q: any) => q.status === 'pending').length || 0
   
+  // 최근 문의 가져오기
+  const contacts = await DB.prepare(`
+    SELECT * FROM contact_messages 
+    ORDER BY created_at DESC 
+    LIMIT 10
+  `).all()
+  
+  // 문의 상태별 카운트
+  const pendingContacts = contacts.results?.filter((c: any) => c.status === 'pending').length || 0
+  
   return c.html(
     <html lang="ko">
       <head>
@@ -6636,6 +7205,87 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                 <div class="text-center py-8 text-gray-500">
                   <i class="fas fa-file-invoice text-4xl mb-3 text-gray-300"></i>
                   <p>등록된 견적요청이 없습니다</p>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 문의 관리 섹션 */}
+          <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900">
+                  <i class="fas fa-envelope text-teal-600 mr-2"></i>
+                  문의 관리
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">고객 문의를 확인하고 답변할 수 있습니다</p>
+                {pendingContacts > 0 && (
+                  <p class="text-sm font-semibold text-red-600 mt-1">
+                    <i class="fas fa-exclamation-circle mr-1"></i>
+                    새로운 문의 {pendingContacts}건
+                  </p>
+                )}
+              </div>
+              <a 
+                href="/admin/contacts"
+                class="px-6 py-3 rounded-lg transition shadow-md"
+                style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
+                <i class="fas fa-cog mr-2"></i>
+                문의 관리하기
+              </a>
+            </div>
+
+            <div class="space-y-3">
+              {contacts.results && contacts.results.length > 0 ? (
+                contacts.results.slice(0, 5).map((contact: any) => (
+                  <div class="border border-gray-200 rounded-lg p-4 hover:border-teal-300 transition">
+                    <div class="flex items-start justify-between">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class={`px-2 py-1 rounded-full text-xs font-bold ${
+                            contact.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                            contact.status === 'reviewing' ? 'bg-blue-100 text-blue-700' :
+                            contact.status === 'replied' ? 'bg-teal-100 text-teal-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {contact.status === 'pending' ? '대기중' :
+                             contact.status === 'reviewing' ? '검토중' :
+                             contact.status === 'replied' ? '답변완료' : '종료'}
+                          </span>
+                          <span class="px-2 py-1 bg-indigo-100 text-indigo-700 text-xs rounded">
+                            {contact.inquiry_type === 'membership' ? '조합원 가입' :
+                             contact.inquiry_type === 'service' ? '서비스 이용' :
+                             contact.inquiry_type === 'partnership' ? '협력 제안' :
+                             contact.inquiry_type === 'general' ? '일반 문의' : '기타'}
+                          </span>
+                          <span class="text-xs text-gray-500">
+                            {new Date(contact.created_at).toLocaleDateString('ko-KR')}
+                          </span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 mb-1">
+                          {contact.name}
+                          {contact.company && <span class="text-gray-600 text-sm ml-1">({contact.company})</span>}
+                        </h3>
+                        <p class="text-sm text-gray-600 truncate">
+                          {contact.message}
+                        </p>
+                      </div>
+                      <a 
+                        href="/admin/contacts"
+                        class="px-3 py-1 text-teal-600 hover:bg-teal-50 rounded transition text-sm"
+                      >
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div class="text-center py-8 text-gray-500">
+                  <i class="fas fa-envelope text-4xl mb-3 text-gray-300"></i>
+                  <p>등록된 문의가 없습니다</p>
                 </div>
               )}
             </div>
@@ -7420,6 +8070,176 @@ app.get('/api/quotes/:id/download', authMiddleware, async (c) => {
   } catch (error) {
     console.error('Download file error:', error)
     return c.json({ success: false, error: '파일 다운로드 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// ============================================
+// Contact Messages API Routes
+// ============================================
+
+// GET /api/contacts - 문의 목록 조회 (관리자 전용)
+app.get('/api/contacts', authMiddleware, async (c) => {
+  try {
+    const { DB } = c.env
+    const status = c.req.query('status')
+    
+    let query = 'SELECT * FROM contact_messages'
+    const params: any[] = []
+    
+    if (status && status !== 'all') {
+      query += ' WHERE status = ?'
+      params.push(status)
+    }
+    
+    query += ' ORDER BY created_at DESC'
+    
+    const result = await DB.prepare(query).bind(...params).all()
+    
+    return c.json({ success: true, data: result.results })
+  } catch (error) {
+    console.error('Get contacts error:', error)
+    return c.json({ success: false, error: '문의 조회 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// POST /api/contacts/submit - 문의 제출
+app.post('/api/contacts/submit', async (c) => {
+  try {
+    const { DB } = c.env
+    const body = await c.req.json()
+    
+    const { name, company, email, phone, inquiryType, message } = body
+    
+    // 필수 필드 검증
+    if (!name || !email || !phone || !inquiryType || !message) {
+      return c.json({ success: false, error: '필수 필드를 모두 입력해주세요.' }, 400)
+    }
+    
+    // 이메일 형식 검증
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      return c.json({ success: false, error: '유효한 이메일 주소를 입력해주세요.' }, 400)
+    }
+    
+    // 문의 유형 검증
+    const validTypes = ['membership', 'service', 'partnership', 'general', 'other']
+    if (!validTypes.includes(inquiryType)) {
+      return c.json({ success: false, error: '유효하지 않은 문의 유형입니다.' }, 400)
+    }
+    
+    // 데이터베이스에 저장
+    await DB.prepare(`
+      INSERT INTO contact_messages 
+      (name, company, email, phone, inquiry_type, message, status)
+      VALUES (?, ?, ?, ?, ?, ?, 'pending')
+    `).bind(
+      name,
+      company || null,
+      email,
+      phone,
+      inquiryType,
+      message
+    ).run()
+    
+    return c.json({ 
+      success: true, 
+      message: '문의가 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.' 
+    })
+  } catch (error) {
+    console.error('Submit contact error:', error)
+    return c.json({ 
+      success: false, 
+      error: '문의 접수 중 오류가 발생했습니다. 다시 시도해주세요.' 
+    }, 500)
+  }
+})
+
+// GET /api/contacts/:id - 특정 문의 조회
+app.get('/api/contacts/:id', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    const contact = await DB.prepare(`
+      SELECT * FROM contact_messages WHERE id = ?
+    `).bind(id).first()
+    
+    if (!contact) {
+      return c.json({ success: false, error: '문의를 찾을 수 없습니다.' }, 404)
+    }
+    
+    return c.json({ success: true, data: contact })
+  } catch (error) {
+    console.error('Get contact error:', error)
+    return c.json({ success: false, error: '문의 조회 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// PUT /api/contacts/:id/status - 문의 상태 변경
+app.put('/api/contacts/:id/status', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    const body = await c.req.json()
+    const { status, adminNotes } = body
+    
+    if (!status) {
+      return c.json({ success: false, error: '상태값이 필요합니다.' }, 400)
+    }
+    
+    const validStatuses = ['pending', 'reviewing', 'replied', 'closed']
+    if (!validStatuses.includes(status)) {
+      return c.json({ success: false, error: '유효하지 않은 상태값입니다.' }, 400)
+    }
+    
+    // replied 상태로 변경 시 replied_at 타임스탬프 설정
+    let query = `
+      UPDATE contact_messages 
+      SET status = ?, admin_notes = ?, updated_at = CURRENT_TIMESTAMP
+    `
+    const params = [status, adminNotes || null]
+    
+    if (status === 'replied') {
+      query += `, replied_at = CURRENT_TIMESTAMP`
+    }
+    
+    query += ` WHERE id = ?`
+    params.push(id)
+    
+    await DB.prepare(query).bind(...params).run()
+    
+    return c.json({ success: true, message: '상태가 업데이트되었습니다.' })
+  } catch (error) {
+    console.error('Update status error:', error)
+    return c.json({ success: false, error: '상태 업데이트 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// DELETE /api/contacts/:id - 문의 삭제
+app.delete('/api/contacts/:id', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    // 문의 정보 조회
+    const contact = await DB.prepare(`
+      SELECT * FROM contact_messages WHERE id = ?
+    `).bind(id).first()
+    
+    if (!contact) {
+      return c.json({ success: false, error: '문의를 찾을 수 없습니다.' }, 404)
+    }
+    
+    // 데이터베이스에서 삭제
+    await DB.prepare(`
+      DELETE FROM contact_messages WHERE id = ?
+    `).bind(id).run()
+    
+    return c.json({ success: true, message: '문의가 삭제되었습니다.' })
+  } catch (error) {
+    console.error('Delete contact error:', error)
+    return c.json({ success: false, error: '삭제 중 오류가 발생했습니다.' }, 500)
   }
 })
 
