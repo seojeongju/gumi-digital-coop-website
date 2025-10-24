@@ -190,7 +190,7 @@ const Footer = () => (
           <ul class="space-y-2 text-sm">
             <li><a href="/support/faq" class="hover:text-white transition">자주 묻는 질문</a></li>
             <li><a href="/support" class="hover:text-white transition">문의하기</a></li>
-            <li><a href="/support" class="hover:text-white transition">견적 요청</a></li>
+            <li><a href="/support/quote" class="hover:text-white transition">견적 요청</a></li>
             <li><a href="/resources" class="hover:text-white transition">자료실</a></li>
           </ul>
         </div>
@@ -2967,7 +2967,7 @@ app.get('/services', (c) => {
                 <i class="fas fa-comments mr-2"></i>
                 상담 신청하기
               </a>
-              <a href="/support" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+              <a href="/support/quote" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
                 <i class="fas fa-file-invoice mr-2"></i>
                 견적 요청하기
               </a>
