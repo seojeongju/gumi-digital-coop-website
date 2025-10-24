@@ -5398,7 +5398,10 @@ app.get('/admin/login', (c) => {
 
             <button 
               type="submit"
-              class="w-full py-3 bg-gradient-to-r from-teal to-navy text-white rounded-lg font-bold hover:opacity-90 transition flex items-center justify-center"
+              class="w-full py-3 rounded-lg font-bold transition flex items-center justify-center"
+              style="background: linear-gradient(to right, #00A9CE, #1B3A7D); color: white; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);"
+              onmouseover="this.style.opacity='0.9'"
+              onmouseout="this.style.opacity='1'"
             >
               <i class="fas fa-sign-in-alt mr-2"></i>
               로그인
