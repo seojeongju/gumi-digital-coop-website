@@ -6218,8 +6218,8 @@ app.post('/api/resources/upload', async (c) => {
       },
     })
     
-    // 공개 URL 생성 (R2 버킷이 public access로 설정되어 있다면)
-    const publicUrl = `https://pub-YOUR_ACCOUNT_ID.r2.dev/${fileKey}`
+    // 공개 URL 생성 (R2 버킷 공개 도메인 사용)
+    const publicUrl = `https://pub-85c8e953bdafb825af537f0d66ca5dc.r2.dev/${fileKey}`
     
     // 데이터베이스에 자료 정보 저장
     await DB.prepare(`
