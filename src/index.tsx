@@ -5581,12 +5581,22 @@ app.get('/admin/resources', authMiddleware, async (c) => {
                               <span><i class="fas fa-download mr-1"></i>{resource.download_count}회</span>
                             </div>
                           </div>
-                          <button 
-                            onclick={`deleteResource(${resource.id}, '${resource.title}')`}
-                            class="ml-4 px-3 py-1 text-red-600 hover:bg-red-50 rounded transition"
-                          >
-                            <i class="fas fa-trash"></i>
-                          </button>
+                          <div class="ml-4 flex items-center gap-2">
+                            <button 
+                              onclick={`editResource(${resource.id})`}
+                              class="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded transition"
+                              title="편집"
+                            >
+                              <i class="fas fa-edit"></i>
+                            </button>
+                            <button 
+                              onclick={`deleteResource(${resource.id}, '${resource.title}')`}
+                              class="px-3 py-1 text-red-600 hover:bg-red-50 rounded transition"
+                              title="삭제"
+                            >
+                              <i class="fas fa-trash"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -5600,9 +5610,11 @@ app.get('/admin/resources', authMiddleware, async (c) => {
             {/* 오른쪽: 업로드 폼 */}
             <div class="lg:col-span-1">
               <div class="bg-white rounded-xl shadow-sm p-6 sticky top-24">
-                <h3 class="text-xl font-bold text-gray-900 mb-6">자료 업로드</h3>
+                <h3 id="formTitle" class="text-xl font-bold text-gray-900 mb-6">자료 업로드</h3>
                 
                 <form id="uploadForm" enctype="multipart/form-data" class="space-y-4">
+                  <input type="hidden" id="resourceId" name="id" value="" />
+                  
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">
                       카테고리 *
@@ -5659,10 +5671,18 @@ app.get('/admin/resources', authMiddleware, async (c) => {
                       required
                       accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx"
                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
+                      onchange="validateFile(this)"
                     />
                     <p class="text-xs text-gray-500 mt-1">
-                      지원 형식: PDF, Word, PowerPoint, Excel
+                      지원 형식: PDF, Word, PowerPoint, Excel (최대 50MB)
                     </p>
+                    <div id="fileInfo" class="mt-2 text-sm text-gray-600 hidden"></div>
+                    <div id="uploadProgress" class="mt-2 hidden">
+                      <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progressBar" class="bg-teal h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                      </div>
+                      <p id="progressText" class="text-xs text-gray-600 mt-1 text-center">0%</p>
+                    </div>
                   </div>
 
                   <button 
@@ -5682,24 +5702,79 @@ app.get('/admin/resources', authMiddleware, async (c) => {
 
         {/* JavaScript */}
         <script dangerouslySetInnerHTML={{__html: `
+          // 파일 크기 제한 (50MB)
+          const MAX_FILE_SIZE = 50 * 1024 * 1024;
+          
+          // 파일 유효성 검사
+          window.validateFile = function(input) {
+            const file = input.files[0];
+            const fileInfo = document.getElementById('fileInfo');
+            
+            if (!file) {
+              fileInfo.classList.add('hidden');
+              return;
+            }
+            
+            // 파일 크기 체크
+            if (file.size > MAX_FILE_SIZE) {
+              fileInfo.className = 'mt-2 text-sm text-red-600';
+              fileInfo.textContent = '⚠️ 파일 크기가 50MB를 초과합니다. 더 작은 파일을 선택해주세요.';
+              fileInfo.classList.remove('hidden');
+              input.value = '';
+              return;
+            }
+            
+            // 파일 정보 표시
+            const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+            fileInfo.className = 'mt-2 text-sm text-green-600';
+            fileInfo.innerHTML = \`✓ \${file.name} (\${sizeMB} MB)\`;
+            fileInfo.classList.remove('hidden');
+          };
+          
           // 파일 업로드
           document.getElementById('uploadForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             const formData = new FormData(e.target);
             const statusDiv = document.getElementById('uploadStatus');
+            const progressDiv = document.getElementById('uploadProgress');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            
+            // 버튼 비활성화
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>업로드 중...';
+            
+            // 진행률 표시
+            progressDiv.classList.remove('hidden');
+            progressBar.style.width = '0%';
+            progressText.textContent = '0%';
             
             statusDiv.className = 'mt-4 p-4 rounded-lg bg-blue-50 text-blue-800';
-            statusDiv.textContent = '업로드 중...';
+            statusDiv.textContent = '파일을 업로드하는 중입니다...';
             statusDiv.classList.remove('hidden');
             
             try {
-              const response = await fetch('/api/resources/upload', {
-                method: 'POST',
-                body: formData
+              // XMLHttpRequest를 사용하여 진행률 추적
+              const xhr = new XMLHttpRequest();
+              
+              xhr.upload.addEventListener('progress', (e) => {
+                if (e.lengthComputable) {
+                  const percentComplete = Math.round((e.loaded / e.total) * 100);
+                  progressBar.style.width = percentComplete + '%';
+                  progressText.textContent = percentComplete + '%';
+                }
               });
               
-              const data = await response.json();
+              const response = await new Promise((resolve, reject) => {
+                xhr.onload = () => resolve(xhr);
+                xhr.onerror = () => reject(new Error('Upload failed'));
+                xhr.open('POST', '/api/resources/upload');
+                xhr.send(formData);
+              });
+              
+              const data = JSON.parse(response.responseText);
               
               if (data.success) {
                 statusDiv.className = 'mt-4 p-4 rounded-lg bg-green-50 text-green-800';
@@ -5707,6 +5782,7 @@ app.get('/admin/resources', authMiddleware, async (c) => {
                 
                 // 폼 초기화
                 e.target.reset();
+                document.getElementById('fileInfo').classList.add('hidden');
                 
                 // 3초 후 페이지 새로고침
                 setTimeout(() => {
@@ -5715,12 +5791,86 @@ app.get('/admin/resources', authMiddleware, async (c) => {
               } else {
                 statusDiv.className = 'mt-4 p-4 rounded-lg bg-red-50 text-red-800';
                 statusDiv.textContent = '✗ ' + data.error;
+                
+                // 버튼 복원
+                submitButton.disabled = false;
+                submitButton.innerHTML = '<i class="fas fa-upload mr-2"></i>업로드';
+                progressDiv.classList.add('hidden');
               }
             } catch (error) {
               statusDiv.className = 'mt-4 p-4 rounded-lg bg-red-50 text-red-800';
-              statusDiv.textContent = '✗ 업로드 중 오류가 발생했습니다.';
+              statusDiv.textContent = '✗ 업로드 중 오류가 발생했습니다: ' + error.message;
+              
+              // 버튼 복원
+              submitButton.disabled = false;
+              submitButton.innerHTML = '<i class="fas fa-upload mr-2"></i>업로드';
+              progressDiv.classList.add('hidden');
             }
           });
+          
+          // 자료 편집
+          window.editResource = async function(id) {
+            try {
+              const response = await fetch(\`/api/resources?id=\${id}\`);
+              const data = await response.json();
+              
+              if (data.success && data.data.length > 0) {
+                const resource = data.data[0];
+                
+                // 폼 채우기
+                document.getElementById('resourceId').value = resource.id;
+                document.getElementById('category').value = resource.category;
+                document.getElementById('title').value = resource.title;
+                document.getElementById('description').value = resource.description || '';
+                document.getElementById('formTitle').textContent = '자료 수정';
+                
+                // 파일 입력 선택사항으로 변경
+                const fileInput = document.getElementById('file');
+                fileInput.required = false;
+                
+                // 현재 파일 정보 표시
+                const fileInfo = document.getElementById('fileInfo');
+                fileInfo.className = 'mt-2 text-sm text-blue-600';
+                fileInfo.innerHTML = \`현재 파일: \${resource.title}.\${resource.file_type.toLowerCase()} (\${resource.file_size})<br>새 파일을 선택하지 않으면 기존 파일이 유지됩니다.\`;
+                fileInfo.classList.remove('hidden');
+                
+                // 폼으로 스크롤
+                document.getElementById('uploadForm').scrollIntoView({ behavior: 'smooth' });
+                
+                // 취소 버튼 추가
+                const submitButton = document.querySelector('#uploadForm button[type="submit"]');
+                if (!document.getElementById('cancelEditBtn')) {
+                  const cancelBtn = document.createElement('button');
+                  cancelBtn.id = 'cancelEditBtn';
+                  cancelBtn.type = 'button';
+                  cancelBtn.className = 'w-full py-3 bg-gray-500 text-white rounded-lg font-bold hover:bg-gray-600 transition';
+                  cancelBtn.innerHTML = '<i class="fas fa-times mr-2"></i>취소';
+                  cancelBtn.onclick = resetForm;
+                  submitButton.parentElement.insertBefore(cancelBtn, submitButton.nextSibling);
+                }
+                
+                // 버튼 텍스트 변경
+                submitButton.innerHTML = '<i class="fas fa-save mr-2"></i>수정하기';
+              }
+            } catch (error) {
+              alert('자료 정보를 불러오는데 실패했습니다: ' + error.message);
+            }
+          };
+          
+          // 폼 초기화
+          function resetForm() {
+            document.getElementById('resourceId').value = '';
+            document.getElementById('uploadForm').reset();
+            document.getElementById('formTitle').textContent = '자료 업로드';
+            document.getElementById('file').required = true;
+            document.getElementById('fileInfo').classList.add('hidden');
+            
+            const cancelBtn = document.getElementById('cancelEditBtn');
+            if (cancelBtn) cancelBtn.remove();
+            
+            const submitButton = document.querySelector('#uploadForm button[type="submit"]');
+            submitButton.innerHTML = '<i class="fas fa-upload mr-2"></i>업로드';
+          }
           
           // 자료 삭제
           window.deleteResource = async function(id, title) {
@@ -6188,17 +6338,83 @@ app.get('/api/notices', async (c) => {
   }
 })
 
-// 파일 업로드 API (관리자 전용)
+// 자료 조회 API (ID로 단일 조회)
+app.get('/api/resources', async (c) => {
+  const { DB } = c.env
+  const id = c.req.query('id')
+  
+  try {
+    if (id) {
+      const result = await DB.prepare(`
+        SELECT * FROM resources WHERE id = ?
+      `).bind(id).all()
+      return c.json({ success: true, data: result.results })
+    }
+    
+    // ID가 없으면 전체 목록
+    const result = await DB.prepare(`
+      SELECT * FROM resources ORDER BY created_at DESC
+    `).all()
+    return c.json({ success: true, data: result.results })
+  } catch (e) {
+    return c.json({ success: false, error: 'Database error' }, 500)
+  }
+})
+
+// 파일 업로드/수정 API (관리자 전용)
 app.post('/api/resources/upload', async (c) => {
   const { RESOURCES_BUCKET, DB } = c.env
   
   try {
     const formData = await c.req.formData()
-    const file = formData.get('file') as File
+    const id = formData.get('id') as string
+    const file = formData.get('file') as File | null
     const category = formData.get('category') as string
     const title = formData.get('title') as string
     const description = formData.get('description') as string
     
+    // 편집 모드 (ID가 있으면)
+    if (id) {
+      // 파일이 제공되면 새 파일로 업데이트
+      if (file && file.size > 0) {
+        const fileName = file.name
+        const fileExtension = fileName.split('.').pop()?.toUpperCase() || ''
+        const fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB'
+        
+        // R2에 파일 업로드
+        const timestamp = Date.now()
+        const fileKey = `resources/${timestamp}_${fileName}`
+        
+        await RESOURCES_BUCKET.put(fileKey, file.stream(), {
+          httpMetadata: {
+            contentType: file.type,
+          },
+        })
+        
+        const publicUrl = `https://pub-85c8e953bdafb825af537f0d66ca5dc.r2.dev/${fileKey}`
+        
+        // DB 업데이트 (파일 포함)
+        await DB.prepare(`
+          UPDATE resources 
+          SET category = ?, title = ?, description = ?, file_type = ?, file_url = ?, file_size = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE id = ?
+        `).bind(category, title, description, fileExtension, publicUrl, fileSize, id).run()
+      } else {
+        // 파일 없이 정보만 업데이트
+        await DB.prepare(`
+          UPDATE resources 
+          SET category = ?, title = ?, description = ?, updated_at = CURRENT_TIMESTAMP
+          WHERE id = ?
+        `).bind(category, title, description, id).run()
+      }
+      
+      return c.json({ 
+        success: true, 
+        message: '자료가 성공적으로 수정되었습니다.'
+      })
+    }
+    
+    // 새 파일 업로드 모드
     if (!file || !category || !title) {
       return c.json({ success: false, error: '필수 필드가 누락되었습니다.' }, 400)
     }
