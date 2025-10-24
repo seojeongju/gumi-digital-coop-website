@@ -357,9 +357,9 @@ app.get('/', async (c) => {
           </div>
           
           {/* 서비스 카드 그리드 - 2x2 레이아웃 */}
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
             {/* 1. 첨단 적층제조 기술 보급 및 R&D */}
-            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 245px;">
               {/* 배경 이미지 */}
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
@@ -369,32 +369,32 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-br from-blue-600/85 via-cyan-600/85 to-blue-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+              <div class="relative z-10 h-full flex flex-col justify-between p-5">
                 <div>
-                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
-                    <i class="fas fa-cube text-4xl text-blue-600"></i>
+                  <div class="bg-white/90 rounded-xl p-3 inline-block mb-4">
+                    <i class="fas fa-cube text-3xl text-blue-600"></i>
                   </div>
-                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">첨단 적층제조 기술 보급 및 R&D</h3>
+                  <h3 class="text-2xl font-bold text-white mb-4 leading-tight">첨단 적층제조 기술 보급 및 R&D</h3>
                 </div>
-                <ul class="space-y-3">
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">3D 프린팅 기술 연구개발 지원</span>
+                <ul class="space-y-2">
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">3D 프린팅 기술 연구개발 지원</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">최신 장비 및 기술 트렌드 공유</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">최신 장비 및 기술 트렌드 공유</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">산학연 공동 R&D 프로젝트 추진</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">산학연 공동 R&D 프로젝트 추진</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 2. 인력 양성 및 교육·세미나 */}
-            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 245px;">
               {/* 배경 이미지 */}
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
@@ -404,32 +404,32 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-br from-purple-600/85 via-fuchsia-600/85 to-purple-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+              <div class="relative z-10 h-full flex flex-col justify-between p-5">
                 <div>
-                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
-                    <i class="fas fa-graduation-cap text-4xl text-purple-600"></i>
+                  <div class="bg-white/90 rounded-xl p-3 inline-block mb-4">
+                    <i class="fas fa-graduation-cap text-3xl text-purple-600"></i>
                   </div>
-                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">인력 양성 및 교육·세미나</h3>
+                  <h3 class="text-2xl font-bold text-white mb-4 leading-tight">인력 양성 및 교육·세미나</h3>
                 </div>
-                <ul class="space-y-3">
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">적층제조 전문 기술 인력 양성</span>
+                <ul class="space-y-2">
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">적층제조 전문 기술 인력 양성</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">정기 세미나 및 워크샵 개최</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">정기 세미나 및 워크샵 개최</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">산업 전문가 교류 네트워크 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">산업 전문가 교류 네트워크 구축</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 3. 공동 구매, 장비 운용 및 인프라 제공 */}
-            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 245px;">
               {/* 배경 이미지 */}
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
@@ -439,32 +439,32 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-br from-green-600/85 via-emerald-600/85 to-teal-700/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+              <div class="relative z-10 h-full flex flex-col justify-between p-5">
                 <div>
-                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
-                    <i class="fas fa-industry text-4xl text-green-600"></i>
+                  <div class="bg-white/90 rounded-xl p-3 inline-block mb-4">
+                    <i class="fas fa-industry text-3xl text-green-600"></i>
                   </div>
-                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">공동 구매, 장비 운용 및 인프라 제공</h3>
+                  <h3 class="text-2xl font-bold text-white mb-4 leading-tight">공동 구매, 장비 운용 및 인프라 제공</h3>
                 </div>
-                <ul class="space-y-3">
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">원자재 및 장비 공동구매 지원</span>
+                <ul class="space-y-2">
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">원자재 및 장비 공동구매 지원</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">고가 장비 공동 활용 시스템 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">고가 장비 공동 활용 시스템 구축</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">테스트베드 및 공동 작업공간 제공</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">테스트베드 및 공동 작업공간 제공</span>
                   </li>
                 </ul>
               </div>
             </div>
             
             {/* 4. 정부 및 지자체 협력사업 */}
-            <div class="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 350px;">
+            <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group" style="min-height: 245px;">
               {/* 배경 이미지 */}
               <div 
                 class="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
@@ -474,25 +474,25 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-br from-orange-600/85 via-red-500/85 to-red-600/85"></div>
               
               {/* 콘텐츠 */}
-              <div class="relative z-10 h-full flex flex-col justify-between p-8">
+              <div class="relative z-10 h-full flex flex-col justify-between p-5">
                 <div>
-                  <div class="bg-white/90 rounded-2xl p-4 inline-block mb-6">
-                    <i class="fas fa-handshake text-4xl text-orange-600"></i>
+                  <div class="bg-white/90 rounded-xl p-3 inline-block mb-4">
+                    <i class="fas fa-handshake text-3xl text-orange-600"></i>
                   </div>
-                  <h3 class="text-3xl font-bold text-white mb-6 leading-tight">정부 및 지자체 협력사업</h3>
+                  <h3 class="text-2xl font-bold text-white mb-4 leading-tight">정부 및 지자체 협력사업</h3>
                 </div>
-                <ul class="space-y-3">
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">지역 산업 육성 정책 협력</span>
+                <ul class="space-y-2">
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">지역 산업 육성 정책 협력</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">정부 R&D 사업 공동 참여</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">정부 R&D 사업 공동 참여</span>
                   </li>
-                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-3">
-                    <i class="fas fa-check-circle text-white text-lg mr-3 flex-shrink-0"></i>
-                    <span class="text-white font-medium">지역 특화 산업 클러스터 구축</span>
+                  <li class="flex items-center bg-white/15 backdrop-blur-sm rounded-lg p-2">
+                    <i class="fas fa-check-circle text-white text-sm mr-2 flex-shrink-0"></i>
+                    <span class="text-white text-sm font-medium">지역 특화 산업 클러스터 구축</span>
                   </li>
                 </ul>
               </div>
