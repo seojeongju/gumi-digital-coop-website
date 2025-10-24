@@ -3366,30 +3366,31 @@ app.get('/members/join', (c) => {
             <p class="text-xl mb-8 opacity-90">
               구미디지털적층산업사업협동조합과 함께 미래를 열어가세요
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/support/contact" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <a href="/support" class="px-10 py-5 bg-white text-navy rounded-xl hover:bg-opacity-90 transition font-bold text-lg shadow-2xl">
                 <i class="fas fa-envelope mr-2"></i>
                 가입 문의하기
               </a>
-              <a href="tel:054-123-4567" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
+              <a href="/support" class="px-10 py-5 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-xl hover:bg-white hover:text-navy transition font-bold text-lg">
                 <i class="fas fa-phone mr-2"></i>
                 전화 상담
               </a>
             </div>
-            <div class="mt-12 p-6 bg-white/10 backdrop-blur-sm rounded-2xl">
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                <div>
-                  <div class="text-3xl font-bold mb-2">054-123-4567</div>
-                  <div class="text-sm opacity-80">대표 전화</div>
-                </div>
-                <div>
-                  <div class="text-3xl font-bold mb-2">09:00 - 18:00</div>
-                  <div class="text-sm opacity-80">평일 운영시간</div>
-                </div>
-                <div>
-                  <div class="text-3xl font-bold mb-2">info@gumidigital.co.kr</div>
-                  <div class="text-sm opacity-80">이메일 문의</div>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+                <i class="fas fa-phone text-3xl mb-3"></i>
+                <div class="font-bold text-xl mb-2">054-123-4567</div>
+                <div class="text-sm opacity-80">전화 상담</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+                <i class="fas fa-envelope text-3xl mb-3"></i>
+                <div class="font-bold text-lg mb-2 break-all">info@gumidigital.co.kr</div>
+                <div class="text-sm opacity-80">이메일 문의</div>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
+                <i class="fas fa-clock text-3xl mb-3"></i>
+                <div class="font-bold text-xl mb-2">평일 09:00 - 18:00</div>
+                <div class="text-sm opacity-80">운영시간</div>
               </div>
             </div>
           </div>
