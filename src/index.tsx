@@ -66,8 +66,12 @@ const Header = () => (
     <div class="container mx-auto px-4">
       <div class="flex items-center justify-between h-20">
         {/* 로고 */}
-        <a href="/" class="flex items-center space-x-3">
-          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-16 md:h-20" />
+        <a href="/" class="flex items-center space-x-3 hover:opacity-90 transition">
+          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-12 md:h-14" />
+          <div class="flex flex-col">
+            <span class="text-navy font-bold text-lg md:text-xl leading-tight">구미디지털적층산업</span>
+            <span class="text-navy font-bold text-lg md:text-xl leading-tight">사업협동조합</span>
+          </div>
         </a>
         
         {/* 데스크톱 메뉴 */}
@@ -198,7 +202,13 @@ const Footer = () => (
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* 조합 정보 */}
         <div class="col-span-1 md:col-span-2">
-          <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-16 mb-4" />
+          <div class="flex items-center space-x-3 mb-4">
+            <img src="/static/images/logo.png" alt="구미디지털적층산업사업협동조합" class="h-12" />
+            <div>
+              <h3 class="text-white font-bold text-lg leading-tight">구미디지털적층산업</h3>
+              <h3 class="text-white font-bold text-lg leading-tight">사업협동조합</h3>
+            </div>
+          </div>
           <p class="text-sm mb-4">
             3D 프린팅 및 적층제조 기술을 중심으로<br />
             회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합
