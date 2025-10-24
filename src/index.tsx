@@ -3697,7 +3697,6 @@ app.get('/support', (c) => {
               })
             `}} />
           </div>
-          </div>
         </div>
       </section>
 
@@ -4287,7 +4286,6 @@ app.get('/support/quote', (c) => {
           }
         });
       `}} />
-      </script>
 
       {/* 견적 안내 */}
       <section class="py-20 bg-white">
