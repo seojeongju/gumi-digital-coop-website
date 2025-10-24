@@ -525,14 +525,14 @@ app.get('/', async (c) => {
             </div>
             
             {/* 뉴스 그리드 */}
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
               {notices.length > 0 ? notices.map((notice: any, index: number) => (
                 <a 
                   href={`/news/${notice.id}`} 
-                  class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100"
+                  class="group bg-white rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-gray-100"
                 >
                   {/* 썸네일 영역 */}
-                  <div class={`relative h-48 overflow-hidden ${
+                  <div class={`relative h-32 overflow-hidden ${
                     notice.category === '공지사항' ? 'bg-gradient-to-br from-blue-500 to-blue-600' :
                     notice.category === '보도자료' ? 'bg-gradient-to-br from-green-500 to-green-600' :
                     notice.category === '행사' ? 'bg-gradient-to-br from-purple-500 to-purple-600' :
@@ -544,9 +544,9 @@ app.get('/', async (c) => {
                     </div>
                     
                     {/* 카테고리 배지 */}
-                    <div class="absolute top-4 left-4">
-                      <span class="inline-flex items-center px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-gray-900">
-                        <i class={`mr-1.5 ${
+                    <div class="absolute top-3 left-3">
+                      <span class="inline-flex items-center px-2 py-0.5 bg-white/90 backdrop-blur-sm rounded-full text-[10px] font-bold text-gray-900">
+                        <i class={`mr-1 text-[10px] ${
                           notice.category === '공지사항' ? 'fas fa-bullhorn' :
                           notice.category === '보도자료' ? 'fas fa-newspaper' :
                           notice.category === '행사' ? 'fas fa-calendar-alt' :
@@ -558,9 +558,9 @@ app.get('/', async (c) => {
                     
                     {/* 핀 표시 */}
                     {notice.is_pinned && (
-                      <div class="absolute top-4 right-4">
-                        <span class="inline-flex items-center px-2.5 py-1 bg-coral rounded-full text-xs font-bold text-white">
-                          <i class="fas fa-thumbtack mr-1"></i>
+                      <div class="absolute top-3 right-3">
+                        <span class="inline-flex items-center px-2 py-0.5 bg-coral rounded-full text-[10px] font-bold text-white">
+                          <i class="fas fa-thumbtack mr-1 text-[10px]"></i>
                           중요
                         </span>
                       </div>
@@ -571,11 +571,11 @@ app.get('/', async (c) => {
                   </div>
                   
                   {/* 콘텐츠 영역 */}
-                  <div class="p-6">
+                  <div class="p-4">
                     {/* 날짜 및 조회수 */}
-                    <div class="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                    <div class="flex items-center gap-3 text-xs text-gray-500 mb-2">
                       <span class="flex items-center">
-                        <i class="far fa-calendar mr-1.5"></i>
+                        <i class="far fa-calendar mr-1 text-xs"></i>
                         {new Date(notice.created_at).toLocaleDateString('ko-KR', { 
                           year: 'numeric', 
                           month: 'long', 
@@ -583,18 +583,18 @@ app.get('/', async (c) => {
                         })}
                       </span>
                       <span class="flex items-center">
-                        <i class="far fa-eye mr-1.5"></i>
+                        <i class="far fa-eye mr-1 text-xs"></i>
                         {notice.views || 0}
                       </span>
                     </div>
                     
                     {/* 제목 */}
-                    <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-teal transition">
+                    <h3 class="text-base font-bold text-gray-900 mb-2 line-clamp-2 group-hover:text-teal transition">
                       {notice.title}
                     </h3>
                     
                     {/* 내용 미리보기 */}
-                    <p class="text-gray-600 text-sm line-clamp-2 mb-4">
+                    <p class="text-gray-600 text-xs line-clamp-2 mb-3">
                       {notice.content || '협동조합의 최신 소식을 확인해보세요.'}
                     </p>
                     
@@ -646,60 +646,60 @@ app.get('/', async (c) => {
               <p class="text-gray-600 text-lg">지역 산업 발전을 위해 함께하는 협력 기관</p>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-3 max-w-4xl mx-auto">
               {/* 1. 경상북도 */}
-              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
-                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
-                  <div class="w-20 h-20 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-landmark text-3xl text-white"></i>
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-2 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-landmark text-lg text-white"></i>
                   </div>
                 </div>
-                <h4 class="font-bold text-gray-900 text-center mb-1">경상북도</h4>
-                <p class="text-xs text-gray-500 text-center">Gyeongsangbuk-do</p>
+                <h4 class="font-bold text-gray-900 text-center mb-0.5 text-xs">경상북도</h4>
+                <p class="text-[10px] text-gray-500 text-center">Gyeongsangbuk-do</p>
               </div>
 
               {/* 2. 구미시 */}
-              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
-                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
-                  <div class="w-20 h-20 bg-green-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-city text-3xl text-white"></i>
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-2 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-10 h-10 bg-green-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-city text-lg text-white"></i>
                   </div>
                 </div>
-                <h4 class="font-bold text-gray-900 text-center mb-1">구미시</h4>
-                <p class="text-xs text-gray-500 text-center">Gumi City</p>
+                <h4 class="font-bold text-gray-900 text-center mb-0.5 text-xs">구미시</h4>
+                <p class="text-[10px] text-gray-500 text-center">Gumi City</p>
               </div>
 
               {/* 3. 중소기업협동조합 */}
-              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
-                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
-                  <div class="w-20 h-20 bg-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-users text-3xl text-white"></i>
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-2 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-10 h-10 bg-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-users text-lg text-white"></i>
                   </div>
                 </div>
-                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소기업협동조합</h4>
-                <p class="text-xs text-gray-500 text-center">KBIZ</p>
+                <h4 class="font-bold text-gray-900 text-center mb-0.5 text-[11px]">중소기업협동조합</h4>
+                <p class="text-[10px] text-gray-500 text-center">KBIZ</p>
               </div>
 
               {/* 4. 과학기술정보통신부 */}
-              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
-                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
-                  <div class="w-20 h-20 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-satellite-dish text-3xl text-white"></i>
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-2 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-satellite-dish text-lg text-white"></i>
                   </div>
                 </div>
-                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">과학기술정보통신부</h4>
-                <p class="text-xs text-gray-500 text-center">MSIT</p>
+                <h4 class="font-bold text-gray-900 text-center mb-0.5 text-[11px]">과학기술정보통신부</h4>
+                <p class="text-[10px] text-gray-500 text-center">MSIT</p>
               </div>
 
               {/* 5. 중소벤처기업부 */}
-              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
-                <div class="mb-4 transition-transform group-hover:scale-110 duration-300">
-                  <div class="w-20 h-20 bg-orange-600 rounded-2xl flex items-center justify-center shadow-lg">
-                    <i class="fas fa-rocket text-3xl text-white"></i>
+              <div class="group bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col items-center justify-center">
+                <div class="mb-2 transition-transform group-hover:scale-110 duration-300">
+                  <div class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-rocket text-lg text-white"></i>
                   </div>
                 </div>
-                <h4 class="font-bold text-gray-900 text-center mb-1 text-sm">중소벤처기업부</h4>
-                <p class="text-xs text-gray-500 text-center">MSS</p>
+                <h4 class="font-bold text-gray-900 text-center mb-0.5 text-[11px]">중소벤처기업부</h4>
+                <p class="text-[10px] text-gray-500 text-center">MSS</p>
               </div>
             </div>
 
