@@ -6115,11 +6115,18 @@ app.get('/admin/quotes', authMiddleware, async (c) => {
 app.get('/admin/contacts', authMiddleware, async (c) => {
   const { DB } = c.env
   
-  // 모든 문의 가져오기
-  const contacts = await DB.prepare(`
-    SELECT * FROM contact_messages 
-    ORDER BY created_at DESC
-  `).all()
+  // 모든 문의 가져오기 (테이블이 없으면 빈 결과 반환)
+  let contacts: any = { results: [] }
+  
+  try {
+    contacts = await DB.prepare(`
+      SELECT * FROM contact_messages 
+      ORDER BY created_at DESC
+    `).all()
+  } catch (error) {
+    // contact_messages 테이블이 아직 생성되지 않은 경우 빈 결과 반환
+    console.log('contact_messages table not found, returning empty results')
+  }
   
   // 상태별 카운트
   const statusCounts = {
@@ -7007,15 +7014,23 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
   // 견적요청 상태별 카운트
   const pendingQuotes = quotes.results?.filter((q: any) => q.status === 'pending').length || 0
   
-  // 최근 문의 가져오기
-  const contacts = await DB.prepare(`
-    SELECT * FROM contact_messages 
-    ORDER BY created_at DESC 
-    LIMIT 10
-  `).all()
+  // 최근 문의 가져오기 (테이블이 없으면 빈 결과 반환)
+  let contacts: any = { results: [] }
+  let pendingContacts = 0
   
-  // 문의 상태별 카운트
-  const pendingContacts = contacts.results?.filter((c: any) => c.status === 'pending').length || 0
+  try {
+    contacts = await DB.prepare(`
+      SELECT * FROM contact_messages 
+      ORDER BY created_at DESC 
+      LIMIT 10
+    `).all()
+    
+    // 문의 상태별 카운트
+    pendingContacts = contacts.results?.filter((c: any) => c.status === 'pending').length || 0
+  } catch (error) {
+    // contact_messages 테이블이 아직 생성되지 않은 경우 무시
+    console.log('contact_messages table not found, skipping...')
+  }
   
   return c.html(
     <html lang="ko">
