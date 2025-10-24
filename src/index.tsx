@@ -6990,29 +6990,45 @@ app.get('/admin/resources', authMiddleware, async (c) => {
 app.get('/admin/dashboard', authMiddleware, async (c) => {
   const { DB } = c.env
   
-  // 최근 소식 가져오기
-  const notices = await DB.prepare(`
-    SELECT * FROM notices 
-    ORDER BY created_at DESC 
-    LIMIT 50
-  `).all()
+  // 최근 소식 가져오기 (테이블이 없으면 빈 결과 반환)
+  let notices: any = { results: [] }
+  try {
+    notices = await DB.prepare(`
+      SELECT * FROM notices 
+      ORDER BY created_at DESC 
+      LIMIT 50
+    `).all()
+  } catch (error) {
+    console.log('notices table not found, skipping...')
+  }
   
-  // 최근 자료 가져오기
-  const resources = await DB.prepare(`
-    SELECT * FROM resources 
-    ORDER BY created_at DESC 
-    LIMIT 10
-  `).all()
+  // 최근 자료 가져오기 (테이블이 없으면 빈 결과 반환)
+  let resources: any = { results: [] }
+  try {
+    resources = await DB.prepare(`
+      SELECT * FROM resources 
+      ORDER BY created_at DESC 
+      LIMIT 10
+    `).all()
+  } catch (error) {
+    console.log('resources table not found, skipping...')
+  }
   
-  // 최근 견적요청 가져오기
-  const quotes = await DB.prepare(`
-    SELECT * FROM quote_requests 
-    ORDER BY created_at DESC 
-    LIMIT 10
-  `).all()
-  
-  // 견적요청 상태별 카운트
-  const pendingQuotes = quotes.results?.filter((q: any) => q.status === 'pending').length || 0
+  // 최근 견적요청 가져오기 (테이블이 없으면 빈 결과 반환)
+  let quotes: any = { results: [] }
+  let pendingQuotes = 0
+  try {
+    quotes = await DB.prepare(`
+      SELECT * FROM quote_requests 
+      ORDER BY created_at DESC 
+      LIMIT 10
+    `).all()
+    
+    // 견적요청 상태별 카운트
+    pendingQuotes = quotes.results?.filter((q: any) => q.status === 'pending').length || 0
+  } catch (error) {
+    console.log('quote_requests table not found, skipping...')
+  }
   
   // 최근 문의 가져오기 (테이블이 없으면 빈 결과 반환)
   let contacts: any = { results: [] }
