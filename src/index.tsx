@@ -1,12 +1,36 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
+import { sign, verify } from 'hono/jwt'
+import { setCookie, getCookie } from 'hono/cookie'
 
 type Bindings = {
   DB: D1Database
+  ADMIN_PASSWORD?: string
+  JWT_SECRET?: string
 }
 
 const app = new Hono<{ Bindings: Bindings }>()
+
+// JWT Secret (환경변수 또는 기본값)
+const getJWTSecret = (c: any) => c.env.JWT_SECRET || 'gumi-coop-secret-2025'
+
+// 관리자 인증 미들웨어
+const authMiddleware = async (c: any, next: any) => {
+  const token = getCookie(c, 'admin_token')
+  
+  if (!token) {
+    return c.redirect('/admin/login')
+  }
+  
+  try {
+    const payload = await verify(token, getJWTSecret(c))
+    c.set('admin', payload)
+    await next()
+  } catch (e) {
+    return c.redirect('/admin/login')
+  }
+}
 
 // Serve static files
 app.use('/static/*', serveStatic({ root: './public' }))
@@ -5313,6 +5337,527 @@ app.get('/api/members', async (c) => {
   try {
     const result = category
       ? await DB.prepare(query).bind(category).all()
+      : await DB.prepare(query).all()
+    
+    return c.json({ success: true, data: result.results })
+  } catch (e) {
+    return c.json({ success: false, error: 'Database error' }, 500)
+  }
+})
+
+// ========================================
+// 관리자 영역
+// ========================================
+
+// 관리자 로그인 페이지
+app.get('/admin/login', (c) => {
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>관리자 로그인 - 구미디지털적층산업사업협동조합</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </head>
+      <body class="bg-gradient-to-br from-navy via-teal to-purple min-h-screen flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
+          <div class="text-center mb-8">
+            <div class="w-20 h-20 bg-gradient-to-br from-teal to-navy rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-shield-halved text-3xl text-white"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">관리자 로그인</h1>
+            <p class="text-gray-600">구미디지털적층산업사업협동조합</p>
+          </div>
+
+          <form id="loginForm" class="space-y-6">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">비밀번호</label>
+              <input 
+                type="password" 
+                id="password"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent transition"
+                placeholder="관리자 비밀번호를 입력하세요"
+                required
+              />
+            </div>
+
+            <button 
+              type="submit"
+              class="w-full py-3 bg-gradient-to-r from-teal to-navy text-white rounded-lg font-bold hover:opacity-90 transition flex items-center justify-center"
+            >
+              <i class="fas fa-sign-in-alt mr-2"></i>
+              로그인
+            </button>
+          </form>
+
+          <div id="error" class="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm hidden">
+            <i class="fas fa-exclamation-circle mr-2"></i>
+            <span id="errorMessage"></span>
+          </div>
+
+          <div class="mt-6 text-center">
+            <a href="/" class="text-sm text-gray-500 hover:text-teal transition">
+              <i class="fas fa-arrow-left mr-1"></i>
+              홈으로 돌아가기
+            </a>
+          </div>
+        </div>
+
+        <script dangerouslySetInnerHTML={{__html: `
+          document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('error');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            try {
+              const response = await fetch('/api/admin/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                window.location.href = '/admin/dashboard';
+              } else {
+                errorDiv.classList.remove('hidden');
+                errorMessage.textContent = data.error || '로그인에 실패했습니다.';
+              }
+            } catch (error) {
+              errorDiv.classList.remove('hidden');
+              errorMessage.textContent = '서버 오류가 발생했습니다.';
+            }
+          });
+        `}} />
+      </body>
+    </html>
+  )
+})
+
+// 관리자 로그인 API
+app.post('/api/admin/login', async (c) => {
+  try {
+    const { password } = await c.req.json()
+    const adminPassword = c.env.ADMIN_PASSWORD || 'admin1234' // 기본 비밀번호
+    
+    if (password !== adminPassword) {
+      return c.json({ success: false, error: '비밀번호가 올바르지 않습니다.' }, 401)
+    }
+    
+    // JWT 토큰 생성
+    const token = await sign(
+      { admin: true, exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24) }, // 24시간 유효
+      getJWTSecret(c)
+    )
+    
+    // 쿠키에 토큰 저장
+    setCookie(c, 'admin_token', token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: 60 * 60 * 24, // 24시간
+      path: '/'
+    })
+    
+    return c.json({ success: true })
+  } catch (e) {
+    return c.json({ success: false, error: '서버 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// 관리자 로그아웃
+app.get('/admin/logout', (c) => {
+  setCookie(c, 'admin_token', '', { maxAge: 0, path: '/' })
+  return c.redirect('/admin/login')
+})
+
+// 관리자 대시보드 (인증 필요)
+app.get('/admin/dashboard', authMiddleware, async (c) => {
+  const { DB } = c.env
+  
+  // 최근 소식 가져오기
+  const notices = await DB.prepare(`
+    SELECT * FROM notices 
+    ORDER BY created_at DESC 
+    LIMIT 50
+  `).all()
+  
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>관리자 대시보드 - 구미디지털적층산업사업협동조합</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      </head>
+      <body class="bg-gray-50">
+        {/* 헤더 */}
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+          <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-4">
+                <i class="fas fa-shield-halved text-2xl text-teal"></i>
+                <div>
+                  <h1 class="text-xl font-bold text-gray-900">관리자 대시보드</h1>
+                  <p class="text-sm text-gray-500">구미디지털적층산업사업협동조합</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <a href="/" class="text-gray-600 hover:text-teal transition">
+                  <i class="fas fa-home mr-2"></i>
+                  홈페이지
+                </a>
+                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                  로그아웃
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="container mx-auto px-4 py-8">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* 왼쪽: 소식 목록 */}
+            <div class="lg:col-span-2 space-y-4">
+              <div class="bg-white rounded-xl shadow-sm p-6">
+                <div class="flex items-center justify-between mb-6">
+                  <h2 class="text-2xl font-bold text-gray-900">
+                    <i class="fas fa-newspaper text-teal mr-2"></i>
+                    소식 관리
+                  </h2>
+                  <button 
+                    onclick="showCreateForm()"
+                    class="px-4 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition"
+                  >
+                    <i class="fas fa-plus mr-2"></i>
+                    새 소식 작성
+                  </button>
+                </div>
+
+                <div id="noticesList" class="space-y-3">
+                  {notices.results?.map((notice: any) => (
+                    <div class="border border-gray-200 rounded-lg p-4 hover:border-teal transition">
+                      <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                          <div class="flex items-center gap-2 mb-2">
+                            <span class="px-2 py-1 bg-teal/10 text-teal text-xs rounded">{notice.category}</span>
+                            {notice.is_pinned && <span class="px-2 py-1 bg-red-100 text-red-600 text-xs rounded">고정</span>}
+                          </div>
+                          <h3 class="font-bold text-gray-900 mb-1">{notice.title}</h3>
+                          <p class="text-sm text-gray-500">
+                            {notice.author} · {new Date(notice.created_at).toLocaleDateString('ko-KR')} · 조회 {notice.views}
+                          </p>
+                        </div>
+                        <div class="flex items-center gap-2 ml-4">
+                          <button 
+                            onclick={`editNotice(${notice.id})`}
+                            class="px-3 py-1 text-blue-600 hover:bg-blue-50 rounded transition"
+                          >
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          <button 
+                            onclick={`deleteNotice(${notice.id}, '${notice.title}')`}
+                            class="px-3 py-1 text-red-600 hover:bg-red-50 rounded transition"
+                          >
+                            <i class="fas fa-trash"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 오른쪽: 작성/수정 폼 */}
+            <div class="lg:col-span-1">
+              <div id="noticeForm" class="bg-white rounded-xl shadow-sm p-6 sticky top-24">
+                <h3 id="formTitle" class="text-xl font-bold text-gray-900 mb-6">새 소식 작성</h3>
+                
+                <form id="noticeFormElement" class="space-y-4">
+                  <input type="hidden" id="noticeId" value="" />
+                  
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
+                    <select id="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                      <option value="공지사항">공지사항</option>
+                      <option value="보도자료">보도자료</option>
+                      <option value="행사">행사</option>
+                      <option value="수상">수상</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">제목</label>
+                    <input 
+                      type="text" 
+                      id="title"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="제목을 입력하세요"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">작성자</label>
+                    <input 
+                      type="text" 
+                      id="author"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      placeholder="작성자명"
+                      value="관리자"
+                    />
+                  </div>
+
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">내용</label>
+                    <div id="editor" class="bg-white border border-gray-300 rounded-lg" style="height: 300px;"></div>
+                    <input type="hidden" id="content" />
+                  </div>
+
+                  <div class="flex items-center">
+                    <input type="checkbox" id="isPinned" class="mr-2" />
+                    <label for="isPinned" class="text-sm text-gray-700">상단 고정</label>
+                  </div>
+
+                  <div class="flex gap-2">
+                    <button 
+                      type="submit"
+                      class="flex-1 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition"
+                    >
+                      <i class="fas fa-save mr-2"></i>
+                      저장
+                    </button>
+                    <button 
+                      type="button"
+                      onclick="resetForm()"
+                      class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+                    >
+                      취소
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script dangerouslySetInnerHTML={{__html: `
+          // Quill 에디터 초기화
+          const quill = new Quill('#editor', {
+            theme: 'snow',
+            placeholder: '내용을 입력하세요...',
+            modules: {
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'],
+                ['blockquote', 'code-block'],
+                [{ 'header': 1 }, { 'header': 2 }],
+                [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                [{ 'color': [] }, { 'background': [] }],
+                ['link', 'image'],
+                ['clean']
+              ]
+            }
+          });
+
+          // 폼 제출
+          document.getElementById('noticeFormElement').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const id = document.getElementById('noticeId').value;
+            const category = document.getElementById('category').value;
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const content = quill.root.innerHTML;
+            const isPinned = document.getElementById('isPinned').checked;
+            
+            const method = id ? 'PUT' : 'POST';
+            const url = id ? \`/api/admin/notices/\${id}\` : '/api/admin/notices';
+            
+            try {
+              const response = await fetch(url, {
+                method,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ category, title, author, content, is_pinned: isPinned })
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert(id ? '소식이 수정되었습니다.' : '소식이 등록되었습니다.');
+                location.reload();
+              } else {
+                alert('오류: ' + (data.error || '알 수 없는 오류'));
+              }
+            } catch (error) {
+              alert('서버 오류가 발생했습니다.');
+            }
+          });
+
+          // 새 소식 작성 폼 표시
+          function showCreateForm() {
+            resetForm();
+            document.getElementById('formTitle').textContent = '새 소식 작성';
+          }
+
+          // 소식 수정
+          async function editNotice(id) {
+            try {
+              const response = await fetch(\`/api/notices?id=\${id}\`);
+              const data = await response.json();
+              
+              if (data.success && data.data.length > 0) {
+                const notice = data.data[0];
+                document.getElementById('noticeId').value = notice.id;
+                document.getElementById('category').value = notice.category;
+                document.getElementById('title').value = notice.title;
+                document.getElementById('author').value = notice.author || '';
+                document.getElementById('isPinned').checked = notice.is_pinned;
+                quill.root.innerHTML = notice.content;
+                document.getElementById('formTitle').textContent = '소식 수정';
+                
+                // 폼으로 스크롤
+                document.getElementById('noticeForm').scrollIntoView({ behavior: 'smooth' });
+              }
+            } catch (error) {
+              alert('소식을 불러오는데 실패했습니다.');
+            }
+          }
+
+          // 소식 삭제
+          async function deleteNotice(id, title) {
+            if (!confirm(\`"\${title}" 소식을 삭제하시겠습니까?\`)) {
+              return;
+            }
+            
+            try {
+              const response = await fetch(\`/api/admin/notices/\${id}\`, {
+                method: 'DELETE'
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert('소식이 삭제되었습니다.');
+                location.reload();
+              } else {
+                alert('삭제 실패: ' + (data.error || '알 수 없는 오류'));
+              }
+            } catch (error) {
+              alert('서버 오류가 발생했습니다.');
+            }
+          }
+
+          // 폼 초기화
+          function resetForm() {
+            document.getElementById('noticeId').value = '';
+            document.getElementById('category').value = '공지사항';
+            document.getElementById('title').value = '';
+            document.getElementById('author').value = '관리자';
+            document.getElementById('isPinned').checked = false;
+            quill.setContents([]);
+            document.getElementById('formTitle').textContent = '새 소식 작성';
+          }
+        `}} />
+      </body>
+    </html>
+  )
+})
+
+// API: 소식 생성
+app.post('/api/admin/notices', authMiddleware, async (c) => {
+  try {
+    const { DB } = c.env
+    const { category, title, content, author, is_pinned } = await c.req.json()
+    
+    if (!category || !title || !content) {
+      return c.json({ success: false, error: '필수 항목을 입력해주세요.' }, 400)
+    }
+    
+    await DB.prepare(`
+      INSERT INTO notices (category, title, content, author, is_pinned)
+      VALUES (?, ?, ?, ?, ?)
+    `).bind(category, title, content, author || '관리자', is_pinned ? 1 : 0).run()
+    
+    return c.json({ success: true })
+  } catch (e) {
+    return c.json({ success: false, error: '데이터베이스 오류' }, 500)
+  }
+})
+
+// API: 소식 수정
+app.put('/api/admin/notices/:id', authMiddleware, async (c) => {
+  try {
+    const { DB } = c.env
+    const id = c.req.param('id')
+    const { category, title, content, author, is_pinned } = await c.req.json()
+    
+    if (!category || !title || !content) {
+      return c.json({ success: false, error: '필수 항목을 입력해주세요.' }, 400)
+    }
+    
+    await DB.prepare(`
+      UPDATE notices 
+      SET category = ?, title = ?, content = ?, author = ?, is_pinned = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).bind(category, title, content, author || '관리자', is_pinned ? 1 : 0, id).run()
+    
+    return c.json({ success: true })
+  } catch (e) {
+    return c.json({ success: false, error: '데이터베이스 오류' }, 500)
+  }
+})
+
+// API: 소식 삭제
+app.delete('/api/admin/notices/:id', authMiddleware, async (c) => {
+  try {
+    const { DB } = c.env
+    const id = c.req.param('id')
+    
+    await DB.prepare(`DELETE FROM notices WHERE id = ?`).bind(id).run()
+    
+    return c.json({ success: true })
+  } catch (e) {
+    return c.json({ success: false, error: '데이터베이스 오류' }, 500)
+  }
+})
+
+// API: 개별 소식 조회 (ID로)
+app.get('/api/notices', async (c) => {
+  const { DB } = c.env
+  const id = c.req.query('id')
+  const category = c.req.query('category')
+  
+  let query = `SELECT * FROM notices`
+  const conditions = []
+  const bindings = []
+  
+  if (id) {
+    conditions.push('id = ?')
+    bindings.push(id)
+  }
+  
+  if (category) {
+    conditions.push('category = ?')
+    bindings.push(category)
+  }
+  
+  if (conditions.length > 0) {
+    query += ` WHERE ${conditions.join(' AND ')}`
+  }
+  
+  query += ` ORDER BY is_pinned DESC, created_at DESC`
+  
+  try {
+    const result = bindings.length > 0
+      ? await DB.prepare(query).bind(...bindings).all()
       : await DB.prepare(query).all()
     
     return c.json({ success: true, data: result.results })
