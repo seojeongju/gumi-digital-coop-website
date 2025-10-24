@@ -5721,11 +5721,17 @@ app.get('/admin/logout', (c) => {
 app.get('/admin/quotes', authMiddleware, async (c) => {
   const { DB } = c.env
   
-  // 모든 견적요청 가져오기
-  const quotes = await DB.prepare(`
-    SELECT * FROM quote_requests 
-    ORDER BY created_at DESC
-  `).all()
+  // 모든 견적요청 가져오기 (테이블이 없으면 빈 결과 반환)
+  let quotes: any = { results: [] }
+  
+  try {
+    quotes = await DB.prepare(`
+      SELECT * FROM quote_requests 
+      ORDER BY created_at DESC
+    `).all()
+  } catch (error) {
+    console.log('quote_requests table not found, returning empty results')
+  }
   
   // 상태별 카운트
   const statusCounts = {
@@ -6596,11 +6602,17 @@ app.get('/admin/contacts', authMiddleware, async (c) => {
 app.get('/admin/resources', authMiddleware, async (c) => {
   const { DB } = c.env
   
-  // 모든 자료 가져오기
-  const resources = await DB.prepare(`
-    SELECT * FROM resources 
-    ORDER BY created_at DESC
-  `).all()
+  // 모든 자료 가져오기 (테이블이 없으면 빈 결과 반환)
+  let resources: any = { results: [] }
+  
+  try {
+    resources = await DB.prepare(`
+      SELECT * FROM resources 
+      ORDER BY created_at DESC
+    `).all()
+  } catch (error) {
+    console.log('resources table not found, returning empty results')
+  }
   
   return c.html(
     <html lang="ko">
