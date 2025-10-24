@@ -1642,6 +1642,28 @@ app.get('/about/organization', (c) => {
 app.get('/news', async (c) => {
   const { DB } = c.env
   
+  // HTML 태그 제거 및 텍스트 추출 함수
+  const stripHtml = (html: string) => {
+    if (!html) return ''
+    // HTML 태그 제거
+    let text = html.replace(/<[^>]*>/g, '')
+    // HTML 엔티티 디코딩
+    text = text.replace(/&nbsp;/g, ' ')
+    text = text.replace(/&lt;/g, '<')
+    text = text.replace(/&gt;/g, '>')
+    text = text.replace(/&amp;/g, '&')
+    text = text.replace(/&quot;/g, '"')
+    // 여러 공백을 하나로
+    text = text.replace(/\s+/g, ' ')
+    // 앞뒤 공백 제거
+    text = text.trim()
+    // 최대 200자로 제한
+    if (text.length > 200) {
+      text = text.substring(0, 200) + '...'
+    }
+    return text
+  }
+  
   // 모든 공지사항 가져오기
   let notices = []
   try {
@@ -1650,7 +1672,10 @@ app.get('/news', async (c) => {
       FROM notices
       ORDER BY is_pinned DESC, created_at DESC
     `).all()
-    notices = result.results || []
+    notices = (result.results || []).map(notice => ({
+      ...notice,
+      preview: stripHtml(notice.content)
+    }))
   } catch (e) {
     console.error('Database error:', e)
   }
@@ -1732,7 +1757,7 @@ app.get('/news', async (c) => {
                         </h3>
                         
                         <p class="text-gray-600 text-sm line-clamp-2 mb-3">
-                          {notice.content}
+                          {notice.preview}
                         </p>
                         
                         <div class="flex items-center gap-4 text-sm text-gray-500">
