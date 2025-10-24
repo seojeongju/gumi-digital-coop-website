@@ -2609,7 +2609,7 @@ app.get('/services', (c) => {
                 <div class="w-20 h-20 bg-navy/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                   <i class="fas fa-users text-4xl text-navy"></i>
                 </div>
-                <div class="text-3xl font-bold text-navy mb-2">50+</div>
+                <div class="text-3xl font-bold text-navy mb-2">5+</div>
                 <div class="text-gray-600">조합원 기업</div>
               </div>
               <div class="text-center">
