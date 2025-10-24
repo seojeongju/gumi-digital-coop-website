@@ -120,7 +120,11 @@ const Header = () => (
         </nav>
         
         {/* CTA 버튼 */}
-        <div class="hidden lg:flex items-center space-x-4">
+        <div class="hidden lg:flex items-center space-x-3">
+          <a href="/admin/login" class="px-4 py-2 text-gray-600 hover:text-teal transition font-medium flex items-center text-sm">
+            <i class="fas fa-user-shield mr-2"></i>
+            관리자
+          </a>
           <a href="/members/join" class="px-6 py-3 bg-teal text-white rounded-md hover:bg-opacity-90 transition font-medium">
             조합원 가입
           </a>
@@ -172,6 +176,14 @@ const Header = () => (
             <a href="/support/quote" class="block py-1 text-sm text-gray-600 hover:text-teal">견적 요청</a>
             <a href="/resources" class="block py-1 text-sm text-gray-600 hover:text-teal">자료실</a>
           </div>
+        </div>
+        
+        {/* 관리자 */}
+        <div class="border-t pt-3 mt-3">
+          <a href="/admin/login" class="block py-2 text-gray-600 hover:text-teal font-medium flex items-center">
+            <i class="fas fa-user-shield mr-2"></i>
+            관리자 로그인
+          </a>
         </div>
       </nav>
     </div>
