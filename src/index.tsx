@@ -5687,7 +5687,10 @@ app.get('/admin/resources', authMiddleware, async (c) => {
 
                   <button 
                     type="submit"
-                    class="w-full py-3 bg-teal text-white rounded-lg font-bold hover:bg-opacity-90 transition"
+                    class="w-full py-3 rounded-lg font-bold transition"
+                    style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                    onmouseover="this.style.opacity='0.9'"
+                    onmouseout="this.style.opacity='1'"
                   >
                     <i class="fas fa-upload mr-2"></i>
                     업로드
@@ -5947,7 +5950,13 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                   <i class="fas fa-home mr-2"></i>
                   홈페이지
                 </a>
-                <a href="/admin/resources" class="px-4 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition">
+                <a 
+                  href="/admin/resources" 
+                  class="px-4 py-2 rounded-lg transition"
+                  style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                  onmouseover="this.style.opacity='0.9'"
+                  onmouseout="this.style.opacity='1'"
+                >
                   <i class="fas fa-folder-open mr-2"></i>
                   자료 관리
                 </a>
@@ -5973,7 +5982,10 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
               </div>
               <a 
                 href="/admin/resources"
-                class="px-6 py-3 bg-teal text-white rounded-lg hover:bg-opacity-90 transition shadow-md"
+                class="px-6 py-3 rounded-lg transition shadow-md"
+                style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
               >
                 <i class="fas fa-cog mr-2"></i>
                 자료실 관리하기
@@ -6026,7 +6038,10 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                   </h2>
                   <button 
                     onclick="showCreateForm()"
-                    class="px-4 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition"
+                    class="px-4 py-2 rounded-lg transition"
+                    style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
+                    onmouseover="this.style.opacity='0.9'"
+                    onmouseout="this.style.opacity='1'"
                   >
                     <i class="fas fa-plus mr-2"></i>
                     새 소식 작성
