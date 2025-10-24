@@ -5912,6 +5912,13 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
     LIMIT 50
   `).all()
   
+  // 최근 자료 가져오기
+  const resources = await DB.prepare(`
+    SELECT * FROM resources 
+    ORDER BY created_at DESC 
+    LIMIT 10
+  `).all()
+  
   return c.html(
     <html lang="ko">
       <head>
@@ -5954,6 +5961,60 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
         </header>
 
         <div class="container mx-auto px-4 py-8">
+          {/* 자료실 관리 섹션 */}
+          <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900">
+                  <i class="fas fa-folder-open text-teal mr-2"></i>
+                  자료실 관리
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">파일 업로드, 수정, 삭제를 관리할 수 있습니다</p>
+              </div>
+              <a 
+                href="/admin/resources"
+                class="px-6 py-3 bg-teal text-white rounded-lg hover:bg-opacity-90 transition shadow-md"
+              >
+                <i class="fas fa-cog mr-2"></i>
+                자료실 관리하기
+              </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {resources.results && resources.results.length > 0 ? (
+                resources.results.map((resource: any) => (
+                  <div class="border border-gray-200 rounded-lg p-4 hover:border-teal transition">
+                    <div class="flex items-start gap-3">
+                      <div class="flex-shrink-0">
+                        <i class={`fas fa-file-${resource.file_type.toLowerCase() === 'pdf' ? 'pdf' : 'alt'} text-3xl text-teal`}></i>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                          <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs rounded">{resource.category}</span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 truncate mb-1">{resource.title}</h3>
+                        <p class="text-xs text-gray-500">
+                          {resource.file_size} · 다운로드 {resource.downloads || 0}회
+                        </p>
+                        <p class="text-xs text-gray-400 mt-1">
+                          {new Date(resource.created_at).toLocaleDateString('ko-KR')}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div class="col-span-full text-center py-8 text-gray-500">
+                  <i class="fas fa-folder-open text-4xl mb-3 text-gray-300"></i>
+                  <p>등록된 자료가 없습니다</p>
+                  <a href="/admin/resources" class="text-teal hover:underline mt-2 inline-block">
+                    첫 자료 업로드하기 →
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* 왼쪽: 소식 목록 */}
             <div class="lg:col-span-2 space-y-4">
