@@ -272,9 +272,6 @@ app.get('/', async (c) => {
               협동조합이 고객과 회원 기업에 제공하는 가치와 비즈니스<br />
               산업별 기술 / 서비스 분야의 디지털 혁신 모델 및 주요 레퍼런스 안내
             </p>
-            <a href="/industry" class="inline-block mt-4 text-teal hover:underline">
-              + VIEW MORE
-            </a>
           </div>
           
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -287,7 +284,10 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">IoT</h3>
-                <p class="text-sm opacity-90">Internet of Things</p>
+                <p class="text-sm opacity-90 flex items-center justify-between">
+                  <span>Internet of Things</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </p>
               </div>
             </a>
             
@@ -300,7 +300,10 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-t from-purple/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">3D 프린팅</h3>
-                <p class="text-sm opacity-90">3D Printing</p>
+                <p class="text-sm opacity-90 flex items-center justify-between">
+                  <span>3D Printing</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </p>
               </div>
             </a>
             
@@ -313,7 +316,10 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-t from-navy/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">AI</h3>
-                <p class="text-sm opacity-90">Artificial Intelligence</p>
+                <p class="text-sm opacity-90 flex items-center justify-between">
+                  <span>Artificial Intelligence</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </p>
               </div>
             </a>
             
@@ -326,7 +332,10 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-t from-coral/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">로봇</h3>
-                <p class="text-sm opacity-90">Robotics</p>
+                <p class="text-sm opacity-90 flex items-center justify-between">
+                  <span>Robotics</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </p>
               </div>
             </a>
             
@@ -339,7 +348,10 @@ app.get('/', async (c) => {
               <div class="absolute inset-0 bg-gradient-to-t from-teal/90 to-transparent"></div>
               <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
                 <h3 class="text-xl font-bold mb-2">빅데이터</h3>
-                <p class="text-sm opacity-90">Big Data</p>
+                <p class="text-sm opacity-90 flex items-center justify-between">
+                  <span>Big Data</span>
+                  <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                </p>
               </div>
             </a>
           </div>
