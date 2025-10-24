@@ -3953,7 +3953,7 @@ app.get('/support/quote', (c) => {
               <p class="text-gray-600 text-lg">자세한 정보를 입력하시면 정확한 견적을 제공해 드립니다</p>
             </div>
 
-            <form class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+            <form id="quoteForm" class="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
               {/* 기본 정보 */}
               <div class="mb-10">
                 <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
@@ -3965,6 +3965,7 @@ app.get('/support/quote', (c) => {
                     <label class="block text-gray-700 font-bold mb-2">이름 *</label>
                     <input 
                       type="text" 
+                      name="name"
                       required 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                       placeholder="홍길동"
@@ -3974,6 +3975,7 @@ app.get('/support/quote', (c) => {
                     <label class="block text-gray-700 font-bold mb-2">회사명 *</label>
                     <input 
                       type="text" 
+                      name="company"
                       required 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                       placeholder="(주)회사명"
@@ -3983,6 +3985,7 @@ app.get('/support/quote', (c) => {
                     <label class="block text-gray-700 font-bold mb-2">이메일 *</label>
                     <input 
                       type="email" 
+                      name="email"
                       required 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                       placeholder="email@example.com"
@@ -3992,6 +3995,7 @@ app.get('/support/quote', (c) => {
                     <label class="block text-gray-700 font-bold mb-2">연락처 *</label>
                     <input 
                       type="tel" 
+                      name="phone"
                       required 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                       placeholder="010-0000-0000"
@@ -4010,6 +4014,7 @@ app.get('/support/quote', (c) => {
                   <div>
                     <label class="block text-gray-700 font-bold mb-2">서비스 유형 *</label>
                     <select 
+                      name="serviceType"
                       required 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                     >
@@ -4029,6 +4034,7 @@ app.get('/support/quote', (c) => {
                       <label class="block text-gray-700 font-bold mb-2">예상 수량</label>
                       <input 
                         type="number" 
+                        name="quantity"
                         min="1"
                         class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                         placeholder="예: 10"
@@ -4038,6 +4044,7 @@ app.get('/support/quote', (c) => {
                       <label class="block text-gray-700 font-bold mb-2">희망 납기일</label>
                       <input 
                         type="date" 
+                        name="deadline"
                         class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                       />
                     </div>
@@ -4046,6 +4053,7 @@ app.get('/support/quote', (c) => {
                   <div>
                     <label class="block text-gray-700 font-bold mb-2">예산 범위</label>
                     <select 
+                      name="budgetRange"
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition"
                     >
                       <option value="">선택해주세요</option>
@@ -4061,6 +4069,7 @@ app.get('/support/quote', (c) => {
                   <div>
                     <label class="block text-gray-700 font-bold mb-2">프로젝트 상세 설명 *</label>
                     <textarea 
+                      name="description"
                       required 
                       rows="6" 
                       class="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-purple focus:outline-none transition resize-none"
@@ -4070,11 +4079,12 @@ app.get('/support/quote', (c) => {
 
                   <div>
                     <label class="block text-gray-700 font-bold mb-2">파일 첨부</label>
-                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple transition">
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-purple transition" onclick="document.getElementById('fileInput').click()">
                       <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
                       <p class="text-gray-600 mb-2">클릭하거나 파일을 드래그하여 업로드</p>
                       <p class="text-sm text-gray-500">3D 모델 파일, 도면, 참고 이미지 등 (최대 50MB)</p>
-                      <input type="file" multiple class="hidden" />
+                      <input type="file" id="fileInput" name="file" class="hidden" onchange="updateFileName(this)" />
+                      <p id="fileName" class="text-sm text-purple-600 mt-2 hidden"></p>
                     </div>
                   </div>
                 </div>
@@ -4108,10 +4118,85 @@ app.get('/support/quote', (c) => {
                   다시 작성
                 </button>
               </div>
+              
+              {/* 제출 상태 메시지 */}
+              <div id="quoteStatus" class="mt-6 hidden"></div>
             </form>
           </div>
         </div>
       </section>
+      
+      {/* JavaScript for form handling */}
+      <script dangerouslySetInnerHTML={{__html: `
+        // 파일명 표시
+        function updateFileName(input) {
+          const fileNameEl = document.getElementById('fileName');
+          if (input.files && input.files[0]) {
+            const file = input.files[0];
+            const sizeMB = (file.size / 1024 / 1024).toFixed(2);
+            fileNameEl.textContent = file.name + ' (' + sizeMB + ' MB)';
+            fileNameEl.classList.remove('hidden');
+          } else {
+            fileNameEl.classList.add('hidden');
+          }
+        }
+        
+        // 견적요청 폼 제출
+        document.getElementById('quoteForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          const formData = new FormData(e.target);
+          const statusDiv = document.getElementById('quoteStatus');
+          const submitButton = e.target.querySelector('button[type="submit"]');
+          
+          // 버튼 비활성화
+          submitButton.disabled = true;
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>제출 중...';
+          
+          // 진행 중 메시지
+          statusDiv.className = 'mt-6 p-4 rounded-lg bg-blue-50 text-blue-800 border border-blue-200';
+          statusDiv.textContent = '견적요청을 제출하고 있습니다...';
+          statusDiv.classList.remove('hidden');
+          
+          try {
+            const response = await fetch('/api/quotes/submit', {
+              method: 'POST',
+              body: formData
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+              statusDiv.className = 'mt-6 p-4 rounded-lg bg-green-50 text-green-800 border border-green-200';
+              statusDiv.innerHTML = '<i class="fas fa-check-circle mr-2"></i>' + data.message;
+              
+              // 폼 초기화
+              e.target.reset();
+              document.getElementById('fileName').classList.add('hidden');
+              
+              // 3초 후 홈페이지로 이동
+              setTimeout(() => {
+                window.location.href = '/';
+              }, 3000);
+            } else {
+              statusDiv.className = 'mt-6 p-4 rounded-lg bg-red-50 text-red-800 border border-red-200';
+              statusDiv.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>' + data.error;
+              
+              // 버튼 복원
+              submitButton.disabled = false;
+              submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>견적 요청하기';
+            }
+          } catch (error) {
+            statusDiv.className = 'mt-6 p-4 rounded-lg bg-red-50 text-red-800 border border-red-200';
+            statusDiv.innerHTML = '<i class="fas fa-exclamation-circle mr-2"></i>네트워크 오류가 발생했습니다. 다시 시도해주세요.';
+            
+            // 버튼 복원
+            submitButton.disabled = false;
+            submitButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>견적 요청하기';
+          }
+        });
+      `}} />
+      </script>
 
       {/* 견적 안내 */}
       <section class="py-20 bg-white">
@@ -5511,6 +5596,399 @@ app.get('/admin/logout', (c) => {
 })
 
 // 자료 관리 페이지 (인증 필요)
+// ============================================
+// Admin Quote Management Page
+// ============================================
+app.get('/admin/quotes', authMiddleware, async (c) => {
+  const { DB } = c.env
+  
+  // 모든 견적요청 가져오기
+  const quotes = await DB.prepare(`
+    SELECT * FROM quote_requests 
+    ORDER BY created_at DESC
+  `).all()
+  
+  // 상태별 카운트
+  const statusCounts = {
+    pending: quotes.results?.filter((q: any) => q.status === 'pending').length || 0,
+    reviewing: quotes.results?.filter((q: any) => q.status === 'reviewing').length || 0,
+    quoted: quotes.results?.filter((q: any) => q.status === 'quoted').length || 0,
+    completed: quotes.results?.filter((q: any) => q.status === 'completed').length || 0,
+    cancelled: quotes.results?.filter((q: any) => q.status === 'cancelled').length || 0,
+  }
+  
+  return c.html(
+    <html lang="ko">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>견적요청 관리 - 관리자</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      </head>
+      <body class="bg-gray-50">
+        {/* 헤더 */}
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+          <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+              <h1 class="text-2xl font-bold text-gray-900">
+                <i class="fas fa-file-invoice mr-2 text-purple-600"></i>
+                견적요청 관리
+              </h1>
+              <div class="flex items-center gap-4">
+                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
+                  <i class="fas fa-home mr-1"></i>
+                  대시보드
+                </a>
+                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
+                  로그아웃
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main class="container mx-auto px-4 py-8">
+          {/* 상태 통계 */}
+          <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-yellow-600">{statusCounts.pending}</div>
+              <div class="text-sm text-gray-600 mt-1">대기중</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-blue-600">{statusCounts.reviewing}</div>
+              <div class="text-sm text-gray-600 mt-1">검토중</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-purple-600">{statusCounts.quoted}</div>
+              <div class="text-sm text-gray-600 mt-1">견적완료</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-green-600">{statusCounts.completed}</div>
+              <div class="text-sm text-gray-600 mt-1">완료</div>
+            </div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+              <div class="text-3xl font-bold text-gray-600">{statusCounts.cancelled}</div>
+              <div class="text-sm text-gray-600 mt-1">취소됨</div>
+            </div>
+          </div>
+
+          {/* 필터 */}
+          <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <div class="flex flex-wrap items-center gap-3">
+              <span class="text-sm font-semibold text-gray-700">필터:</span>
+              <button 
+                onclick="filterQuotes('all')" 
+                class="filter-btn px-4 py-2 rounded-lg text-sm font-medium transition"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                data-status="all"
+              >
+                전체
+              </button>
+              <button 
+                onclick="filterQuotes('pending')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-yellow-100 transition"
+                data-status="pending"
+              >
+                대기중
+              </button>
+              <button 
+                onclick="filterQuotes('reviewing')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition"
+                data-status="reviewing"
+              >
+                검토중
+              </button>
+              <button 
+                onclick="filterQuotes('quoted')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-purple-100 transition"
+                data-status="quoted"
+              >
+                견적완료
+              </button>
+              <button 
+                onclick="filterQuotes('completed')" 
+                class="filter-btn px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-green-100 transition"
+                data-status="completed"
+              >
+                완료
+              </button>
+            </div>
+          </div>
+
+          {/* 견적요청 목록 */}
+          <div class="bg-white rounded-xl shadow-sm p-6">
+            <h2 class="text-xl font-bold mb-6">견적요청 목록</h2>
+            
+            {quotes.results && quotes.results.length > 0 ? (
+              <div class="space-y-4" id="quotesList">
+                {quotes.results.map((quote: any) => (
+                  <div 
+                    key={quote.id} 
+                    class="quote-item border rounded-lg p-4 hover:border-purple-300 transition"
+                    data-status={quote.status}
+                  >
+                    <div class="flex items-start justify-between gap-4">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-3">
+                          <span class={`px-3 py-1 rounded-full text-xs font-bold ${
+                            quote.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                            quote.status === 'reviewing' ? 'bg-blue-100 text-blue-700' :
+                            quote.status === 'quoted' ? 'bg-purple-100 text-purple-700' :
+                            quote.status === 'completed' ? 'bg-green-100 text-green-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {quote.status === 'pending' ? '대기중' :
+                             quote.status === 'reviewing' ? '검토중' :
+                             quote.status === 'quoted' ? '견적완료' :
+                             quote.status === 'completed' ? '완료' : '취소됨'}
+                          </span>
+                          <span class="text-sm text-gray-500">
+                            {new Date(quote.created_at).toLocaleDateString('ko-KR')} {new Date(quote.created_at).toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}
+                          </span>
+                          {quote.file_key && (
+                            <span class="text-xs bg-teal-100 text-teal-700 px-2 py-1 rounded">
+                              <i class="fas fa-paperclip mr-1"></i>첨부파일
+                            </span>
+                          )}
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">고객:</span>
+                            <span class="text-sm text-gray-900 ml-2">{quote.name} ({quote.company})</span>
+                          </div>
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">연락처:</span>
+                            <span class="text-sm text-gray-900 ml-2">{quote.phone}</span>
+                          </div>
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">이메일:</span>
+                            <span class="text-sm text-gray-900 ml-2">{quote.email}</span>
+                          </div>
+                          <div>
+                            <span class="text-sm font-semibold text-gray-700">서비스:</span>
+                            <span class="text-sm text-gray-900 ml-2">
+                              {quote.service_type === '3d-printing' ? '3D 프린팅' :
+                               quote.service_type === 'design' ? '3D 디자인' :
+                               quote.service_type === 'scanning' ? '3D 스캐닝' :
+                               quote.service_type === 'reverse' ? '역설계' :
+                               quote.service_type === 'consulting' ? '기술 컨설팅' :
+                               quote.service_type === 'education' ? '교육 프로그램' : '기타'}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div class="text-sm text-gray-600 mb-2">
+                          <span class="font-semibold">설명:</span> {quote.description}
+                        </div>
+                        
+                        {quote.admin_notes && (
+                          <div class="text-sm bg-blue-50 border-l-4 border-blue-400 p-3 mt-2">
+                            <span class="font-semibold text-blue-900">관리자 메모:</span>
+                            <p class="text-blue-800 mt-1">{quote.admin_notes}</p>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div class="flex flex-col gap-2">
+                        <button 
+                          onclick={`viewQuote(${quote.id})`}
+                          class="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition text-sm"
+                          title="상세보기"
+                        >
+                          <i class="fas fa-eye mr-1"></i>
+                          상세
+                        </button>
+                        <button 
+                          onclick={`updateStatus(${quote.id}, '${quote.status}')`}
+                          class="px-3 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition text-sm"
+                          title="상태변경"
+                        >
+                          <i class="fas fa-edit mr-1"></i>
+                          상태
+                        </button>
+                        {quote.file_key && (
+                          <a 
+                            href={`/api/quotes/${quote.id}/download`}
+                            target="_blank"
+                            class="px-3 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition text-sm text-center"
+                            title="파일 다운로드"
+                          >
+                            <i class="fas fa-download mr-1"></i>
+                            파일
+                          </a>
+                        )}
+                        <button 
+                          onclick={`deleteQuote(${quote.id}, '${quote.name}')`}
+                          class="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition text-sm"
+                          title="삭제"
+                        >
+                          <i class="fas fa-trash mr-1"></i>
+                          삭제
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p class="text-gray-500 text-center py-8">등록된 견적요청이 없습니다.</p>
+            )}
+          </div>
+        </main>
+
+        {/* 상태 변경 모달 */}
+        <div id="statusModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+          <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold mb-6">상태 변경</h3>
+            <input type="hidden" id="modalQuoteId" />
+            
+            <div class="mb-4">
+              <label class="block text-sm font-medium text-gray-700 mb-2">상태 선택</label>
+              <select id="modalStatus" class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500">
+                <option value="pending">대기중</option>
+                <option value="reviewing">검토중</option>
+                <option value="quoted">견적완료</option>
+                <option value="completed">완료</option>
+                <option value="cancelled">취소됨</option>
+              </select>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-medium text-gray-700 mb-2">관리자 메모</label>
+              <textarea 
+                id="modalNotes" 
+                rows="4"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500 resize-none"
+                placeholder="견적 금액, 담당자 정보, 특이사항 등을 입력하세요"
+              ></textarea>
+            </div>
+            
+            <div class="flex gap-3">
+              <button 
+                onclick="saveStatus()"
+                class="flex-1 py-3 rounded-lg font-bold text-white"
+                style="background: linear-gradient(to right, #9333ea, #db2777);"
+              >
+                저장
+              </button>
+              <button 
+                onclick="closeModal()"
+                class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg font-bold hover:bg-gray-300"
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* JavaScript */}
+        <script dangerouslySetInnerHTML={{__html: `
+          // 필터링
+          window.filterQuotes = function(status) {
+            const items = document.querySelectorAll('.quote-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 버튼 스타일 업데이트
+            buttons.forEach(btn => {
+              if (btn.dataset.status === status) {
+                btn.style.background = 'linear-gradient(to right, #9333ea, #db2777)';
+                btn.style.color = 'white';
+              } else {
+                btn.style.background = '#f3f4f6';
+                btn.style.color = '#374151';
+              }
+            });
+            
+            // 아이템 필터링
+            items.forEach(item => {
+              if (status === 'all' || item.dataset.status === status) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          };
+          
+          // 상세보기
+          window.viewQuote = function(id) {
+            // 간단히 alert로 표시 (추후 모달로 개선 가능)
+            alert('견적요청 ID: ' + id + '\\n\\n상세 정보는 목록에서 확인할 수 있습니다.');
+          };
+          
+          // 상태 변경 모달 열기
+          window.updateStatus = function(id, currentStatus) {
+            document.getElementById('modalQuoteId').value = id;
+            document.getElementById('modalStatus').value = currentStatus;
+            document.getElementById('modalNotes').value = '';
+            document.getElementById('statusModal').classList.remove('hidden');
+            document.getElementById('statusModal').classList.add('flex');
+          };
+          
+          // 모달 닫기
+          window.closeModal = function() {
+            document.getElementById('statusModal').classList.add('hidden');
+            document.getElementById('statusModal').classList.remove('flex');
+          };
+          
+          // 상태 저장
+          window.saveStatus = async function() {
+            const id = document.getElementById('modalQuoteId').value;
+            const status = document.getElementById('modalStatus').value;
+            const adminNotes = document.getElementById('modalNotes').value;
+            
+            try {
+              const response = await fetch('/api/quotes/' + id + '/status', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status, adminNotes })
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert('상태가 업데이트되었습니다.');
+                window.location.reload();
+              } else {
+                alert('오류: ' + data.error);
+              }
+            } catch (error) {
+              alert('네트워크 오류가 발생했습니다.');
+            }
+          };
+          
+          // 삭제
+          window.deleteQuote = async function(id, name) {
+            if (!confirm(name + ' 님의 견적요청을 삭제하시겠습니까?\\n\\n이 작업은 되돌릴 수 없습니다.')) {
+              return;
+            }
+            
+            try {
+              const response = await fetch('/api/quotes/' + id, {
+                method: 'DELETE'
+              });
+              
+              const data = await response.json();
+              
+              if (data.success) {
+                alert('견적요청이 삭제되었습니다.');
+                window.location.reload();
+              } else {
+                alert('오류: ' + data.error);
+              }
+            } catch (error) {
+              alert('네트워크 오류가 발생했습니다.');
+            }
+          };
+        `}} />
+      </body>
+    </html>
+  )
+})
+
 app.get('/admin/resources', authMiddleware, async (c) => {
   const { DB } = c.env
   
@@ -5922,6 +6400,16 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
     LIMIT 10
   `).all()
   
+  // 최근 견적요청 가져오기
+  const quotes = await DB.prepare(`
+    SELECT * FROM quote_requests 
+    ORDER BY created_at DESC 
+    LIMIT 10
+  `).all()
+  
+  // 견적요청 상태별 카운트
+  const pendingQuotes = quotes.results?.filter((q: any) => q.status === 'pending').length || 0
+  
   return c.html(
     <html lang="ko">
       <head>
@@ -6022,6 +6510,92 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                   <a href="/admin/resources" class="text-teal hover:underline mt-2 inline-block">
                     첫 자료 업로드하기 →
                   </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* 견적요청 관리 섹션 */}
+          <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <div class="flex items-center justify-between mb-6">
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900">
+                  <i class="fas fa-file-invoice text-purple-600 mr-2"></i>
+                  견적요청 관리
+                </h2>
+                <p class="text-sm text-gray-500 mt-1">고객 견적요청을 확인하고 관리할 수 있습니다</p>
+                {pendingQuotes > 0 && (
+                  <p class="text-sm font-semibold text-red-600 mt-1">
+                    <i class="fas fa-exclamation-circle mr-1"></i>
+                    새로운 견적요청 {pendingQuotes}건
+                  </p>
+                )}
+              </div>
+              <a 
+                href="/admin/quotes"
+                class="px-6 py-3 rounded-lg transition shadow-md"
+                style="background: linear-gradient(to right, #9333ea, #db2777); color: white;"
+                onmouseover="this.style.opacity='0.9'"
+                onmouseout="this.style.opacity='1'"
+              >
+                <i class="fas fa-cog mr-2"></i>
+                견적요청 관리하기
+              </a>
+            </div>
+
+            <div class="space-y-3">
+              {quotes.results && quotes.results.length > 0 ? (
+                quotes.results.slice(0, 5).map((quote: any) => (
+                  <div class="border border-gray-200 rounded-lg p-4 hover:border-purple-300 transition">
+                    <div class="flex items-start justify-between">
+                      <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class={`px-2 py-1 rounded-full text-xs font-bold ${
+                            quote.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
+                            quote.status === 'reviewing' ? 'bg-blue-100 text-blue-700' :
+                            quote.status === 'quoted' ? 'bg-purple-100 text-purple-700' :
+                            quote.status === 'completed' ? 'bg-green-100 text-green-700' :
+                            'bg-gray-100 text-gray-700'
+                          }`}>
+                            {quote.status === 'pending' ? '대기중' :
+                             quote.status === 'reviewing' ? '검토중' :
+                             quote.status === 'quoted' ? '견적완료' :
+                             quote.status === 'completed' ? '완료' : '취소됨'}
+                          </span>
+                          <span class="text-xs text-gray-500">
+                            {new Date(quote.created_at).toLocaleDateString('ko-KR')}
+                          </span>
+                        </div>
+                        <h3 class="font-semibold text-gray-900 mb-1">
+                          {quote.name} ({quote.company})
+                        </h3>
+                        <p class="text-sm text-gray-600">
+                          {quote.service_type === '3d-printing' ? '3D 프린팅' :
+                           quote.service_type === 'design' ? '3D 디자인' :
+                           quote.service_type === 'scanning' ? '3D 스캐닝' :
+                           quote.service_type === 'reverse' ? '역설계' :
+                           quote.service_type === 'consulting' ? '기술 컨설팅' :
+                           quote.service_type === 'education' ? '교육 프로그램' : '기타'}
+                          {quote.file_key && (
+                            <span class="ml-2 text-xs bg-teal-100 text-teal-700 px-2 py-0.5 rounded">
+                              <i class="fas fa-paperclip mr-1"></i>첨부
+                            </span>
+                          )}
+                        </p>
+                      </div>
+                      <a 
+                        href="/admin/quotes"
+                        class="px-3 py-1 text-purple-600 hover:bg-purple-50 rounded transition text-sm"
+                      >
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div class="text-center py-8 text-gray-500">
+                  <i class="fas fa-file-invoice text-4xl mb-3 text-gray-300"></i>
+                  <p>등록된 견적요청이 없습니다</p>
                 </div>
               )}
             </div>
@@ -6602,6 +7176,210 @@ app.delete('/api/resources/:id', async (c) => {
   } catch (error) {
     console.error('Delete error:', error)
     return c.json({ success: false, error: '삭제 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// ============================================
+// Quote Request API Routes
+// ============================================
+
+// GET /api/quotes - 견적요청 목록 조회 (관리자)
+app.get('/api/quotes', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const status = c.req.query('status')
+  
+  try {
+    let query = 'SELECT * FROM quote_requests ORDER BY created_at DESC'
+    let result
+    
+    if (status && status !== 'all') {
+      query = 'SELECT * FROM quote_requests WHERE status = ? ORDER BY created_at DESC'
+      result = await DB.prepare(query).bind(status).all()
+    } else {
+      result = await DB.prepare(query).all()
+    }
+    
+    return c.json({ success: true, data: result.results })
+  } catch (error) {
+    console.error('Get quotes error:', error)
+    return c.json({ success: false, error: '견적요청 조회 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// POST /api/quotes/submit - 견적요청 제출
+app.post('/api/quotes/submit', async (c) => {
+  try {
+    const { DB, RESOURCES_BUCKET } = c.env
+    const formData = await c.req.formData()
+    
+    const name = formData.get('name') as string
+    const company = formData.get('company') as string
+    const email = formData.get('email') as string
+    const phone = formData.get('phone') as string
+    const serviceType = formData.get('serviceType') as string
+    const quantity = formData.get('quantity') as string
+    const deadline = formData.get('deadline') as string
+    const budgetRange = formData.get('budgetRange') as string
+    const description = formData.get('description') as string
+    const file = formData.get('file') as File | null
+    
+    // 필수 필드 검증
+    if (!name || !company || !email || !phone || !serviceType || !description) {
+      return c.json({ success: false, error: '필수 필드를 모두 입력해주세요.' }, 400)
+    }
+    
+    let fileKey = null
+    let fileName = null
+    let fileSize = null
+    
+    // 파일이 있는 경우 R2에 업로드
+    if (file && file.size > 0) {
+      fileName = file.name
+      fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB'
+      
+      const timestamp = Date.now()
+      fileKey = `quotes/${timestamp}_${fileName}`
+      
+      await RESOURCES_BUCKET.put(fileKey, file.stream(), {
+        httpMetadata: {
+          contentType: file.type,
+        },
+      })
+    }
+    
+    // 데이터베이스에 저장
+    await DB.prepare(`
+      INSERT INTO quote_requests 
+      (name, company, email, phone, service_type, quantity, deadline, budget_range, description, file_key, file_name, file_size, status)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')
+    `).bind(
+      name, company, email, phone, serviceType,
+      quantity ? parseInt(quantity) : null,
+      deadline || null,
+      budgetRange || null,
+      description,
+      fileKey,
+      fileName,
+      fileSize
+    ).run()
+    
+    return c.json({ 
+      success: true, 
+      message: '견적요청이 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.' 
+    })
+  } catch (error) {
+    console.error('Submit quote error:', error)
+    return c.json({ 
+      success: false, 
+      error: '견적요청 접수 중 오류가 발생했습니다. 다시 시도해주세요.' 
+    }, 500)
+  }
+})
+
+// GET /api/quotes/:id - 특정 견적요청 조회
+app.get('/api/quotes/:id', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    const quote = await DB.prepare(`
+      SELECT * FROM quote_requests WHERE id = ?
+    `).bind(id).first()
+    
+    if (!quote) {
+      return c.json({ success: false, error: '견적요청을 찾을 수 없습니다.' }, 404)
+    }
+    
+    return c.json({ success: true, data: quote })
+  } catch (error) {
+    console.error('Get quote error:', error)
+    return c.json({ success: false, error: '견적요청 조회 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// PUT /api/quotes/:id/status - 견적요청 상태 변경
+app.put('/api/quotes/:id/status', authMiddleware, async (c) => {
+  const { DB } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    const body = await c.req.json()
+    const { status, adminNotes } = body
+    
+    if (!status) {
+      return c.json({ success: false, error: '상태값이 필요합니다.' }, 400)
+    }
+    
+    const validStatuses = ['pending', 'reviewing', 'quoted', 'completed', 'cancelled']
+    if (!validStatuses.includes(status)) {
+      return c.json({ success: false, error: '유효하지 않은 상태값입니다.' }, 400)
+    }
+    
+    await DB.prepare(`
+      UPDATE quote_requests 
+      SET status = ?, admin_notes = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).bind(status, adminNotes || null, id).run()
+    
+    return c.json({ success: true, message: '상태가 업데이트되었습니다.' })
+  } catch (error) {
+    console.error('Update status error:', error)
+    return c.json({ success: false, error: '상태 업데이트 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// DELETE /api/quotes/:id - 견적요청 삭제
+app.delete('/api/quotes/:id', authMiddleware, async (c) => {
+  const { DB, RESOURCES_BUCKET } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    // 견적요청 정보 조회
+    const quote = await DB.prepare(`
+      SELECT * FROM quote_requests WHERE id = ?
+    `).bind(id).first()
+    
+    if (!quote) {
+      return c.json({ success: false, error: '견적요청을 찾을 수 없습니다.' }, 404)
+    }
+    
+    // 첨부파일이 있는 경우 R2에서 삭제
+    if (quote.file_key) {
+      await RESOURCES_BUCKET.delete(quote.file_key)
+    }
+    
+    // 데이터베이스에서 삭제
+    await DB.prepare(`
+      DELETE FROM quote_requests WHERE id = ?
+    `).bind(id).run()
+    
+    return c.json({ success: true, message: '견적요청이 삭제되었습니다.' })
+  } catch (error) {
+    console.error('Delete quote error:', error)
+    return c.json({ success: false, error: '삭제 중 오류가 발생했습니다.' }, 500)
+  }
+})
+
+// GET /api/quotes/:id/download - 첨부파일 다운로드
+app.get('/api/quotes/:id/download', authMiddleware, async (c) => {
+  const { DB, RESOURCES_BUCKET } = c.env
+  const id = c.req.param('id')
+  
+  try {
+    const quote = await DB.prepare(`
+      SELECT * FROM quote_requests WHERE id = ?
+    `).bind(id).first()
+    
+    if (!quote || !quote.file_key) {
+      return c.json({ success: false, error: '파일을 찾을 수 없습니다.' }, 404)
+    }
+    
+    // R2 공개 URL로 리다이렉트
+    const publicUrl = `https://pub-2c962d75c8ef45dcb7e1b25b62e3bdaf.r2.dev/${quote.file_key}`
+    return c.redirect(publicUrl, 301)
+  } catch (error) {
+    console.error('Download file error:', error)
+    return c.json({ success: false, error: '파일 다운로드 중 오류가 발생했습니다.' }, 500)
   }
 })
 
