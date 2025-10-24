@@ -5309,33 +5309,6 @@ app.get('/location', (c) => {
   )
 })
 
-app.get('/api/notices', async (c) => {
-  const { DB } = c.env
-  const category = c.req.query('category')
-  const limit = parseInt(c.req.query('limit') || '10')
-  
-  let query = `
-    SELECT id, category, title, created_at, views, is_pinned
-    FROM notices
-  `
-  
-  if (category) {
-    query += ` WHERE category = ?`
-  }
-  
-  query += ` ORDER BY is_pinned DESC, created_at DESC LIMIT ?`
-  
-  try {
-    const result = category 
-      ? await DB.prepare(query).bind(category, limit).all()
-      : await DB.prepare(query).bind(limit).all()
-    
-    return c.json({ success: true, data: result.results })
-  } catch (e) {
-    return c.json({ success: false, error: 'Database error' }, 500)
-  }
-})
-
 app.get('/api/members', async (c) => {
   const { DB } = c.env
   const category = c.req.query('category')
