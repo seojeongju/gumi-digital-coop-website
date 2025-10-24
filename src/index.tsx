@@ -5591,7 +5591,7 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
 
             {/* 오른쪽: 작성/수정 폼 */}
             <div class="lg:col-span-1">
-              <div id="noticeForm" class="bg-white rounded-xl shadow-sm p-6 sticky top-24">
+              <div id="noticeForm" class="bg-white rounded-xl shadow-sm p-6 sticky top-24 max-h-[calc(100vh-120px)] overflow-y-auto">
                 <h3 id="formTitle" class="text-xl font-bold text-gray-900 mb-6">새 소식 작성</h3>
                 
                 <form id="noticeFormElement" class="space-y-4">
@@ -5599,7 +5599,7 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                   
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">카테고리</label>
-                    <select id="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg" required>
+                    <select id="category" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent" required>
                       <option value="공지사항">공지사항</option>
                       <option value="보도자료">보도자료</option>
                       <option value="행사">행사</option>
@@ -5612,7 +5612,7 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                     <input 
                       type="text" 
                       id="title"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
                       placeholder="제목을 입력하세요"
                       required
                     />
@@ -5623,7 +5623,7 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
                     <input 
                       type="text" 
                       id="author"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                      class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal focus:border-transparent"
                       placeholder="작성자명"
                       value="관리자"
                     />
@@ -5631,28 +5631,29 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
 
                   <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">내용</label>
-                    <div id="editor" class="bg-white border border-gray-300 rounded-lg" style="height: 300px;"></div>
+                    <div id="editor" class="bg-white border border-gray-300 rounded-lg" style="height: 250px;"></div>
                     <input type="hidden" id="content" />
                   </div>
 
-                  <div class="flex items-center">
-                    <input type="checkbox" id="isPinned" class="mr-2" />
-                    <label for="isPinned" class="text-sm text-gray-700">상단 고정</label>
+                  <div class="flex items-center py-2">
+                    <input type="checkbox" id="isPinned" class="mr-2 w-4 h-4" />
+                    <label for="isPinned" class="text-sm text-gray-700 font-medium">상단 고정</label>
                   </div>
 
-                  <div class="flex gap-2">
+                  <div class="flex gap-2 pt-4 border-t">
                     <button 
                       type="submit"
-                      class="flex-1 py-2 bg-teal text-white rounded-lg hover:bg-opacity-90 transition"
+                      class="flex-1 py-3 bg-gradient-to-r from-teal to-cyan-600 text-white rounded-lg hover:opacity-90 transition font-bold shadow-lg"
                     >
                       <i class="fas fa-save mr-2"></i>
-                      저장
+                      저장하기
                     </button>
                     <button 
                       type="button"
                       onclick="resetForm()"
-                      class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+                      class="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium"
                     >
+                      <i class="fas fa-times mr-2"></i>
                       취소
                     </button>
                   </div>
