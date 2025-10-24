@@ -16,6 +16,9 @@ export const renderer = jsxRenderer(({ children, title }) => {
         {/* FontAwesome */}
         <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet" />
         
+        {/* Quill Editor Styles */}
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+        
         {/* Custom CSS */}
         <link href="/static/css/styles.css" rel="stylesheet" />
         

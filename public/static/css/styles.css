@@ -150,6 +150,74 @@ section {
   background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
 }
 
+/* Quill 에디터 콘텐츠 스타일 */
+.ql-editor {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.ql-editor p {
+  margin-bottom: 1em;
+}
+
+.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5em 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ql-editor h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #1B3A7D;
+}
+
+.ql-editor h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  color: #1B3A7D;
+}
+
+.ql-editor ul,
+.ql-editor ol {
+  margin: 1em 0;
+  padding-left: 2em;
+}
+
+.ql-editor li {
+  margin-bottom: 0.5em;
+}
+
+.ql-editor blockquote {
+  border-left: 4px solid #00A9CE;
+  padding-left: 1em;
+  margin: 1em 0;
+  color: #666;
+  font-style: italic;
+}
+
+.ql-editor pre {
+  background-color: #f5f5f5;
+  padding: 1em;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.ql-editor a {
+  color: #00A9CE;
+  text-decoration: underline;
+}
+
+.ql-editor a:hover {
+  color: #7B3FF2;
+}
+
 /* 프린트 스타일 */
 @media print {
   header, footer, nav {

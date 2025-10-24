@@ -1906,9 +1906,10 @@ app.get('/news/:id', async (c) => {
             <div class="max-w-4xl mx-auto">
               <div class="prose prose-lg max-w-none">
                 <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-100">
-                  <div class="text-gray-700 leading-relaxed whitespace-pre-wrap">
-                    {noticeResult.content}
-                  </div>
+                  <div 
+                    class="text-gray-700 leading-relaxed ql-editor"
+                    dangerouslySetInnerHTML={{ __html: noticeResult.content }}
+                  />
                   
                   {noticeResult.updated_at && noticeResult.updated_at !== noticeResult.created_at && (
                     <div class="mt-8 pt-6 border-t border-gray-200 text-sm text-gray-500">
