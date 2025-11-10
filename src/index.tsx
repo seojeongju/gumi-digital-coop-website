@@ -6901,70 +6901,96 @@ app.get('/admin/contacts', authMiddleware, async (c) => {
                   'general': '일반 문의',
                   'other': '기타'
                 }
-                const statusLabels = {
-                  'pending': '대기중',
-                  'reviewing': '검토중',
-                  'replied': '답변완료',
-                  'closed': '종료'
+                const statusMap = {
+                  'pending': '<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-bold">대기중</span>',
+                  'reviewing': '<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-bold">검토중</span>',
+                  'replied': '<span class="px-3 py-1 bg-teal-100 text-teal-800 rounded-full text-sm font-bold">답변완료</span>',
+                  'closed': '<span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-bold">종료</span>'
                 }
                 
-                document.getElementById('detailContent').innerHTML = \`
-                  <div class="space-y-4">
-                    <div class="grid grid-cols-2 gap-4">
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">상태</label>
-                        <p class="text-base mt-1">\${statusLabels[contact.status]}</p>
-                      </div>
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">문의 유형</label>
-                        <p class="text-base mt-1">\${inquiryTypes[contact.inquiry_type]}</p>
-                      </div>
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">이름</label>
-                        <p class="text-base mt-1">\${contact.name}</p>
-                      </div>
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">회사명</label>
-                        <p class="text-base mt-1">\${contact.company || '-'}</p>
-                      </div>
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">이메일</label>
-                        <p class="text-base mt-1">\${contact.email}</p>
-                      </div>
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">연락처</label>
-                        <p class="text-base mt-1">\${contact.phone}</p>
-                      </div>
-                      <div class="col-span-2">
-                        <label class="text-sm font-semibold text-gray-600">접수일시</label>
-                        <p class="text-base mt-1">\${new Date(contact.created_at).toLocaleString('ko-KR')}</p>
-                      </div>
-                      \${contact.replied_at ? \`
-                        <div class="col-span-2">
-                          <label class="text-sm font-semibold text-gray-600">답변일시</label>
-                          <p class="text-base mt-1">\${new Date(contact.replied_at).toLocaleString('ko-KR')}</p>
+                let html = \`
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 고객 정보 -->
+                    <div class="bg-gradient-to-br from-teal-50 to-teal-100 rounded-xl p-6">
+                      <h4 class="text-lg font-bold text-teal-900 mb-4 flex items-center">
+                        <i class="fas fa-user mr-2"></i> 고객 정보
+                      </h4>
+                      <div class="space-y-3 text-sm">
+                        <div class="flex items-start">
+                          <span class="font-semibold text-teal-800 w-20">이름:</span>
+                          <span class="text-teal-900">\${contact.name}</span>
                         </div>
-                      \` : ''}
-                    </div>
-                    
-                    <div>
-                      <label class="text-sm font-semibold text-gray-600">문의 내용</label>
-                      <div class="mt-2 p-4 bg-gray-50 rounded-lg">
-                        <p class="whitespace-pre-wrap">\${contact.message}</p>
+                        \${contact.company ? \`
+                        <div class="flex items-start">
+                          <span class="font-semibold text-teal-800 w-20">회사명:</span>
+                          <span class="text-teal-900">\${contact.company}</span>
+                        </div>
+                        \` : ''}
+                        <div class="flex items-start">
+                          <span class="font-semibold text-teal-800 w-20">이메일:</span>
+                          <span class="text-teal-900 break-all">\${contact.email}</span>
+                        </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-teal-800 w-20">전화번호:</span>
+                          <span class="text-teal-900">\${contact.phone}</span>
+                        </div>
                       </div>
                     </div>
                     
-                    \${contact.admin_notes ? \`
-                      <div>
-                        <label class="text-sm font-semibold text-gray-600">관리자 메모</label>
-                        <div class="mt-2 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
-                          <p class="whitespace-pre-wrap">\${contact.admin_notes}</p>
+                    <!-- 문의 정보 -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6">
+                      <h4 class="text-lg font-bold text-indigo-900 mb-4 flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i> 문의 정보
+                      </h4>
+                      <div class="space-y-3 text-sm">
+                        <div class="flex items-start">
+                          <span class="font-semibold text-indigo-800 w-24">문의 유형:</span>
+                          <span class="text-indigo-900">\${inquiryTypes[contact.inquiry_type]}</span>
                         </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-indigo-800 w-24">상태:</span>
+                          <div>\${statusMap[contact.status]}</div>
+                        </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-indigo-800 w-24">접수일시:</span>
+                          <span class="text-indigo-900">\${new Date(contact.created_at).toLocaleString('ko-KR')}</span>
+                        </div>
+                        \${contact.replied_at ? \`
+                        <div class="flex items-start">
+                          <span class="font-semibold text-indigo-800 w-24">답변일시:</span>
+                          <span class="text-indigo-900">\${new Date(contact.replied_at).toLocaleString('ko-KR')}</span>
+                        </div>
+                        \` : ''}
                       </div>
-                    \` : ''}
+                    </div>
+                  </div>
+                  
+                  <!-- 문의 내용 -->
+                  <div class="bg-gray-50 rounded-xl p-6 mt-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                      <i class="fas fa-comment-dots mr-2 text-teal-600"></i> 문의 내용
+                    </h4>
+                    <p class="text-gray-700 whitespace-pre-wrap leading-relaxed">\${contact.message}</p>
+                  </div>
+                  
+                  \${contact.admin_notes ? \`
+                  <!-- 관리자 메모 -->
+                  <div class="bg-yellow-50 rounded-xl p-6 mt-6 border-l-4 border-yellow-400">
+                    <h4 class="text-lg font-bold text-yellow-900 mb-3 flex items-center">
+                      <i class="fas fa-sticky-note mr-2"></i> 관리자 메모
+                    </h4>
+                    <p class="text-yellow-800 whitespace-pre-wrap">\${contact.admin_notes}</p>
+                  </div>
+                  \` : ''}
+                  
+                  <!-- 등록 정보 -->
+                  <div class="text-center text-sm text-gray-500 mt-6 pt-6 border-t">
+                    <p>접수일: \${new Date(contact.created_at).toLocaleString('ko-KR')}</p>
+                    \${contact.updated_at !== contact.created_at ? \`<p class="mt-1">최종 수정: \${new Date(contact.updated_at).toLocaleString('ko-KR')}</p>\` : ''}
                   </div>
                 \`
                 
+                document.getElementById('detailContent').innerHTML = html
                 document.getElementById('detailModal').classList.remove('hidden')
                 document.getElementById('detailModal').classList.add('flex')
               }
