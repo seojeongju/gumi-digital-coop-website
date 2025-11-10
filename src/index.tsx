@@ -465,6 +465,88 @@ const Footer = () => (
   </footer>
 )
 
+// 관리자 헤더 컴포넌트
+const AdminHeader = ({ currentPage }: { currentPage: string }) => (
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    {/* 상단 헤더 */}
+    <div class="bg-gradient-to-r from-navy to-teal text-white">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <i class="fas fa-shield-halved text-2xl"></i>
+            <div>
+              <h1 class="text-lg font-bold">관리자 페이지</h1>
+              <p class="text-xs opacity-90">구미디지털적층산업사업협동조합</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3">
+            <a href="/" class="text-white/80 hover:text-white transition text-sm">
+              <i class="fas fa-home mr-1"></i>
+              홈페이지
+            </a>
+            <a href="/admin/logout" class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white rounded-lg transition text-sm">
+              <i class="fas fa-sign-out-alt mr-1"></i>
+              로그아웃
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {/* 네비게이션 메뉴 */}
+    <div class="bg-white border-b">
+      <div class="container mx-auto px-4">
+        <nav class="flex items-center space-x-1">
+          <a 
+            href="/admin/dashboard" 
+            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+              currentPage === 'dashboard' 
+                ? 'text-teal border-b-2 border-teal' 
+                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+            }`}
+          >
+            <i class="fas fa-chart-line mr-2"></i>
+            대시보드
+          </a>
+          <a 
+            href="/admin/quotes" 
+            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+              currentPage === 'quotes' 
+                ? 'text-teal border-b-2 border-teal' 
+                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+            }`}
+          >
+            <i class="fas fa-file-invoice mr-2"></i>
+            견적 관리
+          </a>
+          <a 
+            href="/admin/contacts" 
+            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+              currentPage === 'contacts' 
+                ? 'text-teal border-b-2 border-teal' 
+                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+            }`}
+          >
+            <i class="fas fa-envelope mr-2"></i>
+            문의 관리
+          </a>
+          <a 
+            href="/admin/resources" 
+            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+              currentPage === 'resources' 
+                ? 'text-teal border-b-2 border-teal' 
+                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+            }`}
+          >
+            <i class="fas fa-folder-open mr-2"></i>
+            자료실 관리
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+)
+
 // 메인 페이지
 app.get('/', async (c) => {
   const { DB } = c.env
@@ -5967,28 +6049,17 @@ app.get('/admin/quotes', authMiddleware, async (c) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body class="bg-gray-50">
-        {/* 헤더 */}
-        <header class="bg-white shadow-sm sticky top-0 z-50">
-          <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-              <h1 class="text-2xl font-bold text-gray-900">
-                <i class="fas fa-file-invoice mr-2 text-purple-600"></i>
-                견적요청 관리
-              </h1>
-              <div class="flex items-center gap-4">
-                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
-                  <i class="fas fa-home mr-1"></i>
-                  대시보드
-                </a>
-                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                  로그아웃
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AdminHeader currentPage="quotes" />
 
         <main class="container mx-auto px-4 py-8">
+          {/* 페이지 타이틀 */}
+          <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">
+              <i class="fas fa-file-invoice mr-3 text-purple-600"></i>
+              견적요청 관리
+            </h1>
+            <p class="text-gray-600 mt-2">접수된 견적 요청을 확인하고 관리할 수 있습니다.</p>
+          </div>
           {/* 상태 통계 */}
           <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
             <div class="bg-white rounded-xl p-4 shadow-sm">
@@ -6367,28 +6438,17 @@ app.get('/admin/contacts', authMiddleware, async (c) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body class="bg-gray-50">
-        {/* 헤더 */}
-        <header class="bg-white shadow-sm sticky top-0 z-50">
-          <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-              <h1 class="text-2xl font-bold text-gray-900">
-                <i class="fas fa-envelope mr-2 text-teal-600"></i>
-                문의 관리
-              </h1>
-              <div class="flex items-center gap-4">
-                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
-                  <i class="fas fa-home mr-1"></i>
-                  대시보드
-                </a>
-                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                  로그아웃
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AdminHeader currentPage="contacts" />
 
         <main class="container mx-auto px-4 py-8">
+          {/* 페이지 타이틀 */}
+          <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">
+              <i class="fas fa-envelope mr-3 text-teal-600"></i>
+              문의 관리
+            </h1>
+            <p class="text-gray-600 mt-2">접수된 문의 메시지를 확인하고 답변할 수 있습니다.</p>
+          </div>
           {/* 상태 통계 */}
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white rounded-xl p-4 shadow-sm">
@@ -6839,29 +6899,18 @@ app.get('/admin/resources', authMiddleware, async (c) => {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
       <body class="bg-gray-50">
-        {/* 헤더 */}
-        <header class="bg-white shadow-sm sticky top-0 z-50">
-          <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-              <h1 class="text-2xl font-bold text-gray-900">
-                <i class="fas fa-folder-open mr-2 text-teal"></i>
-                자료 관리
-              </h1>
-              <div class="flex items-center gap-4">
-                <a href="/admin/dashboard" class="text-gray-600 hover:text-gray-900">
-                  <i class="fas fa-home mr-1"></i>
-                  대시보드
-                </a>
-                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600">
-                  로그아웃
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AdminHeader currentPage="resources" />
 
         {/* 메인 컨텐츠 */}
         <main class="container mx-auto px-4 py-8">
+          {/* 페이지 타이틀 */}
+          <div class="mb-6">
+            <h1 class="text-3xl font-bold text-gray-900">
+              <i class="fas fa-folder-open mr-3 text-teal"></i>
+              자료실 관리
+            </h1>
+            <p class="text-gray-600 mt-2">파일 업로드, 수정, 삭제를 관리할 수 있습니다.</p>
+          </div>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* 왼쪽: 자료 목록 */}
             <div class="lg:col-span-2">
@@ -7287,40 +7336,7 @@ app.get('/admin/dashboard', authMiddleware, async (c) => {
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
       </head>
       <body class="bg-gray-50">
-        {/* 헤더 */}
-        <header class="bg-white shadow-sm sticky top-0 z-50">
-          <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-4">
-                <i class="fas fa-shield-halved text-2xl text-teal"></i>
-                <div>
-                  <h1 class="text-xl font-bold text-gray-900">관리자 대시보드</h1>
-                  <p class="text-sm text-gray-500">구미디지털적층산업사업협동조합</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-4">
-                <a href="/" class="text-gray-600 hover:text-teal transition">
-                  <i class="fas fa-home mr-2"></i>
-                  홈페이지
-                </a>
-                <a 
-                  href="/admin/resources" 
-                  class="px-4 py-2 rounded-lg transition"
-                  style="background: linear-gradient(to right, #00A9CE, #00bcd4); color: white;"
-                  onmouseover="this.style.opacity='0.9'"
-                  onmouseout="this.style.opacity='1'"
-                >
-                  <i class="fas fa-folder-open mr-2"></i>
-                  자료 관리
-                </a>
-                <a href="/admin/logout" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
-                  <i class="fas fa-sign-out-alt mr-2"></i>
-                  로그아웃
-                </a>
-              </div>
-            </div>
-          </div>
-        </header>
+        <AdminHeader currentPage="dashboard" />
 
         <div class="container mx-auto px-4 py-8">
           {/* 자료실 관리 섹션 */}
