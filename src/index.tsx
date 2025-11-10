@@ -6261,6 +6261,22 @@ app.get('/admin/quotes', authMiddleware, async (c) => {
           </div>
         </main>
 
+        {/* 상세보기 모달 */}
+        <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+          <div class="bg-white rounded-xl p-8 max-w-3xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6">
+              <h3 class="text-2xl font-bold text-gray-900">견적 요청 상세 정보</h3>
+              <button onclick="closeDetailModal()" class="text-gray-400 hover:text-gray-600 text-2xl">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            
+            <div id="detailContent" class="space-y-6">
+              {/* 내용이 JavaScript로 동적 삽입됨 */}
+            </div>
+          </div>
+        </div>
+
         {/* 상태 변경 모달 */}
         <div id="statusModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
           <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
@@ -6335,9 +6351,162 @@ app.get('/admin/quotes', authMiddleware, async (c) => {
           };
           
           // 상세보기
-          window.viewQuote = function(id) {
-            // 간단히 alert로 표시 (추후 모달로 개선 가능)
-            alert('견적요청 ID: ' + id + '\\n\\n상세 정보는 목록에서 확인할 수 있습니다.');
+          window.viewQuote = async function(id) {
+            try {
+              const response = await fetch('/api/quotes/' + id);
+              const data = await response.json();
+              
+              if (data.success) {
+                const quote = data.data;
+                const statusMap = {
+                  'pending': '<span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-bold">대기중</span>',
+                  'reviewing': '<span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-bold">검토중</span>',
+                  'quoted': '<span class="px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-bold">견적완료</span>',
+                  'completed': '<span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-bold">완료</span>',
+                  'cancelled': '<span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-bold">취소됨</span>'
+                };
+                
+                const serviceTypeMap = {
+                  '3d-printing': '3D 프린팅',
+                  'design': '3D 디자인',
+                  'scanning': '3D 스캐닝',
+                  'consulting': '컨설팅',
+                  'other': '기타'
+                };
+                
+                const budgetMap = {
+                  '100-300': '100만원 - 300만원',
+                  '300-500': '300만원 - 500만원',
+                  '500-1000': '500만원 - 1000만원',
+                  '1000+': '1000만원 이상',
+                  'consulting': '협의 필요'
+                };
+                
+                let html = \`
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- 고객 정보 -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6">
+                      <h4 class="text-lg font-bold text-blue-900 mb-4 flex items-center">
+                        <i class="fas fa-user mr-2"></i> 고객 정보
+                      </h4>
+                      <div class="space-y-3 text-sm">
+                        <div class="flex items-start">
+                          <span class="font-semibold text-blue-800 w-20">이름:</span>
+                          <span class="text-blue-900">\${quote.name}</span>
+                        </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-blue-800 w-20">회사명:</span>
+                          <span class="text-blue-900">\${quote.company}</span>
+                        </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-blue-800 w-20">이메일:</span>
+                          <span class="text-blue-900">\${quote.email}</span>
+                        </div>
+                        <div class="flex items-start">
+                          <span class="font-semibold text-blue-800 w-20">전화번호:</span>
+                          <span class="text-blue-900">\${quote.phone}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- 프로젝트 정보 -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6">
+                      <h4 class="text-lg font-bold text-purple-900 mb-4 flex items-center">
+                        <i class="fas fa-briefcase mr-2"></i> 프로젝트 정보
+                      </h4>
+                      <div class="space-y-3 text-sm">
+                        <div class="flex items-start">
+                          <span class="font-semibold text-purple-800 w-24">서비스:</span>
+                          <span class="text-purple-900">\${serviceTypeMap[quote.service_type] || quote.service_type}</span>
+                        </div>
+                        \${quote.quantity ? \`
+                        <div class="flex items-start">
+                          <span class="font-semibold text-purple-800 w-24">수량:</span>
+                          <span class="text-purple-900">\${quote.quantity}개</span>
+                        </div>
+                        \` : ''}
+                        \${quote.deadline ? \`
+                        <div class="flex items-start">
+                          <span class="font-semibold text-purple-800 w-24">납기일:</span>
+                          <span class="text-purple-900">\${quote.deadline}</span>
+                        </div>
+                        \` : ''}
+                        \${quote.budget_range ? \`
+                        <div class="flex items-start">
+                          <span class="font-semibold text-purple-800 w-24">예산:</span>
+                          <span class="text-purple-900">\${budgetMap[quote.budget_range] || quote.budget_range}</span>
+                        </div>
+                        \` : ''}
+                        <div class="flex items-start">
+                          <span class="font-semibold text-purple-800 w-24">상태:</span>
+                          <div>\${statusMap[quote.status]}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- 상세 설명 -->
+                  <div class="bg-gray-50 rounded-xl p-6 mt-6">
+                    <h4 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                      <i class="fas fa-file-alt mr-2 text-teal-600"></i> 상세 설명
+                    </h4>
+                    <p class="text-gray-700 whitespace-pre-wrap leading-relaxed">\${quote.description}</p>
+                  </div>
+                  
+                  \${quote.file_name ? \`
+                  <!-- 첨부 파일 -->
+                  <div class="bg-teal-50 rounded-xl p-6 mt-6">
+                    <h4 class="text-lg font-bold text-teal-900 mb-3 flex items-center">
+                      <i class="fas fa-paperclip mr-2"></i> 첨부 파일
+                    </h4>
+                    <div class="flex items-center justify-between bg-white rounded-lg p-4 border border-teal-200">
+                      <div>
+                        <p class="font-semibold text-teal-900">\${quote.file_name}</p>
+                        <p class="text-sm text-teal-700">\${quote.file_size}</p>
+                      </div>
+                      <a 
+                        href="/api/quotes/\${quote.id}/download" 
+                        target="_blank"
+                        class="px-4 py-2 bg-teal-500 text-white rounded-lg hover:bg-teal-600 transition"
+                      >
+                        <i class="fas fa-download mr-2"></i>다운로드
+                      </a>
+                    </div>
+                  </div>
+                  \` : ''}
+                  
+                  \${quote.admin_notes ? \`
+                  <!-- 관리자 메모 -->
+                  <div class="bg-yellow-50 rounded-xl p-6 mt-6 border-l-4 border-yellow-400">
+                    <h4 class="text-lg font-bold text-yellow-900 mb-3 flex items-center">
+                      <i class="fas fa-sticky-note mr-2"></i> 관리자 메모
+                    </h4>
+                    <p class="text-yellow-800 whitespace-pre-wrap">\${quote.admin_notes}</p>
+                  </div>
+                  \` : ''}
+                  
+                  <!-- 등록 정보 -->
+                  <div class="text-center text-sm text-gray-500 mt-6 pt-6 border-t">
+                    <p>접수일: \${new Date(quote.created_at).toLocaleString('ko-KR')}</p>
+                    \${quote.updated_at !== quote.created_at ? \`<p class="mt-1">최종 수정: \${new Date(quote.updated_at).toLocaleString('ko-KR')}</p>\` : ''}
+                  </div>
+                \`;
+                
+                document.getElementById('detailContent').innerHTML = html;
+                document.getElementById('detailModal').classList.remove('hidden');
+                document.getElementById('detailModal').classList.add('flex');
+              } else {
+                alert('오류: ' + data.error);
+              }
+            } catch (error) {
+              alert('네트워크 오류가 발생했습니다.');
+            }
+          };
+          
+          // 상세보기 모달 닫기
+          window.closeDetailModal = function() {
+            document.getElementById('detailModal').classList.add('hidden');
+            document.getElementById('detailModal').classList.remove('flex');
           };
           
           // 상태 변경 모달 열기
