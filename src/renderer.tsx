@@ -31,6 +31,9 @@ export const renderer = jsxRenderer(({ children, title }) => {
         {/* 네이버 사이트 소유 확인 */}
         <meta name="naver-site-verification" content="1def2814104acefcd4c1fd71d0e9d0f81e469e21" />
         
+        {/* 구글 사이트 소유 확인 */}
+        <meta name="google-site-verification" content="BoglOItnG_3uAOf5WDf1Dxj_SILXKhNS2bePJu9xeSA" />
+        
         {/* TailwindCSS */}
         <script src="https://cdn.tailwindcss.com"></script>
         
