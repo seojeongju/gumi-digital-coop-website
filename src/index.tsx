@@ -3,18 +3,233 @@ import { renderer } from './renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { sign, verify } from 'hono/jwt'
 import { setCookie, getCookie } from 'hono/cookie'
+import { Resend } from 'resend'
 
 type Bindings = {
   DB: D1Database
   RESOURCES_BUCKET: R2Bucket
   ADMIN_PASSWORD?: string
   JWT_SECRET?: string
+  RESEND_API_KEY?: string
+  ADMIN_EMAIL?: string
 }
 
 const app = new Hono<{ Bindings: Bindings }>()
 
 // JWT Secret (환경변수 또는 기본값)
 const getJWTSecret = (c: any) => c.env.JWT_SECRET || 'gumi-coop-secret-2025'
+
+// 이메일 발송 함수
+async function sendEmailNotification(c: any, type: 'quote' | 'contact', data: any) {
+  try {
+    const resendApiKey = c.env.RESEND_API_KEY
+    const adminEmail = c.env.ADMIN_EMAIL || 'wow3d16@naver.com'
+    
+    // API 키가 없으면 로그만 남기고 계속 진행
+    if (!resendApiKey) {
+      console.log('RESEND_API_KEY not configured. Email notification skipped.')
+      console.log('Notification data:', { type, data })
+      return { success: false, message: 'API key not configured' }
+    }
+    
+    const resend = new Resend(resendApiKey)
+    
+    let subject = ''
+    let html = ''
+    
+    if (type === 'quote') {
+      // 견적 요청 알림 이메일
+      subject = `[구미디지털적층] 새로운 견적 요청 - ${data.name}님`
+      html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #1e3a8a 0%, #0891b2 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; }
+            .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; }
+            .info-row { margin-bottom: 15px; padding: 10px; background: white; border-radius: 5px; }
+            .label { font-weight: bold; color: #1e3a8a; display: inline-block; width: 120px; }
+            .value { color: #374151; }
+            .footer { background: #374151; color: white; padding: 20px; text-align: center; border-radius: 0 0 10px 10px; font-size: 12px; }
+            .button { display: inline-block; background: #0891b2; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1 style="margin:0; font-size: 24px;">🔔 새로운 견적 요청</h1>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">구미디지털적층산업사업협동조합</p>
+            </div>
+            <div class="content">
+              <h2 style="color: #1e3a8a; margin-top: 0;">견적 요청 정보</h2>
+              
+              <div class="info-row">
+                <span class="label">📅 접수 시간:</span>
+                <span class="value">${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}</span>
+              </div>
+              
+              <h3 style="color: #1e3a8a; margin-top: 25px;">고객 정보</h3>
+              <div class="info-row">
+                <span class="label">👤 이름:</span>
+                <span class="value">${data.name}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">🏢 회사명:</span>
+                <span class="value">${data.company}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">📧 이메일:</span>
+                <span class="value">${data.email}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">📱 전화번호:</span>
+                <span class="value">${data.phone}</span>
+              </div>
+              
+              <h3 style="color: #1e3a8a; margin-top: 25px;">프로젝트 정보</h3>
+              <div class="info-row">
+                <span class="label">🔧 서비스 유형:</span>
+                <span class="value">${data.serviceType}</span>
+              </div>
+              ${data.quantity ? `<div class="info-row">
+                <span class="label">📦 수량:</span>
+                <span class="value">${data.quantity}개</span>
+              </div>` : ''}
+              ${data.deadline ? `<div class="info-row">
+                <span class="label">⏰ 납기일:</span>
+                <span class="value">${data.deadline}</span>
+              </div>` : ''}
+              ${data.budgetRange ? `<div class="info-row">
+                <span class="label">💰 예산 범위:</span>
+                <span class="value">${data.budgetRange}</span>
+              </div>` : ''}
+              
+              <div class="info-row">
+                <span class="label">📝 상세 설명:</span>
+                <div class="value" style="margin-top: 10px; white-space: pre-wrap;">${data.description}</div>
+              </div>
+              
+              ${data.fileName ? `<div class="info-row">
+                <span class="label">📎 첨부 파일:</span>
+                <span class="value">${data.fileName} (${data.fileSize})</span>
+              </div>` : ''}
+              
+              <div style="text-align: center; margin-top: 30px;">
+                <a href="https://www.gdamic.kr/admin/quotes" class="button">관리자 페이지에서 확인하기 →</a>
+              </div>
+            </div>
+            <div class="footer">
+              <p style="margin: 0;">구미디지털적층산업사업협동조합</p>
+              <p style="margin: 5px 0;">경상북도 구미시 수출대로 152, 504호(공단동)</p>
+              <p style="margin: 5px 0;">☎ 054-451-7186 | ✉ wow3d16@naver.com</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+    } else {
+      // 문의 메시지 알림 이메일
+      const inquiryTypeMap: Record<string, string> = {
+        'membership': '조합원 가입 문의',
+        'service': '서비스 이용 문의',
+        'partnership': '협력 제안',
+        'general': '일반 문의',
+        'other': '기타 문의'
+      }
+      
+      subject = `[구미디지털적층] 새로운 문의 - ${data.name}님`
+      html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <style>
+            body { font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%); color: white; padding: 30px; border-radius: 10px 10px 0 0; }
+            .content { background: #f9fafb; padding: 30px; border: 1px solid #e5e7eb; }
+            .info-row { margin-bottom: 15px; padding: 10px; background: white; border-radius: 5px; }
+            .label { font-weight: bold; color: #7c3aed; display: inline-block; width: 120px; }
+            .value { color: #374151; }
+            .footer { background: #374151; color: white; padding: 20px; text-align: center; border-radius: 0 0 10px 10px; font-size: 12px; }
+            .button { display: inline-block; background: #ec4899; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+            .inquiry-type { display: inline-block; background: #7c3aed; color: white; padding: 5px 15px; border-radius: 20px; font-size: 14px; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h1 style="margin:0; font-size: 24px;">💬 새로운 문의 메시지</h1>
+              <p style="margin: 10px 0 0 0; opacity: 0.9;">구미디지털적층산업사업협동조합</p>
+            </div>
+            <div class="content">
+              <h2 style="color: #7c3aed; margin-top: 0;">문의 정보</h2>
+              
+              <div class="info-row">
+                <span class="label">📅 접수 시간:</span>
+                <span class="value">${new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}</span>
+              </div>
+              
+              <div class="info-row">
+                <span class="label">📋 문의 유형:</span>
+                <span class="inquiry-type">${inquiryTypeMap[data.inquiryType] || data.inquiryType}</span>
+              </div>
+              
+              <h3 style="color: #7c3aed; margin-top: 25px;">고객 정보</h3>
+              <div class="info-row">
+                <span class="label">👤 이름:</span>
+                <span class="value">${data.name}</span>
+              </div>
+              ${data.company ? `<div class="info-row">
+                <span class="label">🏢 회사명:</span>
+                <span class="value">${data.company}</span>
+              </div>` : ''}
+              <div class="info-row">
+                <span class="label">📧 이메일:</span>
+                <span class="value">${data.email}</span>
+              </div>
+              <div class="info-row">
+                <span class="label">📱 전화번호:</span>
+                <span class="value">${data.phone}</span>
+              </div>
+              
+              <h3 style="color: #7c3aed; margin-top: 25px;">문의 내용</h3>
+              <div class="info-row">
+                <div class="value" style="white-space: pre-wrap;">${data.message}</div>
+              </div>
+              
+              <div style="text-align: center; margin-top: 30px;">
+                <a href="https://www.gdamic.kr/admin/contacts" class="button">관리자 페이지에서 확인하기 →</a>
+              </div>
+            </div>
+            <div class="footer">
+              <p style="margin: 0;">구미디지털적층산업사업협동조합</p>
+              <p style="margin: 5px 0;">경상북도 구미시 수출대로 152, 504호(공단동)</p>
+              <p style="margin: 5px 0;">☎ 054-451-7186 | ✉ wow3d16@naver.com</p>
+            </div>
+          </div>
+        </body>
+        </html>
+      `
+    }
+    
+    const result = await resend.emails.send({
+      from: 'GDAMIC <onboarding@resend.dev>', // Resend 무료 도메인 (나중에 커스텀 도메인으로 변경 가능)
+      to: [adminEmail],
+      subject: subject,
+      html: html,
+    })
+    
+    console.log('Email sent successfully:', result)
+    return { success: true, data: result }
+  } catch (error) {
+    console.error('Email sending failed:', error)
+    return { success: false, error: error }
+  }
+}
 
 // 관리자 인증 미들웨어
 const authMiddleware = async (c: any, next: any) => {
@@ -7994,6 +8209,21 @@ app.post('/api/quotes/submit', async (c) => {
       fileSize
     ).run()
     
+    // 이메일 알림 발송 (백그라운드에서 실행, 실패해도 요청은 성공으로 처리)
+    sendEmailNotification(c, 'quote', {
+      name,
+      company,
+      email,
+      phone,
+      serviceType,
+      quantity,
+      deadline,
+      budgetRange,
+      description,
+      fileName,
+      fileSize
+    }).catch(err => console.error('Email notification failed:', err))
+    
     return c.json({ 
       success: true, 
       message: '견적요청이 성공적으로 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.' 
@@ -8181,6 +8411,16 @@ app.post('/api/contacts/submit', async (c) => {
       inquiryType,
       message
     ).run()
+    
+    // 이메일 알림 발송 (백그라운드에서 실행, 실패해도 요청은 성공으로 처리)
+    sendEmailNotification(c, 'contact', {
+      name,
+      company,
+      email,
+      phone,
+      inquiryType,
+      message
+    }).catch(err => console.error('Email notification failed:', err))
     
     return c.json({ 
       success: true, 

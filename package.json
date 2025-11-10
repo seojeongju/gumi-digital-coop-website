@@ -20,7 +20,8 @@
     "test": "curl http://localhost:3000"
   },
   "dependencies": {
-    "hono": "^4.10.2"
+    "hono": "^4.10.2",
+    "resend": "^6.4.2"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20251014.0",
