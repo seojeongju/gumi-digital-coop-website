@@ -496,50 +496,62 @@ const AdminHeader = ({ currentPage }: { currentPage: string }) => (
     {/* 네비게이션 메뉴 */}
     <div class="bg-white border-b">
       <div class="container mx-auto px-4">
-        <nav class="flex items-center space-x-1">
+        <nav class="flex items-center justify-between">
+          <div class="flex items-center space-x-1">
+            <a 
+              href="/admin/dashboard" 
+              class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+                currentPage === 'dashboard' 
+                  ? 'text-teal border-b-2 border-teal' 
+                  : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+              }`}
+            >
+              <i class="fas fa-chart-line mr-2"></i>
+              대시보드
+            </a>
+            <a 
+              href="/admin/quotes" 
+              class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+                currentPage === 'quotes' 
+                  ? 'text-teal border-b-2 border-teal' 
+                  : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+              }`}
+            >
+              <i class="fas fa-file-invoice mr-2"></i>
+              견적 관리
+            </a>
+            <a 
+              href="/admin/contacts" 
+              class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+                currentPage === 'contacts' 
+                  ? 'text-teal border-b-2 border-teal' 
+                  : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+              }`}
+            >
+              <i class="fas fa-envelope mr-2"></i>
+              문의 관리
+            </a>
+            <a 
+              href="/admin/resources" 
+              class={`flex items-center px-4 py-4 text-sm font-medium transition ${
+                currentPage === 'resources' 
+                  ? 'text-teal border-b-2 border-teal' 
+                  : 'text-gray-600 hover:text-teal hover:bg-gray-50'
+              }`}
+            >
+              <i class="fas fa-folder-open mr-2"></i>
+              자료실 관리
+            </a>
+          </div>
+          
+          {/* 홈페이지 바로가기 버튼 */}
           <a 
-            href="/admin/dashboard" 
-            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
-              currentPage === 'dashboard' 
-                ? 'text-teal border-b-2 border-teal' 
-                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
-            }`}
+            href="/" 
+            target="_blank"
+            class="flex items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-navy to-teal rounded-lg hover:opacity-90 transition shadow-sm"
           >
-            <i class="fas fa-chart-line mr-2"></i>
-            대시보드
-          </a>
-          <a 
-            href="/admin/quotes" 
-            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
-              currentPage === 'quotes' 
-                ? 'text-teal border-b-2 border-teal' 
-                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
-            }`}
-          >
-            <i class="fas fa-file-invoice mr-2"></i>
-            견적 관리
-          </a>
-          <a 
-            href="/admin/contacts" 
-            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
-              currentPage === 'contacts' 
-                ? 'text-teal border-b-2 border-teal' 
-                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
-            }`}
-          >
-            <i class="fas fa-envelope mr-2"></i>
-            문의 관리
-          </a>
-          <a 
-            href="/admin/resources" 
-            class={`flex items-center px-4 py-4 text-sm font-medium transition ${
-              currentPage === 'resources' 
-                ? 'text-teal border-b-2 border-teal' 
-                : 'text-gray-600 hover:text-teal hover:bg-gray-50'
-            }`}
-          >
-            <i class="fas fa-folder-open mr-2"></i>
-            자료실 관리
+            <i class="fas fa-external-link-alt mr-2"></i>
+            홈페이지 보기
           </a>
         </nav>
       </div>
