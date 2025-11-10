@@ -28,8 +28,8 @@ export const renderer = jsxRenderer(({ children, title }) => {
         <meta name="twitter:description" content="3D 프린팅 및 적층제조 기술을 중심으로 회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합" />
         <meta name="twitter:image" content="https://www.gdamic.kr/static/images/logo.png" />
         
-        {/* 네이버 사이트 소유 확인 - 네이버 서치어드바이저에서 발급받은 코드로 교체하세요 */}
-        {/* <meta name="naver-site-verification" content="YOUR_VERIFICATION_CODE_HERE" /> */}
+        {/* 네이버 사이트 소유 확인 */}
+        <meta name="naver-site-verification" content="1def2814104acefcd4c1fd71d0e9d0f81e469e21" />
         
         {/* TailwindCSS */}
         <script src="https://cdn.tailwindcss.com"></script>
