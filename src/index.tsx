@@ -45,8 +45,8 @@ const TopBar = () => (
     <div class="container mx-auto px-4">
       <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0">
         <div class="flex items-center space-x-6">
-          <span><i class="fas fa-phone mr-2"></i> 054-461-3030</span>
-          <span><i class="fas fa-envelope mr-2"></i> info@gumidigital.co.kr</span>
+          <span><i class="fas fa-phone mr-2"></i> 054-451-7186</span>
+          <span><i class="fas fa-envelope mr-2"></i> wow3d16@naver.com</span>
           <span class="hidden md:inline"><i class="fas fa-clock mr-2"></i> 평일 09:00 - 18:00</span>
         </div>
         <div class="flex items-center space-x-4">
@@ -214,9 +214,9 @@ const Footer = () => (
             회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합
           </p>
           <div class="space-y-2 text-sm">
-            <p><i class="fas fa-map-marker-alt w-5"></i> 경상북도 구미시 산호대로 253</p>
-            <p><i class="fas fa-phone w-5"></i> 054-461-3030</p>
-            <p><i class="fas fa-envelope w-5"></i> info@gumidigital.co.kr</p>
+            <p><i class="fas fa-map-marker-alt w-5"></i> 경상북도 구미시 수출대로 152, 504호(공단동)</p>
+            <p><i class="fas fa-phone w-5"></i> 054-451-7186</p>
+            <p><i class="fas fa-envelope w-5"></i> wow3d16@naver.com</p>
           </div>
         </div>
         
@@ -1165,7 +1165,7 @@ app.get('/about', (c) => {
                     </div>
                     <div>
                       <h3 class="font-bold text-gray-900 mb-2">주소</h3>
-                      <p class="text-gray-600">경상북도 구미시 산호대로 253</p>
+                      <p class="text-gray-600">경상북도 구미시 수출대로 152, 504호(공단동)</p>
                     </div>
                   </div>
                   
@@ -1175,7 +1175,7 @@ app.get('/about', (c) => {
                     </div>
                     <div>
                       <h3 class="font-bold text-gray-900 mb-2">전화</h3>
-                      <p class="text-gray-600">054-461-3030</p>
+                      <p class="text-gray-600">054-451-7186</p>
                     </div>
                   </div>
                   
@@ -1185,7 +1185,7 @@ app.get('/about', (c) => {
                     </div>
                     <div>
                       <h3 class="font-bold text-gray-900 mb-2">이메일</h3>
-                      <p class="text-gray-600">info@gumidigital.co.kr</p>
+                      <p class="text-gray-600">wow3d16@naver.com</p>
                     </div>
                   </div>
                   
@@ -3049,12 +3049,12 @@ app.get('/services', (c) => {
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
                 <i class="fas fa-phone text-3xl mb-3"></i>
-                <div class="font-bold text-xl mb-2">054-461-3030</div>
+                <div class="font-bold text-xl mb-2">054-451-7186</div>
                 <div class="text-sm opacity-80">전화 상담</div>
               </div>
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
                 <i class="fas fa-envelope text-3xl mb-3"></i>
-                <div class="font-bold text-xl mb-2">info@gumidigital.co.kr</div>
+                <div class="font-bold text-xl mb-2">wow3d16@naver.com</div>
                 <div class="text-sm opacity-80">이메일 문의</div>
               </div>
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
@@ -3416,12 +3416,12 @@ app.get('/members/join', (c) => {
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
                 <i class="fas fa-phone text-3xl mb-3"></i>
-                <div class="font-bold text-xl mb-2">054-461-3030</div>
+                <div class="font-bold text-xl mb-2">054-451-7186</div>
                 <div class="text-sm opacity-80">전화 상담</div>
               </div>
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
                 <i class="fas fa-envelope text-3xl mb-3"></i>
-                <div class="font-bold text-lg mb-2 break-all">info@gumidigital.co.kr</div>
+                <div class="font-bold text-lg mb-2 break-all">wow3d16@naver.com</div>
                 <div class="text-sm opacity-80">이메일 문의</div>
               </div>
               <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 text-center">
@@ -3493,7 +3493,7 @@ app.get('/support', (c) => {
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">전화</h3>
                 <p class="text-gray-600 mb-4">평일 09:00 - 18:00</p>
-                <a href="tel:054-461-3030" class="text-teal font-bold text-lg hover:underline">054-461-3030</a>
+                <a href="tel:054-451-7186" class="text-teal font-bold text-lg hover:underline">054-451-7186</a>
               </div>
 
               {/* 이메일 */}
@@ -3503,7 +3503,7 @@ app.get('/support', (c) => {
                 </div>
                 <h3 class="text-xl font-bold text-gray-900 mb-2">이메일</h3>
                 <p class="text-gray-600 mb-4">언제든지 문의하세요</p>
-                <a href="mailto:info@gumidigital.co.kr" class="text-navy font-bold text-lg hover:underline break-all">info@gumidigital.co.kr</a>
+                <a href="mailto:wow3d16@naver.com" class="text-navy font-bold text-lg hover:underline break-all">wow3d16@naver.com</a>
               </div>
 
               {/* 주소 */}
@@ -3765,7 +3765,7 @@ app.get('/support', (c) => {
                 <div class="mt-8 p-6 bg-teal/5 rounded-xl border-2 border-teal/20">
                   <p class="text-gray-700 flex items-start">
                     <i class="fas fa-info-circle text-teal mr-3 mt-1"></i>
-                    <span><strong>방문 시 유의사항:</strong> 원활한 상담을 위해 방문 전 사전 예약을 부탁드립니다. (전화: 054-461-3030)</span>
+                    <span><strong>방문 시 유의사항:</strong> 원활한 상담을 위해 방문 전 사전 예약을 부탁드립니다. (전화: 054-451-7186)</span>
                   </p>
                 </div>
               </div>
@@ -3887,7 +3887,7 @@ app.get('/support/faq', (c) => {
                         <h3 class="text-lg font-bold text-gray-900 mb-2">조합원 가입비와 회비는 얼마인가요?</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">
                           가입비 및 회비는 조합원 유형에 따라 다르며, 자세한 사항은 조합 사무국으로 문의해 주시기 바랍니다. 
-                          전화: 054-461-3030
+                          전화: 054-451-7186
                         </p>
                       </div>
                     </div>
@@ -3905,7 +3905,7 @@ app.get('/support/faq', (c) => {
                       <div>
                         <h3 class="text-lg font-bold text-gray-900 mb-2">3D 프린팅 서비스를 이용하려면 어떻게 해야 하나요?</h3>
                         <p class="text-gray-600 text-sm leading-relaxed">
-                          홈페이지 문의 페이지를 통해 신청하시거나, 전화(054-461-3030) 또는 이메일(info@gumidigital.co.kr)로 
+                          홈페이지 문의 페이지를 통해 신청하시거나, 전화(054-451-7186) 또는 이메일(wow3d16@naver.com)로 
                           문의해 주시면 상담을 통해 서비스 이용을 도와드립니다.
                         </p>
                       </div>
@@ -3984,9 +3984,9 @@ app.get('/support/faq', (c) => {
                   <i class="fas fa-envelope mr-2"></i>
                   문의하기
                 </a>
-                <a href="tel:054-461-3030" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold">
+                <a href="tel:054-451-7186" class="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white text-white rounded-lg hover:bg-white hover:text-navy transition font-bold">
                   <i class="fas fa-phone mr-2"></i>
-                  054-461-3030
+                  054-451-7186
                 </a>
               </div>
             </div>
@@ -4339,11 +4339,11 @@ app.get('/support/quote', (c) => {
               <h3 class="text-2xl font-bold text-gray-900 mb-4">급하신가요?</h3>
               <p class="text-gray-600 mb-6">전화 또는 이메일로 직접 문의하시면 더 빠른 상담이 가능합니다</p>
               <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:054-461-3030" class="px-8 py-4 bg-purple text-white rounded-lg hover:bg-opacity-90 transition font-bold">
+                <a href="tel:054-451-7186" class="px-8 py-4 bg-purple text-white rounded-lg hover:bg-opacity-90 transition font-bold">
                   <i class="fas fa-phone mr-2"></i>
-                  054-461-3030
+                  054-451-7186
                 </a>
-                <a href="mailto:info@gumidigital.co.kr" class="px-8 py-4 bg-white text-purple border-2 border-purple rounded-lg hover:bg-purple hover:text-white transition font-bold">
+                <a href="mailto:wow3d16@naver.com" class="px-8 py-4 bg-white text-purple border-2 border-purple rounded-lg hover:bg-purple hover:text-white transition font-bold">
                   <i class="fas fa-envelope mr-2"></i>
                   이메일 문의
                 </a>
@@ -5421,7 +5421,7 @@ app.get('/location', (c) => {
                 
                 // 인포윈도우 생성
                 var infowindow = new kakao.maps.InfoWindow({
-                  content: '<div style="padding:10px;font-size:14px;font-weight:bold;">구미디지털적층산업사업협동조합<br/>경상북도 구미시 산호대로 253</div>'
+                  content: '<div style="padding:10px;font-size:14px;font-weight:bold;">구미디지털적층산업사업협동조합<br/>경상북도 구미시 수출대로 152, 504호(공단동)</div>'
                 });
                 infowindow.open(map, marker);
                 
@@ -5446,7 +5446,7 @@ app.get('/location', (c) => {
                   <div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-2">주소</h3>
                     <p class="text-gray-600 leading-relaxed">
-                      경상북도 구미시 산호대로 253<br />
+                      경상북도 구미시 수출대로 152, 504호(공단동)<br />
                       구미첨단의료기술타워
                     </p>
                   </div>
@@ -5472,11 +5472,11 @@ app.get('/location', (c) => {
                     <div class="space-y-2 text-gray-600">
                       <p>
                         <i class="fas fa-phone-alt mr-2 text-teal"></i>
-                        <span class="font-medium">054-461-3030</span>
+                        <span class="font-medium">054-451-7186</span>
                       </p>
                       <p>
                         <i class="fas fa-envelope mr-2 text-teal"></i>
-                        <span class="font-medium">info@gumidigital.co.kr</span>
+                        <span class="font-medium">wow3d16@naver.com</span>
                       </p>
                       <p>
                         <i class="fas fa-clock mr-2 text-teal"></i>
