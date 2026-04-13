@@ -2559,9 +2559,9 @@ app.get('/members', (c) => {
                       <div class="flex items-center gap-6">
                         <div class="w-40 h-24 bg-white rounded-xl flex items-center justify-center p-2 border border-gray-100 shadow-sm">
                           <img 
-                            src="/static/images/daesung_logo.png" 
+                            src="/static/images/daesung_logo.jpg" 
                             alt="대성정밀(주) 로고" 
-                            class="max-w-full max-h-full object-contain mix-blend-multiply"
+                            class="max-w-full max-h-full object-contain"
                           />
                         </div>
                         <div>

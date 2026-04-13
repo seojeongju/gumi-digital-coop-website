@@ -10,7 +10,7 @@ INSERT OR IGNORE INTO members (id, name, name_en, category, description, busines
 (2, '(주) 와우쓰리디', 'WOW3D Co., Ltd.', '교육', '3D 프린팅 교육 전문 기관으로 4차 산업혁명 관련 교육 프로그램을 운영합니다.', '3D 프린팅 교육, 자격증 과정, 창업 교육, 제품 개발', '3D 홀로그램 디스플레이, 3D 프린터, Helper C', '경북 구미시', '054-234-5678', 'edu@wow3d.kr', 'https://wow3d.kr', 'https://cdn1.genspark.ai/user-upload-image/rmbg_generated/0_4deadb6b-a7fc-4e59-bd5d-d4cd9c240e59', TRUE, 2),
 (3, '스파코 (주)', 'SPACO Co., Ltd.', '제조', '정밀 부품 제조 및 적층제조 기술을 활용한 맞춤형 솔루션 제공', '정밀 부품 제조, 3D 프린팅 서비스, 시제품 제작', '산업용 부품, 맞춤형 제품', '경북 구미시', '054-345-6789', 'contact@spaco.kr', 'https://spaco.kr', 'https://page.gensparksite.com/v1/base64_upload/2b3eaa12b325f7567f626c598010c4f0', TRUE, 3),
 (4, '(주) 휴먼아이티', 'Human IT Co., Ltd.', '연구', 'IT 기술과 적층제조를 결합한 스마트 제조 솔루션 연구개발', '스마트 제조 솔루션, IoT 기술, 데이터 분석', '스마트 팩토리 솔루션, 모니터링 시스템', '경북 구미시 고아읍 들성로7길 5-36', '054-451-7186', 'info@humanit.kr', 'https://humanit.kr', 'https://page.gensparksite.com/v1/base64_upload/a083f176d0e758352a6c24af9ebea7fa', TRUE, 4),
-(5, '대성정밀(주)', 'DAESUNG Precision Co., Ltd', '제조', '정밀기계가공, 3D프린트 부품 제조, 방산 부품 및 금형 등을 생산하는 정밀제조 핵심기술 전문 기업입니다.', '정밀가공, 3D 프린팅, 방위산업', '방위산업 핵심 부품 및 조립체, 3D프린트 기반 시제품 및 양산용 지그, CNC/MCT 정밀가공 부품', '경북 구미시 1공단로 7길 14-1', '054-463-3114', 'info@daesung.kr', 'http://daesung-precision.com', '/static/images/daesung_logo.png', TRUE, 5);
+(5, '대성정밀(주)', 'DAESUNG Precision Co., Ltd', '제조', '정밀기계가공, 3D프린트 부품 제조, 방산 부품 및 금형 등을 생산하는 정밀제조 핵심기술 전문 기업입니다.', '정밀가공, 3D 프린팅, 방위산업', '방위산업 핵심 부품 및 조립체, 3D프린트 기반 시제품 및 양산용 지그, CNC/MCT 정밀가공 부품', '경북 구미시 1공단로 7길 14-1', '054-463-3114', 'info@daesung.kr', 'http://daesung-precision.com', '/static/images/daesung_logo.jpg', TRUE, 5);
 
 -- 샘플 FAQ 데이터
 INSERT OR IGNORE INTO faqs (id, category, question, answer, display_order) VALUES
