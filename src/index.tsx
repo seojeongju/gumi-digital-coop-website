@@ -2561,7 +2561,7 @@ app.get('/members', (c) => {
                           <img 
                             src="/static/images/daesung_logo.png" 
                             alt="대성정밀(주) 로고" 
-                            class="max-w-full max-h-full object-contain"
+                            class="max-w-full max-h-full object-contain mix-blend-multiply"
                           />
                         </div>
                         <div>
