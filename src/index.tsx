@@ -2557,11 +2557,13 @@ app.get('/members', (c) => {
                   <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
-                        <img 
-                          src="/static/images/daesung_logo.png" 
-                          alt="대성정밀(주) 로고" 
-                          class="w-40 h-24 object-contain"
-                        />
+                        <div class="w-40 h-24 bg-white rounded-xl flex items-center justify-center p-2 border border-gray-100 shadow-sm">
+                          <img 
+                            src="/static/images/daesung_logo.png" 
+                            alt="대성정밀(주) 로고" 
+                            class="max-w-full max-h-full object-contain"
+                          />
+                        </div>
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">대성정밀(주)</h3>
                           <p class="text-navy font-semibold">DAESUNG Precision Co., Ltd</p>
