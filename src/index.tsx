@@ -2547,49 +2547,60 @@ app.get('/members', (c) => {
                 </div>
               </div>
 
-              {/* 조합원 2: 두맥스전자 */}
+              {/* 조합원 2: 대성정밀(주) */}
               <div class="bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition group">
                 <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
                   <div class="lg:col-span-5 p-8 lg:p-12">
                     <div class="flex items-start justify-between mb-6">
                       <div class="flex items-center gap-6">
                         <img 
-                          src="https://page.gensparksite.com/v1/base64_upload/ce6feb0db139bd9972c7118ce5cc5c37" 
-                          alt="두맥스전자 로고" 
+                          src="/static/images/daesung_logo.png" 
+                          alt="대성정밀(주) 로고" 
                           class="w-48 object-contain"
                         />
                         <div>
-                          <h3 class="text-3xl font-bold text-gray-900 mb-2">두맥스전자</h3>
-                          <p class="text-navy font-semibold">DUMAX ELECTRONICS</p>
+                          <h3 class="text-3xl font-bold text-gray-900 mb-2">대성정밀(주)</h3>
+                          <p class="text-navy font-semibold">DAESUNG Precision Co., Ltd</p>
                         </div>
                       </div>
                       <span class="px-4 py-2 bg-navy/10 text-navy rounded-full text-sm font-bold">정회원</span>
                     </div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
-                      3D 프린팅 기술 연구개발과 최신 장비 및 기술 트렌드를 공유하는 전문 기업으로, 산학연 공동 R&D 프로젝트를 선도합니다.
+                      정밀기계가공, 3D프린트 부품 제조, 방산 부품 및 금형 등을 생산하는 정밀제조 핵심기술 전문 기업입니다.
                     </p>
-                    <div class="space-y-3 mb-6">
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
-                        <span class="text-gray-700">3D 프린팅 기술 연구개발 지원</span>
-                      </div>
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
-                        <span class="text-gray-700">최신 장비 및 기술 트렌드 공유</span>
-                      </div>
-                      <div class="flex items-start">
-                        <i class="fas fa-check-circle text-navy mr-3 mt-1"></i>
-                        <span class="text-gray-700">산학연 공동 R&D 프로젝트 추진</span>
+                    <div class="mb-6">
+                      <h4 class="font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-microchip text-navy mr-2"></i>주요 제품
+                      </h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-navy mr-2 mt-1"></i>
+                          <span class="text-gray-700">방위산업 핵심 부품 및 조립체 (천궁/K320 몸체 등)</span>
+                        </div>
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-navy mr-2 mt-1"></i>
+                          <span class="text-gray-700">3D프린트 기반 시제품 및 양산용 지그 제조</span>
+                        </div>
+                        <div class="flex items-start bg-gray-50 p-3 rounded-lg">
+                          <i class="fas fa-check-circle text-navy mr-2 mt-1"></i>
+                          <span class="text-gray-700">CNC/MCT 활용 정밀가공 부품 생산</span>
+                        </div>
                       </div>
                     </div>
-                    <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg mb-4">
-                      <i class="fas fa-phone text-navy mr-2"></i>
-                      010-3531-5727
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-map-marker-alt text-navy mr-2"></i>
+                        경북 구미시 1공단로 7길 14-1
+                      </div>
+                      <div class="flex items-center text-sm text-gray-600 bg-gray-50 p-3 rounded-lg">
+                        <i class="fas fa-phone text-navy mr-2"></i>
+                        054-463-3114
+                      </div>
                     </div>
                     <div class="flex flex-wrap gap-2">
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">R&D</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">정밀가공</span>
                       <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">3D 프린팅</span>
-                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">기술혁신</span>
+                      <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-lg text-sm">방위산업</span>
                     </div>
                   </div>
                 </div>
