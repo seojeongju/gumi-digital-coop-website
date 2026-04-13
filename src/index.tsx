@@ -301,7 +301,7 @@ const Header = () => (
             </a>
             <div class="absolute left-0 mt-2 w-52 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <a href="/about" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합 개요</a>
-              <a href="/about/greeting" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조합장 인사말</a>
+              <a href="/about/greeting" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">이사장 인사말</a>
               <a href="/about/organization" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">조직 및 운영구조</a>
               <a href="/about#vision" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">비전 & 미션</a>
               <a href="/about#values" class="block px-4 py-3 text-sm text-gray-700 hover:bg-teal hover:text-white transition">핵심 가치</a>
@@ -367,7 +367,7 @@ const Header = () => (
           <a href="/about" class="block py-2 text-gray-700 hover:text-teal font-medium">조합 소개</a>
           <div class="pl-4 space-y-1">
             <a href="/about" class="block py-1 text-sm text-gray-600 hover:text-teal">조합 개요</a>
-            <a href="/about/greeting" class="block py-1 text-sm text-gray-600 hover:text-teal">조합장 인사말</a>
+            <a href="/about/greeting" class="block py-1 text-sm text-gray-600 hover:text-teal">이사장 인사말</a>
             <a href="/about/organization" class="block py-1 text-sm text-gray-600 hover:text-teal">조직 및 운영구조</a>
             <a href="/about#vision" class="block py-1 text-sm text-gray-600 hover:text-teal">비전 & 미션</a>
             <a href="/about#values" class="block py-1 text-sm text-gray-600 hover:text-teal">핵심 가치</a>
@@ -1533,7 +1533,7 @@ app.get('/about', (c) => {
   )
 })
 
-// 조합장 인사말 페이지
+// 이사장 인사말 페이지
 app.get('/about/greeting', (c) => {
   return c.render(
     <div>
@@ -1545,25 +1545,25 @@ app.get('/about/greeting', (c) => {
         <div class="absolute inset-0" style="background-image: url('https://page.gensparksite.com/v1/base64_upload/fda2eb52d8950c1250cdbec06b24d1e9'); background-size: cover; background-position: center; opacity: 0.1;"></div>
         <div class="container mx-auto px-4 relative z-10">
           <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4">조합장 인사말</h1>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">이사장 인사말</h1>
             <p class="text-xl opacity-90">Chairman's Greeting</p>
           </div>
         </div>
       </section>
       
-      {/* 조합장 인사말 */}
+      {/* 이사장 인사말 */}
       <section class="py-20 bg-white">
         <div class="container mx-auto px-4">
           <div class="max-w-6xl mx-auto">
             <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
               <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
-                {/* 왼쪽: 조합장 사진 */}
+                {/* 왼쪽: 이사장 사진 */}
                 <div class="lg:col-span-2 bg-gradient-to-br from-navy to-teal p-8 lg:p-12 flex flex-col items-center justify-center text-white">
                   <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden">
                     <i class="fas fa-user text-8xl text-white/60"></i>
                   </div>
                   <h3 class="text-2xl font-bold mb-2">김한수</h3>
-                  <p class="text-lg opacity-90 mb-4">조합장</p>
+                  <p class="text-lg opacity-90 mb-4">이사장</p>
                   <div class="text-sm opacity-75 text-center">
                     <p>구미디지털적층산업</p>
                     <p>사업협동조합</p>
@@ -1575,7 +1575,7 @@ app.get('/about/greeting', (c) => {
                   <div class="space-y-6 text-gray-700 leading-relaxed">
                     <p class="text-xl font-medium text-gray-900 mb-8">
                       안녕하십니까,<br />
-                      구미디지털적층산업사업협동조합 조합장 <span class="text-teal">김한수</span>입니다.
+                      구미디지털적층산업사업협동조합 이사장 <span class="text-teal">김한수</span>입니다.
                     </p>
                     
                     <p>
@@ -1630,7 +1630,7 @@ app.get('/about/greeting', (c) => {
                     <div class="pt-8 border-t border-gray-200 mt-10">
                       <p class="text-right">
                         <span class="text-gray-600 text-lg">감사합니다.</span><br />
-                        <span class="font-bold text-gray-900 text-lg mt-2 inline-block">구미디지털적층산업사업협동조합 조합장</span><br />
+                        <span class="font-bold text-gray-900 text-lg mt-2 inline-block">구미디지털적층산업사업협동조합 이사장</span><br />
                         <span class="font-bold text-teal text-3xl mt-2 inline-block">김한수</span>
                       </p>
                     </div>
@@ -1671,7 +1671,7 @@ app.get('/about/greeting', (c) => {
       {/* JavaScript */}
       <script src="/static/js/app.js"></script>
     </div>,
-    { title: '조합장 인사말 - 구미디지털적층산업사업협동조합' }
+    { title: '이사장 인사말 - 구미디지털적층산업사업협동조합' }
   )
 })
 
