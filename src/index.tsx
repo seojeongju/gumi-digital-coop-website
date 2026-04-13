@@ -1559,8 +1559,12 @@ app.get('/about/greeting', (c) => {
               <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
                 {/* 왼쪽: 이사장 사진 */}
                 <div class="lg:col-span-2 bg-gradient-to-br from-navy to-teal p-8 lg:p-12 flex flex-col items-center justify-center text-white">
-                  <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden">
-                    <i class="fas fa-user text-8xl text-white/60"></i>
+                  <div class="w-48 h-48 rounded-full bg-white/20 mb-6 flex items-center justify-center overflow-hidden border-4 border-white/10 shadow-xl">
+                    <img 
+                      src="/static/images/chairman.jpg" 
+                      alt="김한수 이사장" 
+                      class="w-full h-full object-cover"
+                    />
                   </div>
                   <h3 class="text-2xl font-bold mb-2">김한수</h3>
                   <p class="text-lg opacity-90 mb-4">이사장</p>
@@ -2556,7 +2560,7 @@ app.get('/members', (c) => {
                         <img 
                           src="/static/images/daesung_logo.png" 
                           alt="대성정밀(주) 로고" 
-                          class="w-48 object-contain"
+                          class="w-40 h-24 object-contain"
                         />
                         <div>
                           <h3 class="text-3xl font-bold text-gray-900 mb-2">대성정밀(주)</h3>
@@ -2721,7 +2725,7 @@ app.get('/members', (c) => {
                       </h4>
                       <div class="text-sm text-gray-700">
                         <p>• Maker Space 제품 제작실 운영</p>
-                        <p>• 기업 사례품(PR/Mock-Up) 제작지원</p>
+                        <p>• 기업, 학생 등 시제품(PR/Mock-Up) 제작지원</p>
                       </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
