@@ -123,7 +123,7 @@ async function sendEmailNotification(c: any, type: 'quote' | 'contact', data: an
             </div>
             <div class="footer">
               <p style="margin: 0;">구미디지털적층산업사업협동조합</p>
-              <p style="margin: 5px 0;">경상북도 구미시 수출대로 152, 504호(공단동)</p>
+              <p style="margin: 5px 0;">경상북도 구미시 산호대로 242-1, 2층 202호(공단동)</p>
               <p style="margin: 5px 0;">☎ 054-451-7186 | ✉ wow3d16@naver.com</p>
             </div>
           </div>
@@ -207,7 +207,7 @@ async function sendEmailNotification(c: any, type: 'quote' | 'contact', data: an
             </div>
             <div class="footer">
               <p style="margin: 0;">구미디지털적층산업사업협동조합</p>
-              <p style="margin: 5px 0;">경상북도 구미시 수출대로 152, 504호(공단동)</p>
+              <p style="margin: 5px 0;">경상북도 구미시 산호대로 242-1, 2층 202호(공단동)</p>
               <p style="margin: 5px 0;">☎ 054-451-7186 | ✉ wow3d16@naver.com</p>
             </div>
           </div>
@@ -429,7 +429,7 @@ const Footer = () => (
             회원사의 상생과 지역 산업 혁신을 위해 설립된 협동조합
           </p>
           <div class="space-y-2 text-sm">
-            <p><i class="fas fa-map-marker-alt w-5"></i> 경상북도 구미시 수출대로 152, 504호(공단동)</p>
+            <p><i class="fas fa-map-marker-alt w-5"></i> 경상북도 구미시 산호대로 242-1, 2층 202호(공단동)</p>
             <p><i class="fas fa-phone w-5"></i> 054-451-7186</p>
             <p><i class="fas fa-envelope w-5"></i> wow3d16@naver.com</p>
           </div>
@@ -1474,7 +1474,7 @@ app.get('/about', (c) => {
                     </div>
                     <div>
                       <h3 class="font-bold text-gray-900 mb-2">주소</h3>
-                      <p class="text-gray-600">경상북도 구미시 수출대로 152, 504호(공단동)</p>
+                      <p class="text-gray-600">경상북도 구미시 산호대로 242-1, 2층 202호(공단동)</p>
                     </div>
                   </div>
                   
@@ -5733,13 +5733,13 @@ app.get('/location', (c) => {
               kakao.maps.load(function() {
                 var container = document.getElementById('kakao-map');
                 var options = {
-                  center: new kakao.maps.LatLng(36.1191, 128.3445),
+                  center: new kakao.maps.LatLng(36.1053962, 128.3874743),
                   level: 3
                 };
                 var map = new kakao.maps.Map(container, options);
                 
                 // 마커 생성
-                var markerPosition = new kakao.maps.LatLng(36.1191, 128.3445);
+                var markerPosition = new kakao.maps.LatLng(36.1053962, 128.3874743);
                 var marker = new kakao.maps.Marker({
                   position: markerPosition,
                   map: map
@@ -5747,7 +5747,7 @@ app.get('/location', (c) => {
                 
                 // 인포윈도우 생성
                 var infowindow = new kakao.maps.InfoWindow({
-                  content: '<div style="padding:10px;font-size:14px;font-weight:bold;">구미디지털적층산업사업협동조합<br/>경상북도 구미시 수출대로 152, 504호(공단동)</div>'
+                  content: '<div style="padding:10px;font-size:14px;font-weight:bold;">구미디지털적층산업사업협동조합<br/>경상북도 구미시 산호대로 242-1, 2층 202호(공단동)</div>'
                 });
                 infowindow.open(map, marker);
                 
@@ -5772,13 +5772,12 @@ app.get('/location', (c) => {
                   <div>
                     <h3 class="text-2xl font-bold text-gray-900 mb-2">주소</h3>
                     <p class="text-gray-600 leading-relaxed">
-                      경상북도 구미시 수출대로 152, 504호(공단동)<br />
-                      구미첨단의료기술타워
+                      경상북도 구미시 산호대로 242-1, 2층 202호(공단동)
                     </p>
                   </div>
                 </div>
                 <a 
-                  href="https://map.kakao.com/link/map/구미디지털적층산업사업협동조합,36.1191,128.3445"
+                  href="https://map.kakao.com/link/map/구미디지털적층산업사업협동조합,36.1053962,128.3874743"
                   target="_blank"
                   class="inline-flex items-center px-6 py-3 bg-navy text-white rounded-lg hover:bg-opacity-90 transition font-medium"
                 >
@@ -5841,7 +5840,7 @@ app.get('/location', (c) => {
                     </li>
                     <li class="flex items-start">
                       <i class="fas fa-circle text-xs text-teal mr-3 mt-1.5"></i>
-                      <span>첨단의료기술타워 정류장 하차</span>
+                      <span>평생교육원앞 정류장 하차</span>
                     </li>
                   </ul>
                 </div>

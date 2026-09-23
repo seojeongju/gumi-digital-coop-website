@@ -251,7 +251,7 @@ npm run db:migrate:prod
 
 ## 📞 연락처
 
-- **주소**: 경상북도 구미시 산호대로 253
+- **주소**: 경상북도 구미시 산호대로 242-1, 2층 202호(공단동)
 - **전화**: 054-123-4567
 - **이메일**: info@gumidigital.co.kr
 - **개발 서버**: https://3000-ixvmd31azat2j06x6v0fl-a402f90a.sandbox.novita.ai

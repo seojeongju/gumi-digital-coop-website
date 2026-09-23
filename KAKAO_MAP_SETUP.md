@@ -51,9 +51,9 @@
 ## 📍 현재 설정된 위치 정보
 
 ```javascript
-위도(latitude): 36.1191
-경도(longitude): 128.3445
-주소: 경상북도 구미시 산호대로 253
+위도(latitude): 36.1053962
+경도(longitude): 128.3874743
+주소: 경상북도 구미시 산호대로 242-1, 2층 202호(공단동)
 ```
 
 ---
@@ -76,7 +76,7 @@
 
 1. **카카오맵**에서 주소 검색
    - https://map.kakao.com
-   - "경상북도 구미시 산호대로 253" 검색
+   - "경상북도 구미시 산호대로 242-1" 검색
 
 2. **좌표 확인**
    - 지도에서 해당 위치 클릭
@@ -86,10 +86,10 @@
 3. **코드 수정** (src/index.tsx, 약 5108-5112번 라인)
    ```javascript
    // 지도 중심 좌표
-   center: new kakao.maps.LatLng(36.1191, 128.3445),
+   center: new kakao.maps.LatLng(36.1053962, 128.3874743),
    
    // 마커 위치
-   var markerPosition = new kakao.maps.LatLng(36.1191, 128.3445);
+   var markerPosition = new kakao.maps.LatLng(36.1053962, 128.3874743);
    ```
 
 ---
